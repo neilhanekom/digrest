@@ -1,0 +1,264 @@
+<section data-ng-controller="LeftController" class="bg-bgdark bouncing" resize ng-style="fullHeight()" layout="row" data-ng-show="authentication.user">
+
+ <!--  <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-lg')">
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Sidenav Left</h1>
+      </md-toolbar>
+      <md-content layout-padding >
+        <md-button ng-click="close()" class="md-primary" hide-gt-md>
+          Close Sidenav Left
+        </md-button>
+        <p hide-md show-gt-md>
+          This sidenav is locked open on your device. To go back to the default behavior,
+          narrow your display.
+        </p>
+      </md-content>
+    </md-sidenav> -->
+
+ <md-sidenav class="md-sidenav-left md-whiteframe-z2 h-100" md-component-id="left" md-is-locked-open="$mdMedia('gt-lg')" >
+      <md-toolbar layout="row" class="md-warn md-hue-2">
+      
+    </md-toolbar>
+      <div class="bg-bgdark " flex>
+
+        <div class="accordion__container">
+            <div class="accordion__tab">
+                <div class="accordion__tab-title" ng-click="openTab('tab one')">
+                  <md-button area-label="Button" flex layout="row" class="sidebar-btn">
+                    <span class="pad-t-5">
+                      <ng-md-icon icon="home" style="fill: {{white}}" size="20"></ng-md-icon> 
+                    </span>
+                    <span class="pad-t-8 mar-l-10 hd5 bold g-300">Dashboard</span>
+                  </md-button>
+                </div>
+                
+            </div>
+            
+
+
+            <div class="accordion__tab" data-ng-repeat="item in sidenav.items | orderBy: 'position'">
+                <div class="accordion__tab-title" ng-click="openTab($index)">
+                  <md-button area-label="Button" flex layout="row" class="sidebar-btn">
+                    <span class="pad-t-5">
+                      <ng-md-icon icon="{{item.icon}}" style="fill: {{white}}" size="20"></ng-md-icon> 
+                    </span>
+                    <span class="pad-t-8 mar-l-10 hd5 bold g-300">{{item.title}}</span>
+                    <span flex layout="row" layout-align="end center" class="pad-t-5">
+                      <ng-md-icon icon="chevron_right" style="fill: {{white}}" size="20"></ng-md-icon> 
+                    </span>
+                  </md-button>
+                </div>
+                <div class="accordion__tab-content slidingVert" ng-show="isOpenTab($index)">
+                <md-button ng-repeat="sub in item.items| orderBy: 'position'" area-label="Button" flex layout="row" class="sidebar-btn sidebar-sub" data-ui-sref="{{sub.state}}">
+                    <span class="pad-t-5">
+                      <ng-md-icon icon="chevron_right" style="fill: {{white}}" size="18"></ng-md-icon> 
+                    </span>
+                    <span class="pad-t-8 mar-l-10 hd6 bold g-300">{{sub.title}}</span>
+                    <div flex layout="row" layout-align="end center" class="pad-t-5">
+                      
+                    </div>
+                  </md-button>
+
+                </div>
+                
+            </div>
+           
+            <!-- <div class="accordion__tab">
+                <div class="accordion__tab-title" ng-click="openTab('tab three')">Tab 3</div>
+                <div class="accordion__tab-content firstSampleAnimation" ng-show="isOpenTab('tab three')">Tab content goes here!</div>
+            </div> -->
+           
+        </div>
+
+
+<!--         <ul class="normal-ul">
+          <li flex>
+            <md-button area-label="Button" flex layout="row" class="sidebar-btn">
+              <span class="pad-t-5">
+                <ng-md-icon icon="home" style="fill: {{white}}" size="20"></ng-md-icon> 
+              </span>
+              <span class="pad-t-8 mar-l-10 hd5 bold g-300">Dashboard</span>
+            </md-button>
+          </li>
+          <li flex>
+            <md-button area-label="Button" flex layout="row" class="sidebar-btn">
+              <span class="pad-t-5">
+                <ng-md-icon icon="business" style="fill: {{white}}" size="20"></ng-md-icon> 
+              </span>
+              <span class="pad-t-8 mar-l-10 hd5 bold g-300">Suppliers</span>
+              <span flex layout="row" layout-align="end center" class="pad-t-5">
+                <ng-md-icon icon="chevron_right" style="fill: {{white}}" size="20"></ng-md-icon> 
+              </span>
+            </md-button>
+            <ul class="normal-ul" >
+              <li>
+                  <md-button area-label="Button" flex layout="row" class="sidebar-btn sidebar-sub" ng-click="close()">
+                    <span class="pad-t-5">
+                      <ng-md-icon icon="chevron_right" style="fill: {{white}}" size="18"></ng-md-icon> 
+                    </span>
+                    <span class="pad-t-8 mar-l-10 hd6 bold g-300">List Suppliers</span>
+                    <div flex layout="row" layout-align="end center" class="pad-t-5">
+                      
+                    </div>
+                  </md-button>
+              </li>
+              <li>
+                  <md-button area-label="Button" flex layout="row" class="sidebar-btn sidebar-sub">
+                    <span class="pad-t-5">
+                      <ng-md-icon icon="chevron_right" style="fill: {{white}}" size="18"></ng-md-icon> 
+                    </span>
+                    <span class="pad-t-8 mar-l-10 hd6 bold g-300">New Supplier</span>
+                    <div flex layout="row" layout-align="end center" class="pad-t-5">
+                      
+                    </div>
+                  </md-button>
+              </li>
+              
+            </ul>
+          </li>
+          <li flex>
+            <md-button area-label="Button" flex layout="row" class="sidebar-btn">
+              <span class="pad-t-5">
+                <ng-md-icon icon="directions_car" style="fill: {{white}}" size="20"></ng-md-icon> 
+              </span>
+              <span class="pad-t-8 mar-l-10 hd5 bold g-300">Vehicles</span>
+            </md-button>
+          </li>
+          <li flex>
+            <md-button area-label="Button" flex layout="row" class="sidebar-btn">
+              <span class="pad-t-5">
+                <ng-md-icon icon="group" style="fill: {{white}}" size="20"></ng-md-icon> 
+              </span>
+              <span class="pad-t-8 mar-l-10 hd5 bold g-300">Workers</span>
+            </md-button>
+          </li>
+          <li flex>
+            <md-button area-label="Button" flex layout="row" class="sidebar-btn">
+              <span class="pad-t-5">
+                <ng-md-icon icon="find_in_page" style="fill: {{white}}" size="20"></ng-md-icon> 
+              </span>
+              <span class="pad-t-8 mar-l-10 hd5 bold g-300">Reports</span>
+            </md-button>
+          </li>
+          <li flex>
+            <md-button area-label="Button" flex layout="row" class="sidebar-btn">
+              <span class="pad-t-5">
+                <ng-md-icon icon="account_circle" style="fill: {{white}}" size="20"></ng-md-icon> 
+              </span>
+              <span class="pad-t-8 mar-l-10 hd5 bold g-300">Users</span>
+            </md-button>
+          </li>
+        </ul> -->
+      </div>
+    </md-sidenav>
+
+    <div layout="column" hide-sm hide-md ng-hide="{{collapseSidebar}}">
+      <md-toolbar layout="row" class="md-primary">
+      
+    </md-toolbar>
+    <!-- <div class="bg-bgdark">
+        <ul class="normal-ul" >
+          <li flex>
+            <md-button area-label="Button" flex layout="row" class="sidebar-btn" ng-click="toggleSides()">
+              <span class="pad-t-5">
+                <ng-md-icon icon="home" style="fill: {{white}}" size="20"></ng-md-icon> 
+              </span>
+              <span class="pad-t-8 mar-l-10 hd5 bold g-300">Dashboard</span>
+            </md-button>
+          </li>
+
+          <li flex>
+            <md-button area-label="Button" flex layout="row" class="sidebar-btn">
+              <span class="pad-t-5">
+                <ng-md-icon icon="business" style="fill: {{white}}" size="20"></ng-md-icon> 
+              </span>
+              <span class="pad-t-8 mar-l-10 hd5 bold g-300">Suppliers</span>
+              <span flex layout="row" layout-align="end center" class="pad-t-5">
+                <ng-md-icon icon="chevron_right" style="fill: {{white}}" size="20"></ng-md-icon> 
+              </span>
+            </md-button>
+            <ul class="normal-ul">
+              <li>
+                  <md-button area-label="Button" flex layout="row" class="sidebar-btn sidebar-sub">
+                    <span class="pad-t-5">
+                      <ng-md-icon icon="chevron_right" style="fill: {{white}}" size="18"></ng-md-icon> 
+                    </span>
+                    <span class="pad-t-8 mar-l-10 hd6 bold g-300">List Suppliers</span>
+                    <div flex layout="row" layout-align="end center" class="pad-t-5">
+                      
+                    </div>
+                  </md-button>
+              </li>
+              <li>
+                  <md-button area-label="Button" flex layout="row" class="sidebar-btn sidebar-sub">
+                    <span class="pad-t-5">
+                      <ng-md-icon icon="chevron_right" style="fill: {{white}}" size="18"></ng-md-icon> 
+                    </span>
+                    <span class="pad-t-8 mar-l-10 hd6 bold g-300">New Supplier</span>
+                    <div flex layout="row" layout-align="end center" class="pad-t-5">
+                      
+                    </div>
+                  </md-button>
+              </li>
+              
+            </ul>
+          </li>
+          <li flex>
+            <md-button area-label="Button" flex layout="row" class="sidebar-btn">
+              <span class="pad-t-5">
+                <ng-md-icon icon="directions_car" style="fill: {{white}}" size="20"></ng-md-icon> 
+              </span>
+              <span class="pad-t-8 mar-l-10 hd5 bold g-300">Vehicles</span>
+            </md-button>
+          </li>
+          <li flex>
+            <md-button area-label="Button" flex layout="row" class="sidebar-btn">
+              <span class="pad-t-5">
+                <ng-md-icon icon="group" style="fill: {{white}}" size="20"></ng-md-icon> 
+              </span>
+              <span class="pad-t-8 mar-l-10 hd5 bold g-300">Workers</span>
+            </md-button>
+          </li>
+          <li flex>
+            <md-button area-label="Button" flex layout="row" class="sidebar-btn">
+              <span class="pad-t-5">
+                <ng-md-icon icon="find_in_page" style="fill: {{white}}" size="20"></ng-md-icon> 
+              </span>
+              <span class="pad-t-8 mar-l-10 hd5 bold g-300">Reports</span>
+            </md-button>
+          </li>
+          <li flex>
+            <md-button area-label="Button" flex layout="row" class="sidebar-btn">
+              <span class="pad-t-5">
+                <ng-md-icon icon="account_circle" style="fill: {{white}}" size="20"></ng-md-icon> 
+              </span>
+              <span class="pad-t-8 mar-l-10 hd5 bold g-300">Users</span>
+            </md-button>
+          </li>
+        </ul>
+        
+      </div>
+
+    </div> -->
+
+    <!-- Icons Sidebar -->
+    <div layout="column" class="icon-sidebar " hide-gt-lg ng-hide="{{collapseIconSidebar}}">
+     
+      <ul class="normal-ul" >
+          <li flex>
+            <md-button area-label="Button" flex layout="row" class="sidebar-icon-btn" layout-align="center center">
+              <span class="pad-t-5">
+                <ng-md-icon icon="home" style="fill: {{white}}" size="20"></ng-md-icon> 
+              </span>
+              
+            </md-button>
+          </li>
+          
+        </ul>
+    </div>
+	
+</section>
+
+
+
+

@@ -1,0 +1,103 @@
+<!-- <section data-ng-controller="PlantationsController">
+    <div class="page-header">
+        <h1>New Plantation</h1>
+    </div>
+    <div class="col-md-12">
+        <form class="form-horizontal" data-ng-submit="create()" novalidate>
+            <fieldset>
+                <div class="form-group">
+                    <label class="control-label" for="name">Name</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Name" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-default">
+                </div>
+				<div data-ng-show="error" class="text-danger">
+					<strong data-ng-bind="error"></strong>
+				</div>
+            </fieldset>
+        </form>
+    </div>
+</section> -->
+
+<div data-ng-controller="PlantationsController" layout="row" layout-fill>
+
+    <div layout="column" class="icon-sidebar" hide-sm hide-md hide-gt-lg>
+        
+    </div>
+    <div layout="column" class="left-spacer" hide-lg hide-md hide-sm>
+        
+    </div>
+    <div layout="column" flex >
+                <!-- <md-whiteframe class="md-whiteframe-z1 dashboard-card-full " layout="column" layout-margin ng-show="response"> 
+                    
+                    <md-content class="md-padding">
+                        
+                            <div layout="column" layout-sm="column" layout-fill>
+                            
+                            <p class="hd2 light">User Succefully signed up</p>
+                            <md-divider></md-divider>
+                            <div layout="row">
+                                <div layout="row" class="mar-t-10">
+                                <img src="{{authentication.user.profileImageURL}}">
+                            </div>
+                            <div layout="column" flex layout-padding>
+                                <p class="hd3 ">{{authentication.user.displayName}}</p>
+                                <ul class="normal-ul">
+                                    <li>
+                                        <span class="hd4">{{authentication.user.email}}</span>
+                                    </li>
+                                    <li>
+                                        <span class="hd4">{{authentication.user.roles[0]}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            </div>
+                            
+                            </div>
+                        
+                    </md-content>
+                </md-whiteframe> -->
+                <md-whiteframe class="md-whiteframe-z1 dashboard-card-full " layout="column" layout-margin> 
+                    <!-- Start wtih Form in here. -->
+                    <md-content class="md-padding">
+                        <form name="userForm" data-ng-submit="create()" flex layout-fill class="std-text">
+                            <div layout="column" layout-sm="column" layout-fill>
+                            
+                            <p class="hd2 light">Create New Plantation</p>
+                            <md-divider></md-divider>
+                            <br>
+                            <div layout="row" layout-sm="column">
+                                   <div layout="column" layout-align="center start" style="height: 100px;">
+                                    <md-select ng-model="supplier" md-on-open="loadSuppliers()" style="min-width: 200px;">
+                                      <md-select-label>{{ supplier ? supplier.name : 'Select Supplier' }}</md-select-label>
+                                      <md-option ng-value="supplier" ng-repeat="supplier in suppliers">{{supplier.name}}</md-option>
+                                    </md-select>
+                                    <p class="md-caption">You have selected: {{ supplier ? supplier.name : 'No supplier yet' }}</p>
+                                  </div>
+                            </div>
+                            <div layout="row" layout-sm="column">
+                                    <md-input-container flex>
+                                        <label>Name</label>
+                                        <input type="text" required name="name" ng-model="name" placeholder="Produce a Plantation name">
+                                        <div ng-messages="userForm.name.$error" class="error">
+                                          <div ng-message="required">This is required.</div>
+                                        </div>
+                                    </md-input-container> 
+                            </div>
+                               
+                                
+                                <div layout="row" flex layout-align="end center">
+                                        <md-button type="submit" class="md-raised md-warn">Create</md-button>
+                                    </div>
+                            </div>
+                        </form>
+                    </md-content>
+                </md-whiteframe>
+
+
+        </div>
+
+</div>

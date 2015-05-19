@@ -1,0 +1,19 @@
+<section data-ng-controller="EnumerationsController" data-ng-init="find()">
+    <div class="page-header">
+        <h1>Enumerations</h1>
+    </div>
+    <div class="list-group">
+        <a data-ng-repeat="enumeration in enumerations" data-ng-href="/#!/enumerations/{{enumeration._id}}" class="list-group-item">
+			<small class="list-group-item-text">
+				Posted on
+				<span data-ng-bind="enumeration.created | date:'medium'"></span>
+				by
+				<span data-ng-bind="enumeration.user.displayName"></span>
+			</small>
+			<h4 class="list-group-item-heading" data-ng-bind="enumeration.name"></h4>
+        </a>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!enumerations.$resolved || enumerations.length">
+    	No Enumerations yet, why don't you <a href="/#!/enumerations/create">create one</a>?
+    </div>
+</section>

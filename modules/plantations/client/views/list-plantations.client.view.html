@@ -1,0 +1,33 @@
+<!-- <section data-ng-controller="PlantationsController" data-ng-init="find()">
+    <div class="page-header">
+        <h1>Plantations</h1>
+    </div>
+    <div class="list-group">
+        <a data-ng-repeat="plantation in plantations" data-ng-href="/#!/plantations/{{plantation._id}}" class="list-group-item">
+			<small class="list-group-item-text">
+				Posted on
+				<span data-ng-bind="plantation.created | date:'medium'"></span>
+				by
+				<span data-ng-bind="plantation.user.displayName"></span>
+			</small>
+			<h4 class="list-group-item-heading" data-ng-bind="plantation.name"></h4>
+        </a>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!plantations.$resolved || plantations.length">
+    	No Plantations yet, why don't you <a href="/#!/plantations/create">create one</a>?
+    </div>
+</section>
+ -->
+<div data-ng-controller="PlantationsController" layout="row" layout-fill>
+
+    <div layout="column" class="icon-sidebar" hide-sm hide-md hide-gt-lg>
+        
+    </div>
+    <div layout="column" class="left-spacer" hide-lg hide-md hide-sm>
+        
+    </div>
+    <div layout="column" flex >
+                <h1>List of plantations</h1>
+    </div>
+
+</div>

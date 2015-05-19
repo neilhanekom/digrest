@@ -1,0 +1,304 @@
+<!-- <section data-ng-controller="PolesController">
+    <div class="page-header">
+        <h1>New Pole</h1>
+    </div>
+    <div class="col-md-12">
+        <form class="form-horizontal" data-ng-submit="create()" novalidate>
+            <fieldset>
+                <div class="form-group">
+                    <label class="control-label" for="name">Name</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Name" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-default">
+                </div>
+				<div data-ng-show="error" class="text-danger">
+					<strong data-ng-bind="error"></strong>
+				</div>
+            </fieldset>
+        </form>
+    </div>
+</section> -->
+
+<div data-ng-controller="PolesController" layout="row" layout-fill>
+    <!-- <div class="response" layout="column" layout-align="center center">
+        <div layout="row" class="bg-alpha">
+            <md-button class="abs-r-0">
+                <ng-md-icon icon="close" style="fill: {{white}}" size="30"></ng-md-icon> 
+            </md-button>
+        </div>
+        <div layout="column" layout-align="center center">
+            <md-whiteframe class="md-whiteframe-z5 bg-white" layout="column" layout-align="center start" layout-padding>
+               <p class="hd2">Standing Enumeration</p>                 
+                <p class="hd4">The enumeration will be performed in steps</p>
+                <ul class="normal-ul">
+                    <li></li>
+                </ul>
+            </md-whiteframe>
+        </div>
+    </div> -->
+    <div layout="column" class="icon-sidebar" hide-sm hide-md hide-gt-lg></div>
+    <div layout="column" class="left-spacer" hide-lg hide-md hide-sm></div>
+    <div layout="row" flex>
+        <md-card flex>
+          <md-card-content>
+           <md-radio-group ng-model="product">
+              <md-radio-button ng-repeat="product in products"
+                               ng-value="product"
+                               aria-label="{{product.name}}"
+                               ng-click="selectProduct(product)"
+                               >
+                  {{product.name}}
+              </md-radio-button>
+            </md-radio-group>
+          </md-card-content>
+        <div layout="row" layout-padding>
+             <span class="hd3 light"> Select Product </span>
+        </div>
+         
+        </md-card>
+    </div>
+    <div layout="column">
+        
+    </div>
+    <!-- White Area for Content -->
+    <div layout="column">
+               <md-content class="md-padding">
+                       
+                            <div layout="column" layout-sm="column" layout-fill>
+                            <div layout="row">
+                                <span class="hd3 bold">Raw Material Product: &nbsp </span> <span class="hd3 light"> {{selProduct[0].name}}</span>
+                            </div>
+                            <div layout="column">
+                                <br>
+                                <span class="hd3 bold mar-b-5">Designated Sizes: &nbsp </span> 
+                                <div layout="row">
+                                    <span class="hd3 light bg-lgrey pad-5 mar-r-5" ng-repeat="size in product.sizes">{{size.min + '/' + size.max}}</span>
+                                    <div class="bg-green" layout="row" layout-align="center center" ng-hide="showAddSize">
+                                                <md-button layout="row" layout-align="center center" ng-click="showAddS()">
+                                                    <div layout="row" layout-align="center center">
+                                                        <ng-md-icon icon="add" style="fill: white" size="20"></ng-md-icon> 
+                                                    </div>
+                                                </md-button>
+                                    </div> 
+                                </div>
+                            </div>
+                            <!-- <div layout="row" class="mar-t-5" ng-show="showAddSize">
+                               <div layout="column" class="bg-lgrey">
+                                            <span class="hd4 thin mar-l-5 mar-t-5">
+                                                Min Diameter
+                                            </span>
+                                            <md-select ng-model="minWidth" md-on-open="getSizes()" style="min-width: 200px;">
+                                              <md-select-label class="mar-l-5 ">{{ minWidth ? minWidth : 'Select min value Diameter' }}</md-select-label>
+                                              <md-option ng-value="minWidth" ng-repeat="minWidth in sizes">{{minWidth}}</md-option>
+                                            </md-select>        
+                                </div>
+                                <div layout="column" class="bg-lgrey">
+                                            <span class="hd4 thin mar-l-5 mar-t-5">
+                                                Max Diameter
+                                            </span>
+                                            <md-select ng-model="maxWidth" md-on-open="getSizes()" style="min-width: 200px;">
+                                              <md-select-label class="mar-l-5 ">{{ maxWidth ? maxWidth : 'Select max value Diameter' }}</md-select-label>
+                                              <md-option ng-value="maxWidth" ng-repeat="maxWidth in sizes">{{maxWidth}}</md-option>
+                                            </md-select>      
+                                </div>
+                                <div layout="row" class="bg-charcoal" layout-align="center center" layout-padding ng-show="minWidth&&maxWidth">
+                                            <span class="hd1 thin white">
+                                                {{minWidth + '/' + maxWidth}}
+                                            </span>
+                                               
+                                </div>
+                                <div layout="row" class="bg-green" layout-align="center center" ng-show="minWidth&&maxWidth">
+                                            <span class="hd1 thin txt-white">
+                                                <md-button class="s-100" ng-click="addNewSize()">
+                                                    <ng-md-icon icon="check" style="fill: white" size="30"></ng-md-icon> 
+                                                </md-button>
+                                            </span>       
+                                </div>
+                                
+                            </div> -->
+                             <div layout="column">
+                                <br>
+                                <span class="hd3 bold mar-b-5">Designated Lengths: &nbsp </span> 
+                                <div layout="row">
+                                    <span class="hd3 light bg-lgrey mar-r-5 pad-5" ng-repeat="length in product.lengths">{{length | number: 1}}</span>
+                                    <div class="bg-green" layout="row" layout-wrap layout-align="center center" >
+                                                <md-button layout="row" layout-align="center center" ng-click="showLengthSelector()">
+                                                    <div layout="row" layout-align="center center">
+                                                        <ng-md-icon icon="add" style="fill: white" size="20"></ng-md-icon> 
+                                                    </div>
+                                                </md-button>
+                                    </div> 
+                                </div>
+                                
+                               
+                            </div>
+                            
+                            <br>
+                            <div layout="row" layout-sm="column">
+                                    
+                                    <div layout="row">
+                                        
+                                    </div>     
+                            </div>
+                                
+                                
+                                <div layout="row" flex layout-sm="column">
+                                    <div layout="row" >
+                                        <div layout="row" layout-wrap class="length-block" ng-repeat="length in selLengths" layout-align="center center" ng-mouseenter="openOptions()" ng-mouseleave="closeOptions()">
+                                            <div layout="row" layout-align="center center" ng-show="displayOptions" >
+                                                <md-button ng-click="removeLength($index)" aria-label="{{length}}">
+                                                    <ng-md-icon icon="cancel" style="fill: {{white}}" size="30"></ng-md-icon > 
+                                                </md-button>
+                                            </div>
+                                            <div layout="row" >
+                                                <span class="hd2 bold" >{{length}}</span>
+                                            </div>
+                                            
+                                        </div>
+                                        
+
+                                    </div>
+                                </div>
+                                
+
+                                <div layout="row" layout-sm="column" class="backdrop" layout-align="center center" ng-show="lengthSelector">
+                                    <div class="nh-dialog " layout="column">
+                                        
+
+                                        <md-card class="bg-white">
+                        
+                                          <md-card-content>
+                                            <div layout="row">
+                                                 <p class="hd3">Select Lengths</h2>
+                                            </div>
+                                            <div layout="row" layout-align="center center" ng-show="newLength">
+                                                 <p class="hd-large">{{newLength | number:1 }}</p> <span class="hd4"> &nbsp m</span>
+                                            </div>
+                                            <div layout="row">
+                                                <md-slider flex step="0.1" min="0" max="30" ng-model="newLength" aria-label="red" id="length-slider" class>
+                                            </md-slider>
+
+                                            </div>
+                                            <div layout="row" class="mar-t-10">
+                                                <md-button class="md-raised md-warn" ng-click="addNewLength()">Add Length</md-button>
+                                                <md-button class="md-accent" ng-click="cancelLength()">Cancel</md-button>
+                                            </div>
+                                            
+                                          </md-card-content>
+                                          
+                                        </md-card>
+                                    </div>
+                                
+                                           
+                                </div>
+
+
+
+                                <div layout="row" layout-sm="column" class="backdrop" layout-align="center center" ng-show="showAddSize">
+                                    <div class="nh-dialog " layout="column">
+                                        <md-card class="bg-white">
+                        
+                                          <md-card-content >
+                                            <div layout="row">
+                                                 <p class="hd3">Specify Widths</h2>
+                                            </div>
+                                            <div layout="row" layout-align="center center">
+                                                <div layout="column" class="bg-blue" layout-margin layout-padding>
+                                                    <div layout="row">
+                                                        <span class="hd4 bold txt-white">min</span>
+                                                    </div>
+                                                    <div layout="row">
+                                                        <p class="hd-large" ng-show="showMilli">{{minWidth }}</p> 
+                                                        <p class="hd-large" ng-show="showCenti">{{minWidth | number:1}}</p> 
+                                                        <span class="hd4" layout="row" layout-align="center center"> {{unit}}</span>
+                                                        
+
+                                                    </div>
+                                                </div>
+                                                <div layout="column" class="bg-red" layout-margin layout-padding>
+                                                    <div layout="row">
+                                                        <span class="hd4 bold txt-white">max</span>
+                                                    </div>
+                                                    <div layout="row">
+                                                         <p class="hd-large" ng-show="showMilli">{{maxWidth }}</p> 
+                                                        <p class="hd-large" ng-show="showCenti">{{maxWidth | number:1}}</p> 
+                                                        
+                                                        <span class="hd4" layout="row" layout-align="center center"> {{unit}}</span>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div layout="column" >
+                                                <div layout="row" class="mar-b-5">
+                                                    
+                                                    <md-select placeholder="Units" ng-model="unit">
+                                                        <md-option value="mm" ng-click="openMilli()">mm</md-option>
+                                                        <md-option value="cm" ng-click="openCenti()">cm</md-option>
+                                                      </md-select>
+
+                                                </div>
+                                                <div layout="column" ng-show="showMilli">
+                                                    <div layout="column" >
+                                                        <div layout="row">
+                                                            <span class="hd4">Drag for Desired Minimum Width</span>
+                                                        </div>
+                                                        <md-slider class="md-accent" flex step="1" min="0" max="300" ng-model="minWidth" aria-label="red" id="length-slider" >
+                                                        </md-slider>
+                                                    </div>
+                                                    <div layout="column">
+                                                        <div layout="row">
+                                                            <span class="hd4">Drag for Desired Maximum Width</span>
+                                                        </div>
+                                                        <md-slider class="md-warn" flex step="1" min="0" max="300" ng-model="maxWidth" aria-label="red" id="length-slider" >
+                                                        </md-slider>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            
+                                            <div layout="column" ng-show="showCenti">
+                                                <div layout="column">
+                                                    <div layout="row">
+                                                        <span class="hd4">Drag for Desired Minimum Width</span>
+                                                    </div>
+                                                    <md-slider flex step="0.1" min="0" max="30" ng-model="minWidth" aria-label="red" id="length-slider" >
+                                                    </md-slider>
+                                                </div>
+                                                <div layout="column">
+                                                    <div layout="row">
+                                                        <span class="hd4">Drag for Desired Maximum Width</span>
+                                                    </div>
+                                                    <md-slider class="md-warn" flex step="0.1" min="0" max="30" ng-model="maxWidth" aria-label="red" id="length-slider" >
+                                                    </md-slider>
+                                                </div>
+                                            </div>
+
+                                            <div layout="row" class="mar-t-10">
+                                                <md-button class="md-raised md-warn" ng-click="addNewSize()">Add Width</md-button>
+                                                <md-button class="md-accent" ng-click="hideAddS()">Cancel</md-button>
+                                            </div>
+                                            
+                                          </md-card-content>
+                                          
+                                        </md-card >
+
+                                    </div>
+                                
+                                           
+                                </div>
+                                
+                                
+                                
+                                <div layout="row" flex layout-align="end center">
+                                        <md-button ng-click="create()" class="md-raised md-warn">Create</md-button>
+                                    </div>
+                            </div>
+                       
+                    </md-content>       
+    </div>
+
+</div>
