@@ -34,6 +34,9 @@ var EnumerationSchema = new Schema({
 	started: {
 		type: Date
 	},
+	total_trees: {
+		type: Number
+	},
 	created: {
 		type: Date,
 		default: Date.now
