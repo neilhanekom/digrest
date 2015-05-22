@@ -29,7 +29,7 @@ var EnumerationSchema = new Schema({
 		type: Date
 	},
 	trees: [
-		{ dbh: { type: Number }, length: { type: Number }, dtw: { type: Number, default: 50 }, sections: [ { product: { type: String }, min: { type: Number }, max: { type: Number }, length: { type: Number } }] }
+		{ dbh: { type: Number }, length: { type: Number }, dtw: { type: Number, default: 50 }, vol: {type: Number}, sections: [ { product: { type: String }, min: { type: Number }, max: { type: Number }, length: { type: Number }, vol: { type: Number } }] }
 	],
 	started: {
 		type: Date
