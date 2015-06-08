@@ -22,6 +22,9 @@ var TallySchema = new Schema({
 		type: String
 
 	},
+	external: {
+		type: String
+	},
 	plantation: {
 		type: String
 	},
@@ -83,6 +86,9 @@ var TallySchema = new Schema({
 			type: Number
 		},
 		length: {
+			type: Number
+		},
+		total: {
 			type: Number
 		}
 	}],
