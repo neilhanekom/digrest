@@ -10,11 +10,17 @@ var mongoose = require('mongoose'),
  * Tally Schema
  */
 var TallySchema = new Schema({
+	source: {
+		type: String
+	},
 	supplier: {
-		_id: {
-			type: Schema.ObjectId,
-			ref: 'Supplier'
-		}
+		// We will add this as soon as we have suppliers in the DB
+		// _id: {
+		// 	type: Schema.ObjectId,
+		// 	ref: 'Supplier'
+		// },
+		type: String
+
 	},
 	plantation: {
 		type: String
@@ -48,10 +54,11 @@ var TallySchema = new Schema({
 		}
 	},
 	vehicle: {
-		_id: {
-			type: Schema.ObjectId,
-			ref: 'Vehicle'
-		},
+		// We will add this as soon as DB for this is available
+		// _id: {
+		// 	type: Schema.ObjectId,
+		// 	ref: 'Vehicle'
+		// },
 		reg_no: {
 			type: String
 		},
