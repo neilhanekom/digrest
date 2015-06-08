@@ -47,7 +47,7 @@
 	<![endif]-->
 </head>
 
-<body class="ng-cloak bg-llgrey">
+<body class="ng-cloak bg-lgrey">
 	<!-- <header data-ng-include="'/modules/core/views/header.client.view.html'" class="navbar navbar-fixed-top navbar-inverse"></header>
 	<section class="content">
 		<section class="container">
@@ -55,10 +55,22 @@
 		</section>
 	</section> -->
 
-	<div layout="column">
+	<!-- <div layout="column">
 		<header data-ng-include="'/modules/core/views/header.client.view.html'"></header>
 		<div layout="row">
 			<div data-ng-include="'/modules/core/views/left.client.view.html'" class="sidebar" ></div>
+			<div flex>
+				{% block content %}{% endblock %}
+			</div>
+		</div>
+	</div> -->
+	<div layout="column">
+		<div layout="column">
+			<header data-ng-include="'/modules/core/views/header.client.view.html'"></header>
+			<div data-ng-include="'/modules/core/views/left.client.view.html'" class="sidebar" ></div>
+		</div>
+		<div layout="row">
+			
 			<div flex>
 				{% block content %}{% endblock %}
 			</div>

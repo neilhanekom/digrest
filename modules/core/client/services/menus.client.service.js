@@ -308,8 +308,8 @@ angular.module('core').service('Menus', [
         // =====================================
 
         this.addMenuItem('sidenav', {
-            icon: 'find_in_page',
-            title: 'reports',
+            icon: 'filter_list',
+            title: 'Reports',
             state: 'reports',
             class: 'reports',
             isPublic: false,
@@ -345,8 +345,8 @@ angular.module('core').service('Menus', [
 
 
         this.addMenuItem('sidenav', {
-            icon: 'nature_people',
-            title: 'suppliers',
+            icon: 'grain',
+            title: 'Suppliers',
             state: 'suppliers',
             class: 'suppliers',
             isPublic: false,
@@ -397,7 +397,7 @@ angular.module('core').service('Menus', [
         // ==============================
 
         this.addMenuItem('sidenav', {
-            icon: 'insert_chart',
+            icon: 'clear_all',
             title: 'stock',
             state: 'stock',
             class: 'stock',
@@ -426,7 +426,7 @@ angular.module('core').service('Menus', [
 
         this.addMenuItem('sidenav', {
             icon: 'receipt',
-            title: 'orders',
+            title: 'Orders',
             state: 'orders',
             class: 'orders',
             isPublic: false,
@@ -454,7 +454,7 @@ angular.module('core').service('Menus', [
 
         this.addMenuItem('sidenav', {
             icon: 'local_shipping',
-            title: 'deliveries',
+            title: 'Deliveries',
             state: 'deliveries',
             class: 'deliveries',
             isPublic: false,
@@ -482,7 +482,7 @@ angular.module('core').service('Menus', [
 
         this.addMenuItem('sidenav', {
             icon: 'local_gas_station',
-            title: 'transport',
+            title: 'Transport',
             state: 'transport',
             class: 'transport',
             isPublic: false,
@@ -513,11 +513,97 @@ angular.module('core').service('Menus', [
             position: 2
         });
 
+        // ================================
+
+        this.addMenuItem('sidenav', {
+            icon: 'filter_tilt_shift',
+            title: 'Treatment',
+            state: 'users',
+            class: 'users',
+            isPublic: false,
+            roles: ['user' , 'admin'],
+            position: 7,
+        });
+
+        this.addSubMenuItem('sidenav', 'users', {
+            title: 'view users',
+            state: 'view',
+            isPublic: false,
+            roles: ['user' , 'admin'],
+            position: 0
+        });
+
+        this.addSubMenuItem('sidenav', 'users', {
+            title: 'create new',
+            state: 'authentication.signup',
+            isPublic: false,
+            roles: ['user' , 'admin'],
+            position: 2
+        });
+
+        // ================================
+
+        this.addMenuItem('sidenav', {
+            icon: 'equalizer',
+            title: 'Tallies',
+            state: 'users',
+            class: 'users',
+            isPublic: false,
+            roles: ['user' , 'admin'],
+            position: 7,
+        });
+
+        this.addSubMenuItem('sidenav', 'users', {
+            title: 'view users',
+            state: 'view',
+            isPublic: false,
+            roles: ['user' , 'admin'],
+            position: 0
+        });
+
+        this.addSubMenuItem('sidenav', 'users', {
+            title: 'create new',
+            state: 'authentication.signup',
+            isPublic: false,
+            roles: ['user' , 'admin'],
+            position: 2
+        });
+
+
+        // ================================
+
+        this.addMenuItem('sidenav', {
+            icon: 'blur_circular',
+            title: 'Enumeration',
+            state: 'users',
+            class: 'users',
+            isPublic: false,
+            roles: ['user' , 'admin'],
+            position: 7,
+        });
+
+        this.addSubMenuItem('sidenav', 'users', {
+            title: 'view users',
+            state: 'view',
+            isPublic: false,
+            roles: ['user' , 'admin'],
+            position: 0
+        });
+
+        this.addSubMenuItem('sidenav', 'users', {
+            title: 'create new',
+            state: 'authentication.signup',
+            isPublic: false,
+            roles: ['user' , 'admin'],
+            position: 2
+        });
+
+
         // ===================================
 
         this.addMenuItem('sidenav', {
-            icon: 'perm_data_setting',
-            title: 'assets',
+            icon: 'description',
+            title: 'Quotations',
             state: 'assets',
             class: 'assets',
             isPublic: false,
@@ -540,6 +626,35 @@ angular.module('core').service('Menus', [
             roles: ['user' , 'admin'],
             position: 1
         });
+
+        // ================================
+
+        this.addMenuItem('sidenav', {
+            icon: 'local_atm',
+            title: 'Invoices',
+            state: 'users',
+            class: 'users',
+            isPublic: false,
+            roles: ['user' , 'admin'],
+            position: 7,
+        });
+
+        this.addSubMenuItem('sidenav', 'users', {
+            title: 'view users',
+            state: 'view',
+            isPublic: false,
+            roles: ['user' , 'admin'],
+            position: 0
+        });
+
+        this.addSubMenuItem('sidenav', 'users', {
+            title: 'create new',
+            state: 'authentication.signup',
+            isPublic: false,
+            roles: ['user' , 'admin'],
+            position: 2
+        });
+        
 
         // ================================
 

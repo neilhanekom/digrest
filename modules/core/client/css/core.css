@@ -69,9 +69,7 @@
 	src: local('Roboto Black Italic'), local('Robot-BlackItalic'), url("Robot-BlackItalic.ttf") format('truetype');
 }
 
-.content {
-	margin-top: 50px;
-}
+
 .undecorated-link:hover {
 	text-decoration: none;
 }
@@ -187,6 +185,10 @@ a:hover .header-profile-image {
 
 .green {
 	color: #CDDC39;
+}
+
+.deeporange {
+	color: #DD2C00;
 }
 
 .blk {
@@ -363,7 +365,7 @@ a:hover .header-profile-image {
 }
 
 .left-spacer {
-	width: 250px;
+	width: 240px;
 	height: 100px;
 }
 
@@ -381,9 +383,6 @@ a:hover .header-profile-image {
 	width: 100%;
 }
 
-.left-sock {
-	width: 
-}
 
 .tool-btn {
 	height: 50px;
@@ -398,12 +397,12 @@ a:hover .header-profile-image {
 
 .sidebar-btn {
 	width: 250px;
-	padding-left: 15px;
+	padding: 5px 0 5px 0;
 }
 
 .sidebar-sub {
-	background-color: #1e272c;
-	padding-left: 20px;
+	background-color: #EEEEEE;
+	
 }
 /*text formatting*/
 .txt-justify {
@@ -412,6 +411,10 @@ a:hover .header-profile-image {
 
 .txt-c {
 	text-align: center;
+}
+
+.logo-header{
+	width: 240px;
 }
 
 /*blokc/divs/area styling*/
@@ -424,6 +427,13 @@ a:hover .header-profile-image {
 .card-image-full {
 	height: 500px;
 }
+
+.z-high {
+	z-index: 50;
+}
+
+
+
 
 
 .ad-image {
@@ -458,6 +468,7 @@ background-color:#EEEEEE;
 	padding: 0;
 }
 
+
 .mar-0 {
 	margin: 0;
 }
@@ -465,6 +476,15 @@ background-color:#EEEEEE;
 .pad-t-8 {
 	padding-top: 8px;
 }
+
+.pad-t-10 {
+	padding-top: 10px;
+}
+
+.pad-t-15 {
+	padding-top: 15px;
+}
+
 
 .pad-r-10 {
 	padding-right: 10px;
@@ -482,7 +502,9 @@ background-color:#EEEEEE;
 	padding-left: 20px;
 }
 
-
+.pad-b-15 {
+	padding-bottom: : 15px;
+}
 
 .pad-l-15 {
 	padding-left: 15px;
@@ -512,6 +534,10 @@ background-color:#EEEEEE;
 	padding: 15px;
 }
 
+.view {
+	padding: 25px;
+}
+
 
 
 .pad-10-20 {
@@ -533,14 +559,28 @@ background-color:#EEEEEE;
 	margin-top: 8px;
 }
 
+.mar-t-15 {
+	margin-top: 15px;
+}
+
 .mar-t-20 {
 	margin-top: 20px;
 }
+
+.mar-2 {
+	margin: 2px;
+}
+
 
 
 .mar-t-100 {
 	margin-top: 100px;
 }
+
+.mar-b-15 {
+	margin-bottom: 15px;
+}
+
 .mar-b-20 {
 	margin-bottom: 20px;
 }
@@ -709,7 +749,29 @@ background-color:#EEEEEE;
 }
 
 
+.sidenav-profile {
+	background-position: center;
+  
+  /* Image doesn't repeat */
+	background-repeat: no-repeat;
+  
+  /* Makes the image fixed in the viewport so that it doesn't move when 
+     the content height is greater than the image height */
+	background-attachment: local;
+  
+  /* This is what makes the background image rescale based on its container's size */
+	background-size: cover;
+}
 
+.sidenav-profile-pic {
+	height: 60px;
+	width: 60px;
+	border-radius: 60px;
+	-moz-border-radius: 60px;
+	-webkit-border-radius: 60px;
+	/*margin: 10px;*/
+
+}
 .border-r-w {
 	border-right: 1px solid #616161;
 }
@@ -843,27 +905,211 @@ background-color:#EEEEEE;
 	border-bottom: 1px gray solid;
 }
 
+.third-width {
+	width: 32.5%;
+}
+
+.shadow-general {
+	-webkit-box-shadow: 0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+	-moz-box-shadow:    0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+	box-shadow:         0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+}
+
+.card-third {
+	-webkit-box-shadow: 0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+	-moz-box-shadow:    0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+	box-shadow:         0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	padding: 5px;
+	margin: 3px;
+	
+}
+
+.card-half {
+	-webkit-box-shadow: 0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+	-moz-box-shadow:    0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+	box-shadow:         0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	padding: 5px;
+	margin: 3px;
+}
+
+.card-full {
+	-webkit-box-shadow: 0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+	-moz-box-shadow:    0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+	box-shadow:         0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	padding: 5px;
+	margin: 3px;
+}
+
 /*Mobile Small Screens*/
 @media (max-width: 600px) {
  
+.card-third {
+		-webkit-box-shadow: 0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		-moz-box-shadow:    0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		box-shadow:         0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		-moz-border-radius: 2px;
+		-webkit-border-radius: 2px;
+		border-radius: 2px;
+		padding: 5px;
+		margin: 3px;
+		width: 100%;
+	}
+
+	.card-half {
+		-webkit-box-shadow: 0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		-moz-box-shadow:    0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		box-shadow:         0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		-moz-border-radius: 2px;
+		-webkit-border-radius: 2px;
+		border-radius: 2px;
+		padding: 5px;
+		margin: 3px;
+		width: 100%;
+	}
+
+	.card-full {
+		-webkit-box-shadow: 0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		-moz-box-shadow:    0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		box-shadow:         0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		-moz-border-radius: 2px;
+		-webkit-border-radius: 2px;
+		border-radius: 2px;
+		padding: 5px;
+		margin: 3px;
+		width: 100%;
+	}
 
 }
 
 /*Medium Screens*/
 @media (min-width: 600px) and (max-width: 960px) {
   
+	.card-third {
+		-webkit-box-shadow: 0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		-moz-box-shadow:    0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		box-shadow:         0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		-moz-border-radius: 2px;
+		-webkit-border-radius: 2px;
+		border-radius: 2px;
+		padding: 5px;
+		margin: 3px;
+		width: 49%;
+	}
+
+	.card-half {
+		-webkit-box-shadow: 0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		-moz-box-shadow:    0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		box-shadow:         0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		-moz-border-radius: 2px;
+		-webkit-border-radius: 2px;
+		border-radius: 2px;
+		padding: 5px;
+		margin: 3px;
+		width: 49%;
+	}
+
+	.card-full {
+		-webkit-box-shadow: 0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		-moz-box-shadow:    0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		box-shadow:         0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		-moz-border-radius: 2px;
+		-webkit-border-radius: 2px;
+		border-radius: 2px;
+		padding: 5px;
+		margin: 3px;
+		width: 100%;
+	}
 
 }
 
 /*Large Screens*/
 @media (min-width: 960px) and (max-width: 1200px) {
  
+	.card-third {
+		-webkit-box-shadow: 0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		-moz-box-shadow:    0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		box-shadow:         0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		-moz-border-radius: 2px;
+		-webkit-border-radius: 2px;
+		border-radius: 2px;
+		padding: 5px;
+		margin: 3px;
+		width: 32.5%;
+	}
+
+	.card-half {
+		-webkit-box-shadow: 0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		-moz-box-shadow:    0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		box-shadow:         0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		-moz-border-radius: 2px;
+		-webkit-border-radius: 2px;
+		border-radius: 2px;
+		padding: 5px;
+		margin: 3px;
+		width: 49%;
+	}
+
+	.card-full {
+		-webkit-box-shadow: 0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		-moz-box-shadow:    0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		box-shadow:         0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		-moz-border-radius: 2px;
+		-webkit-border-radius: 2px;
+		border-radius: 2px;
+		padding: 5px;
+		margin: 3px;
+		width: 100%;
+	}
 
 }
 
 /*Wide X-tra Large*/
 @media (min-width: 1200px) and (max-width: 3000px) {
   
+	.card-third {
+		-webkit-box-shadow: 0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		-moz-box-shadow:    0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		box-shadow:         0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		-moz-border-radius: 2px;
+		-webkit-border-radius: 2px;
+		border-radius: 2px;
+		padding: 5px;
+		margin: 3px;
+		width: 32.5%;
+	}
+
+	.card-half {
+		-webkit-box-shadow: 0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		-moz-box-shadow:    0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		box-shadow:         0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		-moz-border-radius: 2px;
+		-webkit-border-radius: 2px;
+		border-radius: 2px;
+		padding: 5px;
+		margin: 3px;
+		width: 49%;
+	}
+
+	.card-full {
+		-webkit-box-shadow: 0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		-moz-box-shadow:    0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		box-shadow:         0px 1px 3px 0px rgba(50, 50, 50, 0.23);
+		-moz-border-radius: 2px;
+		-webkit-border-radius: 2px;
+		border-radius: 2px;
+		padding: 5px;
+		margin: 3px;
+		width: 100%;
+	}
 
 }
 
@@ -907,6 +1153,10 @@ background-color:#EEEEEE;
   	animation: bounceInDown 1s;
 };
 
+.content {
+	background-color: red;
+	padding: 50px;
+}
 
 .content.ng-leave {
 		
@@ -924,7 +1174,7 @@ background-color:#EEEEEE;
 
 /*Tooltips*/
 .tooltipdemoBasicUsage md-toolbar .md-toolbar-tools .md-button, .tooltipdemoBasicUsage md-toolbar .md-toolbar-tools .md-button:hover {
-  box-shadow: none;
+  x-shadow: none;
   border: none;
   transform: none;
   -webkit-transform: none; }

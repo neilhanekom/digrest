@@ -3,6 +3,12 @@
 angular.module('core').controller('HeaderController', ['$scope', '$state', 'Authentication', 'Menus', '$timeout', '$mdSidenav', '$mdUtil', '$log',
 	function($scope, $state, Authentication, Menus, $timeout, $mdSidenav, $mdUtil, $log) {
 
+		$scope.white = '#FFFFFF';
+		$scope.charcoal = "#212121";
+		$scope.lgrey = "#EEEEEE";
+		$scope.grey = "#BDBDBD";
+		$scope.dgrey = "#424242";
+
 		$scope.colProfile = true;
 
 		$scope.toggleProfile = function() {

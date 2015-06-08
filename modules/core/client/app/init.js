@@ -8,21 +8,32 @@ angular.module(ApplicationConfiguration.applicationModuleName).config(['$locatio
 	function($locationProvider, $mdThemingProvider, $mdIconProvider) {
 		$locationProvider.html5Mode(true).hashPrefix('!');
 
-        // var greyMap = $mdThemingProvider.extendPalette('grey', {
-        //     '500': '#FFFFFF'
-        //   });
-
-        // var dgMap = $mdThemingProvider.extendPalette('green', {
-        //     '500': '#1B5E20'
+        // $mdThemingProvider.definePalette('afruPrimary', {
+        //     '50': 'FFF3E0',
+        //     '100': 'FFE0B2',
+        //     '200': 'FFCC80',
+        //     '300': 'FFB74D',
+        //     '400': 'FFA726',
+        //     '500': 'FF9800',
+        //     '600': 'FB8C00',
+        //     '700': 'F57C00',
+        //     '800': 'EF6C00',
+        //     '900': 'E65100',
+        //     'A100': 'FFD180',
+        //     'A200': 'FFAB40',
+        //     'A400': 'FF9100',
+        //     'A700': 'FF6D00',
+        //     'contrastDefaultColor': 'light',    // whether, by default, text (contrast)
+        //                                         // on this palette should be dark or light
+        //     'contrastDarkColors': ['50', '100', //hues which contrast should be 'dark' by default
+        //      '200', '300', '400', 'A100'],
+        //     'contrastLightColors': undefined    // could also specify this if default was 'dark'
         // });
-
-        // $mdThemingProvider.definePalette('dgGreen', dgMap);
-        // $mdThemingProvider.definePalette('bgrey', greyMap);
 
         //Primary Theme
         $mdThemingProvider.theme('default')
-        .primaryPalette('green')
-        .accentPalette('blue');
+        .primaryPalette('blue-grey')
+        .accentPalette('red');
 
         //Alternative Theme
         // $mdThemingProvider.theme('altTheme')
