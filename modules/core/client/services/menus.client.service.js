@@ -355,11 +355,11 @@ angular.module('core').service('Menus', [
         });
 
         this.addSubMenuItem('sidenav', 'suppliers', {
-            title: 'List Suppliers',
-            state: 'enumeration',
+            title: 'Suppliers',
+            state: 'suppliers.list',
             isPublic: false,
             roles: ['user' , 'admin'],
-            position: 0
+            position: 1
         });
 
         this.addSubMenuItem('sidenav', 'suppliers', {
@@ -367,23 +367,23 @@ angular.module('core').service('Menus', [
             state: 'plantations.list',
             isPublic: false,
             roles: ['user' , 'admin'],
-            position: 1
-        });
-
-        this.addSubMenuItem('sidenav', 'suppliers', {
-            title: 'Blocks/Compartments',
-            state: 'enumeration',
-            isPublic: false,
-            roles: ['user' , 'admin'],
             position: 2
         });
 
         this.addSubMenuItem('sidenav', 'suppliers', {
-            title: 'plackards',
-            state: 'enumeration',
+            title: 'Blocks/Compartments',
+            state: 'compartments.list',
             isPublic: false,
             roles: ['user' , 'admin'],
             position: 3
+        });
+
+        this.addSubMenuItem('sidenav', 'suppliers', {
+            title: 'Placards',
+            state: 'placards.list',
+            isPublic: false,
+            roles: ['user' , 'admin'],
+            position: 4
         });
 
         this.addSubMenuItem('sidenav', 'suppliers', {
@@ -391,7 +391,7 @@ angular.module('core').service('Menus', [
             state: 'suppliers.create',
             isPublic: false,
             roles: ['user' , 'admin'],
-            position: 4
+            position: 0
         });
 
         // ==============================
@@ -575,24 +575,24 @@ angular.module('core').service('Menus', [
         this.addMenuItem('sidenav', {
             icon: 'blur_circular',
             title: 'Enumeration',
-            state: 'users',
-            class: 'users',
+            state: 'enumerations',
+            class: 'enumeration',
             isPublic: false,
             roles: ['user' , 'admin'],
             position: 7,
         });
 
-        this.addSubMenuItem('sidenav', 'users', {
-            title: 'view users',
-            state: 'view',
+        this.addSubMenuItem('sidenav', 'enumerations', {
+            title: 'enumerations',
+            state: 'enumerations.list',
             isPublic: false,
             roles: ['user' , 'admin'],
             position: 0
         });
 
-        this.addSubMenuItem('sidenav', 'users', {
+        this.addSubMenuItem('sidenav', 'enumerations', {
             title: 'create new',
-            state: 'authentication.signup',
+            state: 'enumerations.create',
             isPublic: false,
             roles: ['user' , 'admin'],
             position: 2

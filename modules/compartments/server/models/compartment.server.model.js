@@ -24,6 +24,7 @@ var CompartmentSchema = new Schema({
 		type: Schema.ObjectId,
 		ref: 'Plantation'
 	},
+	placards : [{ type: Schema.Types.ObjectId, ref: 'Placard' }],
 	created: {
 		type: Date,
 		default: Date.now

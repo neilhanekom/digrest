@@ -73,7 +73,7 @@ exports.delete = function(req, res) {
 /**
  * List of Plantations
  */
-exports.list = function(req, res) { Plantation.find().sort('-created').populate('user', 'displayName').exec(function(err, plantations) {
+exports.list = function(req, res) { Plantation.find().sort('-created').populate('user', 'displayName').populate('compartments').exec(function(err, plantations) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -87,7 +87,7 @@ exports.list = function(req, res) { Plantation.find().sort('-created').populate(
 /**
  * Plantation middleware
  */
-exports.plantationByID = function(req, res, next, id) { Plantation.findById(id).populate('user', 'displayName').exec(function(err, plantation) {
+exports.plantationByID = function(req, res, next, id) { Plantation.findById(id).populate('user', 'displayName').populate('compartments').exec(function(err, plantation) {
 		if (err) return next(err);
 		if (! plantation) return next(new Error('Failed to load Plantation ' + id));
 		req.plantation = plantation ;

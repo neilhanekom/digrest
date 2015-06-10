@@ -17,6 +17,9 @@ angular.module('plantations').controller('PlantationsController', ['$scope', '$s
 		// Create new Plantation
 		$scope.create = function() {
 			// Create new Plantation object
+			// We First need to create a new Plantation
+			// Then we need to take the id of this plantation and update the Supplier.
+
 			var plantation = new Plantations ({
 				name: this.name,
 				supplier: $scope.supplier._id
@@ -24,8 +27,16 @@ angular.module('plantations').controller('PlantationsController', ['$scope', '$s
 
 			// Redirect after save
 			plantation.$save(function(response) {
-				$location.path('plantations/' + response._id);
-
+				// $location.path('plantations/' + response._id);
+				$scope.supplier.plantations.push(response._id);
+				var supplier = $scope.supplier;
+				console.log(supplier);
+				supplier.$update(function(response) {
+					console.log('success');
+				}), function(errorResponse) {
+					console.log(errorResponse)
+					// $scope.error = errorResponse.data.message;
+				};
 				// Clear form fields
 				$scope.name = '';
 			}, function(errorResponse) {

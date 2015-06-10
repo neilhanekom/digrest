@@ -51,13 +51,13 @@
                         </md-radio-group>  
                         
                     </md-content>
-                    <div class="bg-lgrey" layout="column" ng-show="supplier">
+                    <div class="bg-lgrey" layout="column" ng-if="supplier.plantations[0]">
                         <div layout="column" >
-                            <p class="hd3 medium mar-l-10 mar-t-10 ">Select Plantation</p> 
+                            <p class="hd3 medium mar-l-10 mar-t-10 ">Select Plantation for {{supplier.name}}</p> 
                              <md-divider></md-divider>
                             <md-radio-group ng-model="plantation" class="md-primary">
-                            <md-radio-button ng-repeat="plantation in selPlants"
-                                             ng-value="plantation._id"
+                            <md-radio-button ng-repeat="plantation in supplier.plantations"
+                                             ng-value="plantation"
                                              ng-disabled=" isDisabled "
                                              ng-click="addPlantation(plantation)"
                                              >

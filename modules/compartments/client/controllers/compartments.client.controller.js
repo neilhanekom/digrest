@@ -10,36 +10,26 @@ angular.module('compartments').controller('CompartmentsController', ['$scope', '
 
 
 		$scope.addSuppplier = function(supl) {
-			var selSupLength = $scope.selSupplier.length;
-			if (selSupLength > 0 ) {
-				$scope.selSupplier.splice(0, selSupLength, supl);
+			
+			$timeout(function(){
+				$scope.supplier = supl;
+			}, 500);
+			// var selSupLength = $scope.selSupplier.length;
+			// if (selSupLength > 0 ) {
+			// 	$scope.selSupplier.splice(0, selSupLength, supl);
 				
-			} else {
-				$scope.selSupplier.push(supl);
-			}
+			// } else {
+			// 	$scope.selSupplier.push(supl);
+			// }
 
-			$scope.addPlants(supl);
+			// $scope.addPlants(supl); 
 		};
 
-		$scope.addPlants = function(supl) {
-			var id = supl._id;
-			var values = Plantations.query();
-			var lengthSelPlants = $scope.selPlants.length;
-			if (lengthSelPlants > 0 ) {
-				$scope.selPlants.splice(0, lengthSelPlants);
-			}
-
-			$timeout(function(){
-				angular.forEach(values, function(value, key) {
-				  if (value.supplier === id) {
-				  	$scope.selPlants.push(value);
-				  }
-				});
-				
-			}, 500);
-
-
-			
+		$scope.addPlantation = function(plantation) {
+			console.log(plantation);
+			$scope.plantation = Plantations.get({ 
+				plantationId: plantation._id
+			});
 		};
 
 		$scope.loadSuppliers = function() {
@@ -52,17 +42,21 @@ angular.module('compartments').controller('CompartmentsController', ['$scope', '
 			// Create new Compartment object
 			var compartment = new Compartments ({
 				name: this.name,
-				supplier: $scope.supplier,
-				plantation: $scope.plantation
+				supplier: $scope.supplier._id,
+				plantation: $scope.plantation._id
 			});
 
 			
 			//Redirect after save
 			compartment.$save(function(response) {
-				$location.path('compartments/' + response._id);
+				$scope.plantation.compartments.push(response._id);
 
-				// Clear form fields
-				$scope.name = '';
+				var plantation = $scope.plantation;
+				plantation.$update(function() {
+					console.log("success");
+				}, function(errorResponse) {
+					$scope.error = errorResponse.data.message;
+				});
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});

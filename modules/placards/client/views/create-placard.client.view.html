@@ -1,4 +1,4 @@
-<section data-ng-controller="PlacardsController">
+<!-- <section >
     <div class="page-header">
         <h1>New Placard</h1>
     </div>
@@ -20,4 +20,124 @@
             </fieldset>
         </form>
     </div>
+</section> -->
+
+<section data-ng-controller="PlacardsController" layout="row" flex ng-init="loadSuppliers()">
+    
+    <div layout="column" class="left-spacer"  hide-md hide-sm>
+        
+    </div>
+    <div layout="column" flex class="view">
+  <div layout="row" layout-wrap>
+    <div class="bg-white card-full">
+      
+      <md-content class="pad-10">
+        <p class="hd3">Create new Placard</p>
+        <div layout="column">
+            <p class="hd3">Supplier: <span class="radioValue bold">{{ supplier.name }}</span></p>
+            <md-divider></md-divider>
+            <md-radio-group ng-model="supplier" class="md-primary">
+                <md-radio-button ng-repeat="supplier in suppliers"
+                                 ng-value="supplier"
+                                 >
+                    {{ supplier.name }}
+                </md-radio-button>
+            </md-radio-group>
+        </div>
+
+        <div layout="column" ng-show="supplier" class="mar-t-10">
+            <p class="hd3">Plantations <span class="radioValue bold">{{ plantation.name }}</span></p>
+            <md-divider></md-divider>
+            <md-radio-group ng-model="plantation" class="md-primary">
+                <md-radio-button ng-repeat="plantation in supplier.plantations"
+                                 ng-value="supplier"
+                                 ng-click="addPlantation(plantation)">
+                    {{ plantation.name }}
+                </md-radio-button>
+            </md-radio-group>
+        </div>
+        <div layout="column" ng-show="plantation" class="mar-t-10">
+            <p class="hd3">Compartment: <span class="radioValue bold">{{ compartment.name }}</span></p>
+            <md-radio-group ng-model="compartment" class="md-primary">
+                <md-radio-button ng-repeat="compartment in plantation.compartments"
+                                 ng-value="compartment"
+                                 ng-click="addCompartment(compartment)">
+                    {{ compartment.name }}
+                </md-radio-button>
+            </md-radio-group>
+        </div>
+        <div layout="column" ng-show="compartment">
+          <div layout="column">
+            <p class="hd3"> (Placards that already exists)</p>
+            <div layout="row">
+              <md-button ng-repeat="placard in placards"  class="md-warn md-raised">{{placard}}</md-button>
+            </div>
+            
+          </div>
+          <div layout="row mar-t-10">
+          <p class="hd3">Select New Placard Number</span></p>
+          
+        </div>
+        <div layout="row" layout-wrap flex>
+          <!-- <div layout="row" class="placard" ng-repeat="placard in compartment.placards">
+            {{placard.no}}
+          </div> -->
+          
+
+          <md-button ng-disabled="false" class="md-primary md-raised pad-10" md-no-ink="true">
+          <div layout="column">
+            <div layout="row">
+              <md-button ng-click="incNewPlacard()">
+                <ng-md-icon icon="keyboard_arrow_up" style="fill: ..." size="20"></ng-md-icon> 
+              </md-button>
+              
+            </div>
+            <div layout="row" layout-align="center center" class="">
+              <span class="hd2">{{newP}}</span>
+            </div>
+            <div layout="row">
+               <md-button ng-click="decNewPlacard()">
+                <ng-md-icon icon="keyboard_arrow_down" style="fill: ..." size="20"></ng-md-icon> 
+              </md-button>
+            </div>
+          </div>
+
+          
+          </md-button>
+          
+        </div>
+        <div layout="row" class="mar-t-5">
+          <md-button class="md-raised md-warn" ng-click="create()">Create New Placard</md-button>
+        </div>
+        </div>
+        
+        
+      </md-content>
+       
+      
+        
+        
+        
+      
+    </div>
+      
+     
+    
+  </div>
+     <!-- <div class="bg-white mar-5 custom-card">
+      
+      <md-content class="pad-10">
+        <p class="hd3">Enumerations</p>
+        
+      </md-content>
+        
+      
+      <div class="md-actions" layout="row" layout-align="end center">
+        <md-button>Action 1</md-button>
+        <md-button>Action 2</md-button>
+      </div>
+    </div> -->
+    </div>
 </section>
+
+

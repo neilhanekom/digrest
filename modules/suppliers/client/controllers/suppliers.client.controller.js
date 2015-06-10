@@ -60,6 +60,7 @@ angular.module('suppliers').controller('SuppliersController', ['$scope', '$state
 			$scope.supplier = Suppliers.get({ 
 				supplierId: $stateParams.supplierId
 			});
+			console.log($scope.supplier);
 		};
 	}
 ]);

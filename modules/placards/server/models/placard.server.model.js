@@ -14,6 +14,26 @@ var PlacardSchema = new Schema({
 		type: Number,
 		default: 1
 	},
+	supplier: {
+		type: Schema.ObjectId,
+		ref: 'Supplier'
+	},
+	plantation: {
+		type: Schema.ObjectId,
+		ref: 'Plantation'
+	},
+	compartment: {
+		type: Schema.ObjectId,
+		ref: 'Compartment'
+	},
+	trees: {
+		type: Number,
+		default: 0
+	},
+	enumeration: {
+		type: Schema.ObjectId,
+		ref: 'Enumeration'
+	},
 	created: {
 		type: Date,
 		default: Date.now

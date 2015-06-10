@@ -12,10 +12,9 @@ var mongoose = require('mongoose'),
 var SupplierSchema = new Schema({
 	name: {
 		type: String,
-		default: '',
-		required: 'Please fill Supplier name',
 		trim: true
 	},
+	plantations : [{ type: Schema.Types.ObjectId, ref: 'Plantation' }],
 	created: {
 		type: Date,
 		default: Date.now

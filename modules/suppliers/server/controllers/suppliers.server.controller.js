@@ -73,7 +73,7 @@ exports.delete = function(req, res) {
 /**
  * List of Suppliers
  */
-exports.list = function(req, res) { Supplier.find().sort('-created').populate('user', 'displayName').exec(function(err, suppliers) {
+exports.list = function(req, res) { Supplier.find().sort('-created').populate('user', 'displayName').populate('plantations').exec(function(err, suppliers) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -87,7 +87,7 @@ exports.list = function(req, res) { Supplier.find().sort('-created').populate('u
 /**
  * Supplier middleware
  */
-exports.supplierByID = function(req, res, next, id) { Supplier.findById(id).populate('user', 'displayName').exec(function(err, supplier) {
+exports.supplierByID = function(req, res, next, id) { Supplier.findById(id).populate('user', 'displayName').populate('plantations').exec(function(err, supplier) {
 		if (err) return next(err);
 		if (! supplier) return next(new Error('Failed to load Supplier ' + id));
 		req.supplier = supplier ;

@@ -1,4 +1,4 @@
-<section data-ng-controller="SuppliersController" data-ng-init="findOne()">
+<!-- <section data-ng-controller="SuppliersController" data-ng-init="findOne()">
 	<div class="page-header">
 		<h1 data-ng-bind="supplier.name"></h1>
 	</div>
@@ -18,4 +18,51 @@
 			<span data-ng-bind="supplier.user.displayName"></span>
 		</em>
 	</small>
+</section> -->
+
+<section data-ng-controller="SuppliersController" layout="row" flex data-ng-init="findOne()">
+    
+    <div layout="column" class="left-spacer"  hide-md hide-sm>
+        
+    </div>
+    <div layout="column" flex class="view">
+	  <div layout="row" layout-wrap>
+	    <div class="bg-white card-full">
+	      <div layout="row" class="bg-list-grey border-b pad-15" flex>
+	          <div layout="col">
+	              <span class="hd4 g-800">Supplier: {{supplier.name}}</span>
+	          </div>
+	      </div>
+      <md-content class="pad-0">
+        <!-- Build Content here -->
+        
+       
+       
+    
+
+
+        
+      </md-content>   
+    </div>
+
+
+    </div>
+    <div layout="row" layout-wrap >
+        	<div class="bg-white card-third layout-margin" ng-repeat="plantation in supplier.plantations">
+      
+	      <md-content class="pad-10">
+	        <p class="hd3">{{plantation.name}}</p>
+	        
+	      </md-content>
+	        
+	      
+	      <div class="md-actions" layout="row" layout-align="end center">
+	        <md-button>Action 1</md-button>
+	        <md-button>Action 2</md-button>
+	      </div>
+	    </div>
+        </div>
+  </div>
+     
+    </div>
 </section>

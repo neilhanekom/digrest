@@ -10,7 +10,7 @@
 	font-family: "Roboto";
 	font-style: italic;
 	font-weight: 100;
-	src: local('Roboto Thin Italic'), local('Robot-ThinItalic'), url("Robot-ThinItalic.ttf") format('truetype');
+	src: local('Roboto Thin Italic'), local('Roboto-ThinItalic'), url("Roboto-ThinItalic.ttf") format('truetype');
 }
 
 /* Light */
@@ -32,13 +32,13 @@
 	font-family: "Roboto";
 	font-style: normal;
 	font-weight: 400;
-	src: local('Roboto Regular'), local('Robot-Regular'), url("Robot-Regular.ttf") format('truetype');
+	src: local('Roboto Regular'), local('Roboto-Regular'), url("Roboto-Regular.ttf") format('truetype');
 }
 @font-face {
 	font-family: "Roboto";
 	font-style: italic;
 	font-weight: 400;
-	src: local('Roboto Italic'), local('Robot-Italic'), url("Robot-Italic.ttf") format('truetype');
+	src: local('Roboto Italic'), local('Roboto-Italic'), url("Roboto-Italic.ttf") format('truetype');
 }
  
 /* Bold */
@@ -46,13 +46,13 @@
 	font-family: "Roboto";
 	font-style: normal;
 	font-weight: 700;
-	src: local('Roboto Bold'), local('Robot-Bold'), url("Robot-Bold.ttf") format('truetype');
+	src: local('Roboto Bold'), local('Roboto-Bold'), url("Roboto-Bold.ttf") format('truetype');
 }
 @font-face {
 	font-family: "Roboto";
 	font-style: italic;
 	font-weight: 700;
-	src: local('Roboto Bold Italic'), local('Robot-BoldItalic'), url("Robot-BoldItalic.ttf") format('truetype');
+	src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'), url("Roboto-BoldItalic.ttf") format('truetype');
 }
 
 /* Black */
@@ -60,13 +60,13 @@
 	font-family: "Roboto";
 	font-style: normal;
 	font-weight: 900;
-	src: local('Roboto Black'), local('Robot-Black'), url("Robot-Black.ttf") format('truetype');
+	src: local('Roboto Black'), local('Roboto-Black'), url("Roboto-Black.ttf") format('truetype');
 }
 @font-face {
 	font-family: "Roboto";
 	font-style: italic;
 	font-weight: 900;
-	src: local('Roboto Black Italic'), local('Robot-BlackItalic'), url("Robot-BlackItalic.ttf") format('truetype');
+	src: local('Roboto Black Italic'), local('Roboto-BlackItalic'), url("Roboto-BlackItalic.ttf") format('truetype');
 }
 
 
@@ -262,6 +262,10 @@ a:hover .header-profile-image {
 .bg-white {
 	background-color: white;
 }
+
+.bg-list-grey {
+	background-color: #f6f6f7;
+} 
 
 .bg-lightestgrey {
 	background-color: #FAFAFA;
@@ -902,7 +906,11 @@ background-color:#EEEEEE;
 }
 
 .bor-b {
-	border-bottom: 1px gray solid;
+	border-bottom: 1px #E0E0E0 solid;
+}
+
+.bor-t {
+	border-top: 1px #E0E0E0 solid;
 }
 
 .third-width {
@@ -945,8 +953,23 @@ background-color:#EEEEEE;
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
 	border-radius: 2px;
-	padding: 5px;
-	margin: 3px;
+	
+	
+}
+
+/*Lists Odd and Even*/
+.odd {
+ 	background-color: #f6f6f7
+}
+
+.even {
+	background-color: white;
+}
+
+.placard {
+	width: 100px;
+	height: 100px;
+	background-color: #EEEEEE;
 }
 
 /*Mobile Small Screens*/
@@ -1084,7 +1107,7 @@ background-color:#EEEEEE;
 		border-radius: 2px;
 		padding: 5px;
 		margin: 3px;
-		width: 32.5%;
+		width: 32.85%;
 	}
 
 	.card-half {
@@ -1106,7 +1129,7 @@ background-color:#EEEEEE;
 		-moz-border-radius: 2px;
 		-webkit-border-radius: 2px;
 		border-radius: 2px;
-		padding: 5px;
+		/*padding: 5px;*/
 		margin: 3px;
 		width: 100%;
 	}

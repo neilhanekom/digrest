@@ -5,11 +5,11 @@ module.exports = function(app) {
 	var placardsPolicy = require('../policies/placards.server.policy');
 
 	// Placards Routes
-	app.route('/api/placards').all()
-		.get(placards.list).all(placardsPolicy.isAllowed)
+	app.route('/api/placards')
+		.get(placards.list)
 		.post(placards.create);
 
-	app.route('/api/placards/:placardId').all(placardsPolicy.isAllowed)
+	app.route('/api/placards/:placardId')
 		.get(placards.read)
 		.put(placards.update)
 		.delete(placards.delete);

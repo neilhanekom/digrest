@@ -20,6 +20,7 @@ var PlantationSchema = new Schema({
 		type: Schema.ObjectId,
 		ref: 'Supplier'
 	},
+	compartments : [{ type: Schema.Types.ObjectId, ref: 'Compartment' }],
 	created: {
 		type: Date,
 		default: Date.now

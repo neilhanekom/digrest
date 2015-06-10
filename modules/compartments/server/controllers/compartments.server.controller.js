@@ -73,7 +73,7 @@ exports.delete = function(req, res) {
 /**
  * List of Compartments
  */
-exports.list = function(req, res) { Compartment.find().sort('-created').populate('user', 'displayName').exec(function(err, compartments) {
+exports.list = function(req, res) { Compartment.find().sort('-created').populate('user', 'displayName').populate('placards').exec(function(err, compartments) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -87,7 +87,7 @@ exports.list = function(req, res) { Compartment.find().sort('-created').populate
 /**
  * Compartment middleware
  */
-exports.compartmentByID = function(req, res, next, id) { Compartment.findById(id).populate('user', 'displayName').exec(function(err, compartment) {
+exports.compartmentByID = function(req, res, next, id) { Compartment.findById(id).populate('user', 'displayName').populate('placards').exec(function(err, compartment) {
 		if (err) return next(err);
 		if (! compartment) return next(new Error('Failed to load Compartment ' + id));
 		req.compartment = compartment ;
