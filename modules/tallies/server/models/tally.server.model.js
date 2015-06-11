@@ -25,6 +25,9 @@ var TallySchema = new Schema({
 	external: {
 		type: String
 	},
+	supervisor: {
+		type: String
+	},
 	plantation: {
 		type: String
 	},
