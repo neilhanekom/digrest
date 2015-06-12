@@ -30,6 +30,7 @@ var PlacardSchema = new Schema({
 		type: Number,
 		default: 0
 	},
+	tallies: [{ type: Schema.Types.ObjectId, ref: 'Tally' }],
 	enumeration: {
 		type: Schema.ObjectId,
 		ref: 'Enumeration'
