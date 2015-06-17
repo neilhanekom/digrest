@@ -91,28 +91,35 @@
 
         <div class="accordion__container">
             <div class="accordion__tab">
-                <div class="accordion__tab-title" ng-click="openTab('tab one')">
-                  <md-button area-label="Button" flex layout="row" class="sidebar-btn">
-                    <div layout="row" flex="25" layout-align="center center">
-                      <span class="pad-t-8">
-                      <ng-md-icon icon="settings_input_svideo" style="fill: {{dgrey}}" size="20"></ng-md-icon> 
+                <div class="accordion__tab title" ng-click="openTab('tab one')">
+                   <md-button area-label="Button" flex class="sidebar-btn mar-0">
+                  <div layout="row">
+                    <div layout="row" flex="20" layout-align="center center">
+                      <span class="pad-t-10">
+                      <i>
+                        <ng-md-icon icon="{{item.icon}}" style="fill: {{dgrey}}" size="18"></ng-md-icon> 
+                      </i>
+                      
                     </span>
                     </div>
                     <div layout="row" flex>
-                      <span class="pad-t-8 mar-l-10 hd4 normal">Dashboard</span>
+                      <span class="pad-t-8 mar-l-10 sidenav-primary-text normal">Dashboard</span>
                     </div>
                     <div layout="row" flex="30"  >
                       <div layout="row" flex >
                          <span class="pad-t-8 mar-l-10 hd5 bold">2</span>
                       </div>
                       <div layout="row" layout-align="start center" flex>
-                        <span class="mar-t-5">
+                        <span class="mar-t-15">
                       <ng-md-icon icon="arrow_drop_down" style="fill: {{}}" size="23"></ng-md-icon> 
                       </span>
                       </div>
                      
                       
                     </div>
+                  </div>
+                    
+                    
                     
                   </md-button>
                 </div>
@@ -122,29 +129,36 @@
 
 
             <div class="accordion__tab" data-ng-repeat="item in sidenav.items | orderBy: 'position'">
-                <div class="accordion__tab-title" ng-click="openTab($index)">
+                <div class="accordion__tab title" ng-click="openTab($index)">
                  
-                  <md-button area-label="Button" flex layout="row" class="sidebar-btn">
-                    <div layout="row" flex="25" layout-align="center center">
-                      <span class="pad-t-8">
-                      <ng-md-icon icon="{{item.icon}}" style="fill: {{dgrey}}" size="22"></ng-md-icon> 
+                  <md-button area-label="Button" flex class="sidebar-btn mar-0">
+                  <div layout="row">
+                    <div layout="row" flex="20" layout-align="center center">
+                      <span class="pad-t-10">
+                      <i>
+                        <ng-md-icon icon="{{item.icon}}" style="fill: {{dgrey}}" size="18"></ng-md-icon> 
+                      </i>
+                      
                     </span>
                     </div>
                     <div layout="row" flex>
-                      <span class="pad-t-8 mar-l-10 hd4 normal">{{item.title}}</span>
+                      <span class="pad-t-8 mar-l-10 sidenav-primary-text normal">{{item.title}}</span>
                     </div>
                     <div layout="row" flex="30"  >
                       <div layout="row" flex >
                          <span class="pad-t-8 mar-l-10 hd5 bold">2</span>
                       </div>
                       <div layout="row" layout-align="start center" flex>
-                        <span class="mar-t-5">
+                        <span class="mar-t-15">
                       <ng-md-icon icon="arrow_drop_down" style="fill: {{}}" size="23"></ng-md-icon> 
                       </span>
                       </div>
                      
                       
                     </div>
+                  </div>
+                    
+                    
                     
                   </md-button>
                 </div>
@@ -159,13 +173,9 @@
                     </div>
                   </md-button> -->
                   <md-button ng-repeat="sub in item.items| orderBy: 'position'" area-label="Button" flex layout="row" class="sidebar-btn sidebar-sub" data-ui-sref="{{sub.state}}" ng-click="close()">
-                    <div layout="row" flex="25" layout-align="center center">
-                      <span class="pad-t-8">
-                      
-                    </span>
-                    </div>
-                    <div layout="row" flex>
-                      <span class="pad-t-8 mar-l-10 hd4 normal">{{sub.title}}</span>
+                    
+                    <div layout="row" flex offset="25">
+                      <span class=" mar-l-10 sidenav-primary-text normal">{{sub.title}}</span>
                     </div>
                     <div layout="row" flex="30"  >
                       

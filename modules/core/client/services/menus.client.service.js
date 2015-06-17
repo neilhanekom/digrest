@@ -583,152 +583,152 @@ angular.module('core').service('Menus', [
 
         // ==============================
 
-        this.addMenuItem('sidenav', {
-            icon: 'local_gas_station',
-            title: 'Transport',
-            state: 'transport',
-            class: 'transport',
-            isPublic: false,
-            roles: ['user' , 'admin'],
-            position: 13,
-        });
+        // this.addMenuItem('sidenav', {
+        //     icon: 'local_gas_station',
+        //     title: 'Transport',
+        //     state: 'transport',
+        //     class: 'transport',
+        //     isPublic: false,
+        //     roles: ['user' , 'admin'],
+        //     position: 13,
+        // });
 
-        this.addSubMenuItem('sidenav', 'transport', {
-            title: 'vehicles',
-            state: 'vehicles',
-            isPublic: false,
-            roles: ['user' , 'admin'],
-            position: 0
-        });
+        // this.addSubMenuItem('sidenav', 'transport', {
+        //     title: 'vehicles',
+        //     state: 'vehicles',
+        //     isPublic: false,
+        //     roles: ['user' , 'admin'],
+        //     position: 0
+        // });
 
-        this.addSubMenuItem('sidenav', 'transport', {
-            title: 'equipment',
-            state: 'equipment',
-            isPublic: false,
-            roles: ['user' , 'admin'],
-            position: 1
-        });
-        this.addSubMenuItem('sidenav', 'transport', {
-            title: 'transportation',
-            state: 'transportation',
-            isPublic: false,
-            roles: ['user' , 'admin'],
-            position: 2
-        });
+        // this.addSubMenuItem('sidenav', 'transport', {
+        //     title: 'equipment',
+        //     state: 'equipment',
+        //     isPublic: false,
+        //     roles: ['user' , 'admin'],
+        //     position: 1
+        // });
+        // this.addSubMenuItem('sidenav', 'transport', {
+        //     title: 'transportation',
+        //     state: 'transportation',
+        //     isPublic: false,
+        //     roles: ['user' , 'admin'],
+        //     position: 2
+        // });
 
-        // ================================
+        // // ================================
 
-        this.addMenuItem('sidenav', {
-            icon: 'filter_tilt_shift',
-            title: 'Treatment',
-            state: 'users',
-            class: 'users',
-            isPublic: false,
-            roles: ['user' , 'admin'],
-            position: 14,
-        });
+        // this.addMenuItem('sidenav', {
+        //     icon: 'filter_tilt_shift',
+        //     title: 'Treatment',
+        //     state: 'users',
+        //     class: 'users',
+        //     isPublic: false,
+        //     roles: ['user' , 'admin'],
+        //     position: 14,
+        // });
 
-        this.addSubMenuItem('sidenav', 'users', {
-            title: 'view users',
-            state: 'view',
-            isPublic: false,
-            roles: ['user' , 'admin'],
-            position: 0
-        });
+        // this.addSubMenuItem('sidenav', 'users', {
+        //     title: 'view users',
+        //     state: 'view',
+        //     isPublic: false,
+        //     roles: ['user' , 'admin'],
+        //     position: 0
+        // });
 
-        this.addSubMenuItem('sidenav', 'users', {
-            title: 'create new',
-            state: 'authentication.signup',
-            isPublic: false,
-            roles: ['user' , 'admin'],
-            position: 2
-        });
+        // this.addSubMenuItem('sidenav', 'users', {
+        //     title: 'create new',
+        //     state: 'authentication.signup',
+        //     isPublic: false,
+        //     roles: ['user' , 'admin'],
+        //     position: 2
+        // });
 
-        // ================================
+        // // ================================
 
-        this.addMenuItem('sidenav', {
-            icon: 'equalizer',
-            title: 'Tallies',
-            state: 'tallies',
-            class: 'tallies',
-            isPublic: false,
-            roles: ['user' , 'admin'],
-            position: 6,
-        });
+        // this.addMenuItem('sidenav', {
+        //     icon: 'equalizer',
+        //     title: 'Tallies',
+        //     state: 'tallies',
+        //     class: 'tallies',
+        //     isPublic: false,
+        //     roles: ['user' , 'admin'],
+        //     position: 6,
+        // });
 
-        this.addSubMenuItem('sidenav', 'tallies', {
-            title: 'Tallies',
-            state: 'tallies.list',
-            isPublic: false,
-            roles: ['user' , 'admin'],
-            position: 0
-        });
+        // this.addSubMenuItem('sidenav', 'tallies', {
+        //     title: 'Tallies',
+        //     state: 'tallies.list',
+        //     isPublic: false,
+        //     roles: ['user' , 'admin'],
+        //     position: 0
+        // });
 
-        this.addSubMenuItem('sidenav', 'tallies', {
-            title: 'Reports',
-            state: 'tallies.reports',
-            isPublic: false,
-            roles: ['user' , 'admin'],
-            position: 1
-        });
-
-
-        // ================================
-
-        this.addMenuItem('sidenav', {
-            icon: 'blur_circular',
-            title: 'Enumeration',
-            state: 'enumerations',
-            class: 'enumeration',
-            isPublic: false,
-            roles: ['user' , 'admin'],
-            position: 7,
-        });
-
-        this.addSubMenuItem('sidenav', 'enumerations', {
-            title: 'enumerations',
-            state: 'enumerations.list',
-            isPublic: false,
-            roles: ['user' , 'admin'],
-            position: 0
-        });
-
-        this.addSubMenuItem('sidenav', 'enumerations', {
-            title: 'create new',
-            state: 'enumerations.create',
-            isPublic: false,
-            roles: ['user' , 'admin'],
-            position: 2
-        });
+        // this.addSubMenuItem('sidenav', 'tallies', {
+        //     title: 'Reports',
+        //     state: 'tallies.reports',
+        //     isPublic: false,
+        //     roles: ['user' , 'admin'],
+        //     position: 1
+        // });
 
 
-        // ===================================
+        // // ================================
 
-        this.addMenuItem('sidenav', {
-            icon: 'description',
-            title: 'Quotations',
-            state: 'assets',
-            class: 'assets',
-            isPublic: false,
-            roles: ['user' , 'admin'],
-            position: 10,
-        });
+        // this.addMenuItem('sidenav', {
+        //     icon: 'blur_circular',
+        //     title: 'Enumeration',
+        //     state: 'enumerations',
+        //     class: 'enumeration',
+        //     isPublic: false,
+        //     roles: ['user' , 'admin'],
+        //     position: 7,
+        // });
 
-        this.addSubMenuItem('sidenav', 'assets', {
-            title: 'vehicles',
-            state: 'vehicles',
-            isPublic: false,
-            roles: ['user' , 'admin'],
-            position: 0
-        });
+        // this.addSubMenuItem('sidenav', 'enumerations', {
+        //     title: 'enumerations',
+        //     state: 'enumerations.list',
+        //     isPublic: false,
+        //     roles: ['user' , 'admin'],
+        //     position: 0
+        // });
 
-        this.addSubMenuItem('sidenav', 'assets', {
-            title: 'equipment',
-            state: 'equipment',
-            isPublic: false,
-            roles: ['user' , 'admin'],
-            position: 1
-        });
+        // this.addSubMenuItem('sidenav', 'enumerations', {
+        //     title: 'create new',
+        //     state: 'enumerations.create',
+        //     isPublic: false,
+        //     roles: ['user' , 'admin'],
+        //     position: 2
+        // });
+
+
+        // // ===================================
+
+        // this.addMenuItem('sidenav', {
+        //     icon: 'description',
+        //     title: 'Quotations',
+        //     state: 'assets',
+        //     class: 'assets',
+        //     isPublic: false,
+        //     roles: ['user' , 'admin'],
+        //     position: 10,
+        // });
+
+        // this.addSubMenuItem('sidenav', 'assets', {
+        //     title: 'vehicles',
+        //     state: 'vehicles',
+        //     isPublic: false,
+        //     roles: ['user' , 'admin'],
+        //     position: 0
+        // });
+
+        // this.addSubMenuItem('sidenav', 'assets', {
+        //     title: 'equipment',
+        //     state: 'equipment',
+        //     isPublic: false,
+        //     roles: ['user' , 'admin'],
+        //     position: 1
+        // });
 
         // ================================
 

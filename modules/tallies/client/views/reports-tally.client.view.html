@@ -9,8 +9,20 @@
       <!-- Panel -->
       <div layout="column" flex class="view-panel">
         <div layout="row" flex>
-          <div layout="row ">
+          <div layout="row" class="pad-t-10">
             <p class="hd2 light">Tally Reports</p>
+
+          </div>
+          <div layout="row" layout-align="center center" class="" flex>
+            <md-checkbox ng-checked="" ng-click="toggleYearSelect()">
+              Year <span ng-if="exists(item, selected)">selected</span>
+            </md-checkbox>
+            <md-checkbox ng-checked="" ng-click="toggleYearSelect()">
+              Month <span ng-if="exists(item, selected)">selected</span>
+            </md-checkbox>
+            <md-checkbox ng-checked="" ng-click="toggleYearSelect()">
+              Day <span ng-if="exists(item, selected)">selected</span>
+            </md-checkbox>
 
           </div>
           <div layout="row" layout-align="end center" flex>
@@ -41,20 +53,20 @@
           </div> -->
         </div>
         </div>
+
+        
         <!-- activate panels -->
         <div layout="row">
             <div layout="row">
           <div layout="column" >
               <div layout="row">
-                <span class="hd4">Day</span>
+                <span class="hd4">Months</span>
               </div>
                <div layout="row" layout-wrap>
-                    <div  >
-                      <!-- <md-checkbox ng-checked="existsMonth(month, selMonths)" ng-click="toggleMonth(month, selMonths)" class="mar-2 pad-5 rounded-2 bg-alpha-10">
-                        {{ month.name }} 
-                      </md-checkbox> -->
-                      <md-switch ng-model="month.active"  aria-label="(month.name)" ng-change="toggleMonth(month, talliesMonthly)" ng-repeat="month in talliesMonthly">
-                      {{month.month}}
+                    <div layout="column" ng-repeat="month in months">
+                      
+                      <md-switch ng-model="month.active"  aria-label="(month.name)" ng-change="toggleMonth(tallies, currentYear, month.m_value, month.active)" >
+                      {{month.name}}
                     </md-switch>
                     </div>
                     
@@ -64,7 +76,7 @@
             
      
         </div>
-        <div layout="row">
+        <!-- <div layout="row">
           <div layout="column" >
               <div layout="row">
                 <span class="hd4">Day</span>
@@ -77,14 +89,18 @@
                     </div>
                 </div>
         </div>
-        </div>
+        </div> -->
       </div>
       <!-- View -->
       <div layout="column" flex class="view-panel-view">
-      
+        
+       <div layout="row">
+         <md-button ng-repeat="month in months" class="bor-r" ng-if="month.active == true">{{month.name}}</md-button>
+       </div> 
+
       <div layout="row" layout-wrap>
 
-        <div class="bg-white card-full">     
+        <div class="bg-white card-full" flex>     
              <div layout="row" class="bg-list-grey bor-b pad-15" flex>
                 <div layout="col">
                     <span class="hd4 g-800">tallyMonth</span>
@@ -92,16 +108,52 @@
             </div>
 
             
-            <div layout="row" >
-              <md-content class="pad-10">
-              <div layout="row">
-             
-              </div>
-              </md-content>
-            </div> 
+         
+      
+      
+      <md-content >
+        
+       <md-list>
+          <md-list-item data-ng-repeat="tally in selectedTallies">
+            <div layout="row" class="bor-b pad-10" flex ng-class-odd="'odd'" ng-class-even="'even'" >
+               <div layout="row" layout-align="start center" flex>
+                  <span class="hd4 ">{{tally.created | date: 'dd-MMM-yyyy'}}</span>
+               </div>
+              
+               <div layout="row" layout-align="end center" flex>
+               
+                 <span class="hd4"></span>
+               </div>
+           </div>
+            
+          </md-list-item>
+      <div layout="row" class="pad-15" flex>
+           <div class="col" flex>
+              <span class="hd4 ">Total Enumeration: </span>
+           </div>
+          <div class="col" flex>
+              <span class="hd4 bold"></span>
+           </div>
+           
+       </div>
+    </md-list>
+       
+    <div class="alert alert-warning text-center" data-ng-hide="!enumerations.$resolved || enumerations.length">
+        No Enumerations yet, why don't you <a href="/#!/enumerations/create">create one</a>?
+    </div>
+
+
+        
+      </md-content>
+        
+      
+      
+    
       </div>
     </div>
     </div>
    
+
+  
     
 </section>

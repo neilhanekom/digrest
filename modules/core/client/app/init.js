@@ -35,6 +35,13 @@ angular.module(ApplicationConfiguration.applicationModuleName).config(['$locatio
         .primaryPalette('blue-grey')
         .accentPalette('red');
 
+        $mdIconProvider
+       .iconSet('social', 'public/lib/material-design-icons/social/svg', 24)
+       .iconSet('action', 'public/lib/material-design-icons/action/svg', 24)
+       .iconSet('social', 'public/lib/material-design-icons/social/svg', 24)
+       .iconSet('social', 'public/lib/material-design-icons/social/svg', 24)
+       
+
         //Alternative Theme
         // $mdThemingProvider.theme('altTheme')
         // .primaryPalette('grey')
