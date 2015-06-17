@@ -291,8 +291,14 @@ a:hover .header-profile-image {
 	background-color: #212121;
 }
 
+
+
 .bg-alpha {
 	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.bg-alpha-10 {
+	background-color: rgba(0, 0, 0, 0.1);
 }
 
 .bg-alpha-80 {
@@ -314,6 +320,12 @@ a:hover .header-profile-image {
 
 .bg-red {
 	background-color: #F44336;
+}
+
+.rounded-2 {
+	border-radius: 2px;
+	padding: 5px;
+	margin: 3px;
 }
 
 
@@ -364,7 +376,8 @@ a:hover .header-profile-image {
 
 .sidebar {
 	position: fixed;
-	height: 100%;
+	margin-top: 65px;
+
 	z-index: 20;
 }
 
@@ -527,7 +540,7 @@ background-color:#EEEEEE;
 }
 
 .pad-5 {
-	padding: 10px;
+	padding: 5px;
 }
 
 .pad-10 {
@@ -905,6 +918,10 @@ background-color:#EEEEEE;
 	width: 400px;
 }
 
+.bor {
+border: 1px #E0E0E0 solid;
+}
+
 .bor-b {
 	border-bottom: 1px #E0E0E0 solid;
 }
@@ -971,6 +988,19 @@ background-color:#EEEEEE;
 	height: 100px;
 	background-color: #EEEEEE;
 }
+
+.view-panel {
+	background-color: #607D8B;
+	padding: 5px 25px 70px 25px;
+	color: #ECEFF1;
+}
+
+.view-panel-view {
+	margin: -53px 25px 0px 25px;
+}
+
+
+
 
 /*Mobile Small Screens*/
 @media (max-width: 600px) {
@@ -1093,6 +1123,10 @@ background-color:#EEEEEE;
 		width: 100%;
 	}
 
+}
+
+.monthly-tabs {
+	color: white;
 }
 
 /*Wide X-tra Large*/
@@ -1234,6 +1268,39 @@ background-color:#EEEEEE;
   background: #ff8a80; }
 .gridListdemoBasicUsage md-grid-tile {
   transition: all 400ms ease-out 50ms; }
+
+ /*tabs*/
+ .tabsdemoDynamicTabs md-content {
+  background-color: transparent !important; }
+  .tabsdemoDynamicTabs md-content md-tabs {
+    border: 1px solid #e1e1e1; }
+    .tabsdemoDynamicTabs md-content md-tabs md-tab-content {
+      background: #f6f6f6; }
+    .tabsdemoDynamicTabs md-content md-tabs md-tabs-canvas {
+      background: white; }
+  .tabsdemoDynamicTabs md-content h1:first-child {
+    margin-top: 0; }
+.tabsdemoDynamicTabs md-input-container {
+  padding-bottom: 0; }
+.tabsdemoDynamicTabs .remove-tab {
+  margin-bottom: 40px; }
+.tabsdemoDynamicTabs .demo-tab > div > div {
+  padding: 25px;
+  box-sizing: border-box; }
+.tabsdemoDynamicTabs .edit-form input {
+  width: 100%; }
+.tabsdemoDynamicTabs md-tabs {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12); }
+.tabsdemoDynamicTabs md-tab[disabled] {
+  opacity: 0.5; }
+.tabsdemoDynamicTabs label {
+  text-align: left; }
+.tabsdemoDynamicTabs .long > input {
+  width: 264px; }
+.tabsdemoDynamicTabs .md-button.add-tab {
+  transform: translateY(5px); }
+
+
 
 .os-windows.os-windows::after {content:" os-windows ";}
 .os-mac.os-mac::after {content:" os-mac ";}

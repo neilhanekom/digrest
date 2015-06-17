@@ -355,7 +355,15 @@ angular.module('core').service('Menus', [
         });
 
         this.addSubMenuItem('sidenav', 'suppliers', {
-            title: 'Suppliers',
+            title: 'Reports',
+            state: 'suppliers.reports',
+            isPublic: false,
+            roles: ['user' , 'admin'],
+            position: 0
+        });
+
+        this.addSubMenuItem('sidenav', 'suppliers', {
+            title: 'List',
             state: 'suppliers.list',
             isPublic: false,
             roles: ['user' , 'admin'],
@@ -363,47 +371,142 @@ angular.module('core').service('Menus', [
         });
 
         this.addSubMenuItem('sidenav', 'suppliers', {
-            title: 'Plantations',
-            state: 'plantations.list',
+            title: 'Create New',
+            state: 'suppliers.create',
             isPublic: false,
             roles: ['user' , 'admin'],
             position: 2
         });
 
-        this.addSubMenuItem('sidenav', 'suppliers', {
-            title: 'Blocks/Compartments',
-            state: 'compartments.list',
+        // ==============================
+
+        // =====================================
+
+
+        this.addMenuItem('sidenav', {
+            icon: 'grain',
+            title: 'Plantations',
+            state: 'plantations',
+            class: 'plantations',
             isPublic: false,
             roles: ['user' , 'admin'],
-            position: 3
+            position: 3,
         });
 
-        this.addSubMenuItem('sidenav', 'suppliers', {
-            title: 'Placards',
-            state: 'placards.list',
-            isPublic: false,
-            roles: ['user' , 'admin'],
-            position: 4
-        });
-
-        this.addSubMenuItem('sidenav', 'suppliers', {
-            title: 'Create New',
-            state: 'suppliers.create',
+        this.addSubMenuItem('sidenav', 'plantations', {
+            title: 'Reports',
+            state: 'plantations.reports',
             isPublic: false,
             roles: ['user' , 'admin'],
             position: 0
         });
 
+        this.addSubMenuItem('sidenav', 'plantations', {
+            title: 'List',
+            state: 'plantations.list',
+            isPublic: false,
+            roles: ['user' , 'admin'],
+            position: 1
+        });
+
+        this.addSubMenuItem('sidenav', 'plantations', {
+            title: 'Create New',
+            state: 'plantations.create',
+            isPublic: false,
+            roles: ['user' , 'admin'],
+            position: 2
+        });
+
+
         // ==============================
+
+         // =====================================
+
+
+        this.addMenuItem('sidenav', {
+            icon: 'grain',
+            title: 'Compartments',
+            state: 'compartments',
+            class: 'compartments',
+            isPublic: false,
+            roles: ['user' , 'admin'],
+            position: 4,
+        });
+
+        this.addSubMenuItem('sidenav', 'compartments', {
+            title: 'Reports',
+            state: 'compartments.reports',
+            isPublic: false,
+            roles: ['user' , 'admin'],
+            position: 0
+        });
+
+        this.addSubMenuItem('sidenav', 'compartments', {
+            title: 'List',
+            state: 'compartments.list',
+            isPublic: false,
+            roles: ['user' , 'admin'],
+            position: 1
+        });
+
+        this.addSubMenuItem('sidenav', 'compartments', {
+            title: 'Create New',
+            state: 'compartments.create',
+            isPublic: false,
+            roles: ['user' , 'admin'],
+            position: 2
+        });
+
+
+        // ==============================
+
+        // =====================================
+
+
+        this.addMenuItem('sidenav', {
+            icon: 'grain',
+            title: 'Placards',
+            state: 'placards',
+            class: 'placards',
+            isPublic: false,
+            roles: ['user' , 'admin'],
+            position: 5,
+        });
+
+        this.addSubMenuItem('sidenav', 'placards', {
+            title: 'Reports',
+            state: 'placards.reports',
+            isPublic: false,
+            roles: ['user' , 'admin'],
+            position: 0
+        });
+
+        this.addSubMenuItem('sidenav', 'placards', {
+            title: 'List',
+            state: 'placards.list',
+            isPublic: false,
+            roles: ['user' , 'admin'],
+            position: 1
+        });
+
+        this.addSubMenuItem('sidenav', 'placards', {
+            title: 'Create New',
+            state: 'placards.create',
+            isPublic: false,
+            roles: ['user' , 'admin'],
+            position: 2
+        });
+
+         // ==============================
 
         this.addMenuItem('sidenav', {
             icon: 'clear_all',
-            title: 'stock',
+            title: 'Stock',
             state: 'stock',
             class: 'stock',
             isPublic: false,
             roles: ['user' , 'admin'],
-            position: 3,
+            position: 16,
         });
 
         this.addSubMenuItem('sidenav', 'stock', {
@@ -431,7 +534,7 @@ angular.module('core').service('Menus', [
             class: 'orders',
             isPublic: false,
             roles: ['user' , 'admin'],
-            position: 4,
+            position: 8,
         });
 
         this.addSubMenuItem('sidenav', 'orders', {
@@ -459,7 +562,7 @@ angular.module('core').service('Menus', [
             class: 'deliveries',
             isPublic: false,
             roles: ['user' , 'admin'],
-            position: 5,
+            position: 9,
         });
 
         this.addSubMenuItem('sidenav', 'deliveries', {
@@ -487,7 +590,7 @@ angular.module('core').service('Menus', [
             class: 'transport',
             isPublic: false,
             roles: ['user' , 'admin'],
-            position: 4,
+            position: 13,
         });
 
         this.addSubMenuItem('sidenav', 'transport', {
@@ -522,7 +625,7 @@ angular.module('core').service('Menus', [
             class: 'users',
             isPublic: false,
             roles: ['user' , 'admin'],
-            position: 7,
+            position: 14,
         });
 
         this.addSubMenuItem('sidenav', 'users', {
@@ -546,27 +649,27 @@ angular.module('core').service('Menus', [
         this.addMenuItem('sidenav', {
             icon: 'equalizer',
             title: 'Tallies',
-            state: 'users',
-            class: 'users',
+            state: 'tallies',
+            class: 'tallies',
             isPublic: false,
             roles: ['user' , 'admin'],
-            position: 7,
+            position: 6,
         });
 
-        this.addSubMenuItem('sidenav', 'users', {
-            title: 'view users',
-            state: 'view',
+        this.addSubMenuItem('sidenav', 'tallies', {
+            title: 'Tallies',
+            state: 'tallies.list',
             isPublic: false,
             roles: ['user' , 'admin'],
             position: 0
         });
 
-        this.addSubMenuItem('sidenav', 'users', {
-            title: 'create new',
-            state: 'authentication.signup',
+        this.addSubMenuItem('sidenav', 'tallies', {
+            title: 'Reports',
+            state: 'tallies.reports',
             isPublic: false,
             roles: ['user' , 'admin'],
-            position: 2
+            position: 1
         });
 
 
@@ -608,7 +711,7 @@ angular.module('core').service('Menus', [
             class: 'assets',
             isPublic: false,
             roles: ['user' , 'admin'],
-            position: 6,
+            position: 10,
         });
 
         this.addSubMenuItem('sidenav', 'assets', {
@@ -629,97 +732,97 @@ angular.module('core').service('Menus', [
 
         // ================================
 
-        this.addMenuItem('sidenav', {
-            icon: 'local_atm',
-            title: 'Invoices',
-            state: 'users',
-            class: 'users',
-            isPublic: false,
-            roles: ['user' , 'admin'],
-            position: 7,
-        });
+        // this.addMenuItem('sidenav', {
+        //     icon: 'local_atm',
+        //     title: 'Invoices',
+        //     state: 'users',
+        //     class: 'users',
+        //     isPublic: false,
+        //     roles: ['user' , 'admin'],
+        //     position: 11,
+        // });
 
-        this.addSubMenuItem('sidenav', 'users', {
-            title: 'view users',
-            state: 'view',
-            isPublic: false,
-            roles: ['user' , 'admin'],
-            position: 0
-        });
+        // this.addSubMenuItem('sidenav', 'users', {
+        //     title: 'view users',
+        //     state: 'view',
+        //     isPublic: false,
+        //     roles: ['user' , 'admin'],
+        //     position: 0
+        // });
 
-        this.addSubMenuItem('sidenav', 'users', {
-            title: 'create new',
-            state: 'authentication.signup',
-            isPublic: false,
-            roles: ['user' , 'admin'],
-            position: 2
-        });
+        // this.addSubMenuItem('sidenav', 'users', {
+        //     title: 'create new',
+        //     state: 'authentication.signup',
+        //     isPublic: false,
+        //     roles: ['user' , 'admin'],
+        //     position: 2
+        // });
         
 
-        // ================================
+        // // ================================
 
-        this.addMenuItem('sidenav', {
-            icon: 'account_circle',
-            title: 'users',
-            state: 'users',
-            class: 'users',
-            isPublic: false,
-            roles: ['user' , 'admin'],
-            position: 7,
-        });
+        // this.addMenuItem('sidenav', {
+        //     icon: 'account_circle',
+        //     title: 'users',
+        //     state: 'users',
+        //     class: 'users',
+        //     isPublic: false,
+        //     roles: ['user' , 'admin'],
+        //     position: 12,
+        // });
 
-        this.addSubMenuItem('sidenav', 'users', {
-            title: 'view users',
-            state: 'view',
-            isPublic: false,
-            roles: ['user' , 'admin'],
-            position: 0
-        });
+        // this.addSubMenuItem('sidenav', 'users', {
+        //     title: 'view users',
+        //     state: 'view',
+        //     isPublic: false,
+        //     roles: ['user' , 'admin'],
+        //     position: 0
+        // });
 
-        this.addSubMenuItem('sidenav', 'users', {
-            title: 'create new',
-            state: 'authentication.signup',
-            isPublic: false,
-            roles: ['user' , 'admin'],
-            position: 2
-        });
+        // this.addSubMenuItem('sidenav', 'users', {
+        //     title: 'create new',
+        //     state: 'authentication.signup',
+        //     isPublic: false,
+        //     roles: ['user' , 'admin'],
+        //     position: 2
+        // });
         
 
-        // ================================
+        // // ================================
 
-        this.addMenuItem('sidenav', {
-            icon: 'people',
-            title: 'hr',
-            state: 'hr',
-            class: 'hr',
-            isPublic: false,
-            roles: ['user' , 'admin'],
-            position: 7,
-        });
+        // this.addMenuItem('sidenav', {
+        //     icon: 'people',
+        //     title: 'hr',
+        //     state: 'hr',
+        //     class: 'hr',
+        //     isPublic: false,
+        //     roles: ['user' , 'admin'],
+        //     position: 15,
+        // });
 
-        this.addSubMenuItem('sidenav', 'hr', {
-            title: 'New Employee',
-            state: 'employees.create',
-            isPublic: false,
-            roles: ['user' , 'admin'],
-            position: 0
-        });
+        // this.addSubMenuItem('sidenav', 'hr', {
+        //     title: 'New Employee',
+        //     state: 'employees.create',
+        //     isPublic: false,
+        //     roles: ['user' , 'admin'],
+        //     position: 0
+        // });
 
-        this.addSubMenuItem('sidenav', 'hr', {
-            title: 'workers',
-            state: 'workers',
-            isPublic: false,
-            roles: ['user' , 'admin'],
-            position: 0
-        });
+        // this.addSubMenuItem('sidenav', 'hr', {
+        //     title: 'workers',
+        //     state: 'workers',
+        //     isPublic: false,
+        //     roles: ['user' , 'admin'],
+        //     position: 0
+        // });
 
-        this.addSubMenuItem('sidenav', 'hr', {
-            title: 'drivers',
-            state: 'drivers',
-            isPublic: false,
-            roles: ['user' , 'admin'],
-            position: 2
-        });
+        // this.addSubMenuItem('sidenav', 'hr', {
+        //     title: 'drivers',
+        //     state: 'drivers',
+        //     isPublic: false,
+        //     roles: ['user' , 'admin'],
+        //     position: 2
+        // });
         
 
         // ===================================

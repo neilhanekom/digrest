@@ -1,0 +1,107 @@
+
+
+<section data-ng-controller="TalliesreportsController" layout="row" flex data-ng-init="find()">
+    
+    <div layout="column" class="left-spacer"  hide-md hide-sm>
+        
+    </div>
+    <div layout="column" flex>
+      <!-- Panel -->
+      <div layout="column" flex class="view-panel">
+        <div layout="row" flex>
+          <div layout="row ">
+            <p class="hd2 light">Tally Reports</p>
+
+          </div>
+          <div layout="row" layout-align="end center" flex>
+              <div layout="row">
+              <div layout="row">
+              <md-button ng-style="{'color': '#ECEFF1'}">
+                <span class="hd4  ">Tally Report</span>
+               
+              </md-button> 
+                <p class="hd4 white bold mar-t-10">|</p>
+              </div>
+              <div layout="row">
+              <md-button ng-style="{'color': '#ECEFF1'}">
+                <span class="hd4 ">Cross Cut Report</span>
+               
+              </md-button> 
+                <p class="hd4 white bold mar-t-10">|</p>
+              </div>
+              
+              
+          </div>
+          <!-- <div layout="row">
+            <md-button>
+              <div layout="column">
+                <ng-md-icon icon="today" style="fill: {{standard}}" size="20"></ng-md-icon> 
+              </div>
+            </md-button>
+          </div> -->
+        </div>
+        </div>
+        <!-- activate panels -->
+        <div layout="row">
+            <div layout="row">
+          <div layout="column" >
+              <div layout="row">
+                <span class="hd4">Day</span>
+              </div>
+               <div layout="row" layout-wrap>
+                    <div  >
+                      <!-- <md-checkbox ng-checked="existsMonth(month, selMonths)" ng-click="toggleMonth(month, selMonths)" class="mar-2 pad-5 rounded-2 bg-alpha-10">
+                        {{ month.name }} 
+                      </md-checkbox> -->
+                      <md-switch ng-model="month.active"  aria-label="(month.name)" ng-change="toggleMonth(month, talliesMonthly)" ng-repeat="month in talliesMonthly">
+                      {{month.month}}
+                    </md-switch>
+                    </div>
+                    
+                </div>
+        </div>
+        </div>
+            
+     
+        </div>
+        <div layout="row">
+          <div layout="column" >
+              <div layout="row">
+                <span class="hd4">Day</span>
+              </div>
+               <div layout="row" layout-wrap>
+                    <div  ng-repeat="day in days">
+                      <md-checkbox ng-checked="existsDay(month, selDays)" ng-click="toggleDay(day, selDays)" class="mar-2 pad-5 rounded-2 bg-alpha-10">
+                        {{ day }} 
+                      </md-checkbox>
+                    </div>
+                </div>
+        </div>
+        </div>
+      </div>
+      <!-- View -->
+      <div layout="column" flex class="view-panel-view">
+      
+      <div layout="row" layout-wrap>
+
+        <div class="bg-white card-full">     
+             <div layout="row" class="bg-list-grey bor-b pad-15" flex>
+                <div layout="col">
+                    <span class="hd4 g-800">tallyMonth</span>
+                </div>
+            </div>
+
+            
+            <div layout="row" >
+              <md-content class="pad-10">
+              <div layout="row">
+             
+              </div>
+              </md-content>
+            </div> 
+      </div>
+    </div>
+    </div>
+   
+    
+</section>

@@ -67,10 +67,10 @@
 	<div layout="column">
 		<div layout="column">
 			<header data-ng-include="'/modules/core/views/header.client.view.html'"></header>
-			<div data-ng-include="'/modules/core/views/left.client.view.html'" class="sidebar" ></div>
+			
 		</div>
 		<div layout="row">
-			
+			<div data-ng-include="'/modules/core/views/left.client.view.html'" class="sidebar" ></div>
 			<div flex>
 				{% block content %}{% endblock %}
 			</div>

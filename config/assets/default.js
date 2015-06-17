@@ -19,6 +19,7 @@ module.exports = {
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
 				'public/lib/angular-file-upload/angular-file-upload.js',
 				'public/lib/angular-material-icons/angular-material-icons.js',
+				'public/lib/moment/moment.js',
 				'public/lib/angular-moment/angular-moment.js',
 				'public/lib/ng-file-upload/angular-file-upload.js',
 				'public/lib/ng-file-upload-shim/angular-file-upload-shim.js',

@@ -7,6 +7,8 @@ angular.module('core').directive('resize', [ '$window', '$document', '$timeout',
 				restrict: 'EA',
 				link: function postLink(scope, element, attrs) {
 					
+					
+					
 					var window = $window;
 					
 					var h = $window.innerHeight;

@@ -10,7 +10,7 @@ angular.module('placards').controller('PlacardsController', ['$scope', '$statePa
 
 		$scope.placards = [];
 
-		$scope.newP;
+		
 
 		$scope.addPlantation = function(plantation) {
 			var plantation = Plantations.get({ 

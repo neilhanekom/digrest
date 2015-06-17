@@ -14,6 +14,10 @@ angular.module('tallies').config(['$stateProvider',
 			url: '',
 			templateUrl: 'modules/tallies/views/list-tallies.client.view.html'
 		}).
+		state('tallies.reports', {
+			url: '/reports',
+			templateUrl: 'modules/tallies/views/reports-tally.client.view.html'
+		}).
 		state('tallies.create', {
 			url: '/create',
 			templateUrl: 'modules/tallies/views/create-tally.client.view.html'

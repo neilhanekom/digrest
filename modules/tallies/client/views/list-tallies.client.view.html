@@ -1,4 +1,4 @@
-<section data-ng-controller="TalliesController" data-ng-init="find()">
+<!-- <section data-ng-controller="TalliesController" data-ng-init="find()">
     <div class="page-header">
         <h1>Tallies</h1>
     </div>
@@ -16,4 +16,28 @@
     <div class="alert alert-warning text-center" data-ng-hide="!tallies.$resolved || tallies.length">
     	No Tallies yet, why don't you <a href="/#!/tallies/create">create one</a>?
     </div>
+</section> -->
+
+<section data-ng-controller="TalliesController" layout="row" flex data-ng-init="find()">
+    
+    <div layout="column" class="left-spacer"  hide-md hide-sm>
+        
+    </div>
+    <div layout="column" flex class="view">
+  <div layout="row" layout-wrap>
+    <div class="bg-white card-full">
+      
+      <md-content class="pad-10">
+        <p class="hd3">Enumerations</p>
+        
+      </md-content>
+        
+      
+      
+    </div>
+    
+  </div>
+    </div>
 </section>
+
+
