@@ -5,7 +5,7 @@ var ApplicationConfiguration = (function() {
 	// Init module configuration options
 	var applicationModuleName = 'diggersrest';
 
-	var applicationModuleVendorDependencies = ['ngResource', 'ui.router', 'ui.bootstrap', 'ui.utils', 'angularFileUpload', 'ngMessages', 'ngMaterial', 'ngMdIcons', 'angularFileUpload', 'angularMoment', 'ngAnimate' ];
+	var applicationModuleVendorDependencies = ['ngResource', 'ui.router', 'ui.bootstrap', 'ui.utils', 'angularFileUpload', 'ngMessages', 'ngMaterial', 'ngMdIcons', 'angularFileUpload', 'angularMoment', 'ngAnimate', 'angular-progress-arc', 'angular-svg-round-progress' ];
 
 	// Add a new vertical module
 	var registerModule = function(moduleName, dependencies) {

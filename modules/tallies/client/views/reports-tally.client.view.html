@@ -1,6 +1,6 @@
 
 
-<section data-ng-controller="TalliesreportsController" layout="row" flex data-ng-init="find()">
+<section data-ng-controller="TalliesreportsController as TallyReportCtrl" layout="row" flex data-ng-init="find()">
     
     <div layout="column" class="left-spacer"  hide-md hide-sm>
         
@@ -13,7 +13,7 @@
             <p class="hd2 light">Tally Reports</p>
 
           </div>
-          <div layout="row" layout-align="center center" class="" flex>
+          <div layout="row" layout-align="end center" class="" flex>
             <md-checkbox ng-checked="" ng-click="toggleYearSelect()">
               Year <span ng-if="exists(item, selected)">selected</span>
             </md-checkbox>
@@ -25,42 +25,27 @@
             </md-checkbox>
 
           </div>
-          <div layout="row" layout-align="end center" flex>
-              <div layout="row">
-              <div layout="row">
-              <md-button ng-style="{'color': '#ECEFF1'}">
-                <span class="hd4  ">Tally Report</span>
-               
-              </md-button> 
-                <p class="hd4 white bold mar-t-10">|</p>
-              </div>
-              <div layout="row">
-              <md-button ng-style="{'color': '#ECEFF1'}">
-                <span class="hd4 ">Cross Cut Report</span>
-               
-              </md-button> 
-                <p class="hd4 white bold mar-t-10">|</p>
-              </div>
-              
-              
-          </div>
-          <!-- <div layout="row">
-            <md-button>
-              <div layout="column">
-                <ng-md-icon icon="today" style="fill: {{standard}}" size="20"></ng-md-icon> 
-              </div>
-            </md-button>
-          </div> -->
-        </div>
+          
         </div>
 
         
         <!-- activate panels -->
         <div layout="row">
-            <div layout="row">
+            <div layout="row" >
           <div layout="column" >
               <div layout="row">
-                <span class="hd4">Months</span>
+                <div layout="row" layout-align="start center">
+                  <span class="hd4 bold grey">Include Months</span>
+                </div>
+                <div layout="row">
+                  
+                   <md-checkbox ng-checked="" ng-click="toggleYearSelect()">
+                    All 
+                </md-checkbox>
+                 
+                </div>
+                
+               
               </div>
                <div layout="row" layout-wrap>
                     <div layout="column" ng-repeat="month in months">
@@ -76,6 +61,34 @@
             
      
         </div>
+        <div layout="row" flex>
+          <div layout="row" flex>
+            <span class="hd4 bold grey">Select Month</span>
+          </div>
+          <div layout="row" flex>
+            <span class="hd4 bold grey">Select or Deselect Day</span>
+          </div>
+                
+
+        </div>
+        <div layout="row" flex layout-wrap>
+          <div layout="row" layout-wrap flex>
+             <md-button ng-repeat="month in months" class="mar-2 bor-w" ng-class="{ 'bg-alpha-10': true }" ng-if="month.active == true" ng-click="generateMonthlyTallies(tallies, selectedYear, month)">{{month.name}}</md-button>
+           </div>
+       <div layout="row" layout-wrap flex class="rounded-2 bor-w">
+              
+               <div layout="row" layout-wrap>
+                    <div  ng-repeat="day in daysInMonth">
+                      <md-checkbox ng-checked="" ng-click="" >
+                        {{ day }} 
+                      </md-checkbox>
+                    </div>
+                </div>
+       
+       </div>
+        </div>
+        
+
         <!-- <div layout="row">
           <div layout="column" >
               <div layout="row">
@@ -94,16 +107,29 @@
       <!-- View -->
       <div layout="column" flex class="view-panel-view">
         
-       <div layout="row">
-         <md-button ng-repeat="month in months" class="bor-r" ng-if="month.active == true">{{month.name}}</md-button>
-       </div> 
+       
 
       <div layout="row" layout-wrap>
 
         <div class="bg-white card-full" flex>     
              <div layout="row" class="bg-list-grey bor-b pad-15" flex>
-                <div layout="col">
-                    <span class="hd4 g-800">tallyMonth</span>
+                <div layout="row" flex>
+                    <div layout="row" layout="row" flex>
+                       <span class="hd4 g-800">Tally Report</span>
+                    </div>
+                    <div layout="row" flex>
+                      <md-checkbox ng-checked="" ng-click="" >
+                        View Annually
+                      </md-checkbox>
+                      <md-checkbox ng-checked="" ng-click="" >
+                        View Monthly
+                      </md-checkbox>
+                      <md-checkbox ng-checked="" ng-click="" >
+                        View Daily
+                      </md-checkbox>
+                    </div>
+                   
+                    
                 </div>
             </div>
 
@@ -111,36 +137,286 @@
          
       
       
-      <md-content >
-        
-       <md-list>
-          <md-list-item data-ng-repeat="tally in selectedTallies">
-            <div layout="row" class="bor-b pad-10" flex ng-class-odd="'odd'" ng-class-even="'even'" >
-               <div layout="row" layout-align="start center" flex>
-                  <span class="hd4 ">{{tally.created | date: 'dd-MMM-yyyy'}}</span>
-               </div>
-              
-               <div layout="row" layout-align="end center" flex>
-               
-                 <span class="hd4"></span>
-               </div>
-           </div>
+      <md-content class="mar-0 pad-0" layout="column">
+     <!-- ================================ Annual Area =========================== -->
+      <div layout="column" ng-hide="true">
+        <md-subheader class="md-no-sticky">Annual Report</md-subheader>
+        <!-- this is the stats area -->
+        <div layout="row">
+          
+        </div>
+
+        <!-- this is a repeat area for monthly stats -->
+        <div layout="row">
+          
+        </div>
+
+        <!-- some extra view actions -->
+        <div layout="row">
+          
+        </div>
+        <!-- ========== Cross Cut ========== -->
+        <div layout="column">
+          <!-- Before CrossCut -->
+          <div layout="row">
             
-          </md-list-item>
-      <div layout="row" class="pad-15" flex>
-           <div class="col" flex>
-              <span class="hd4 ">Total Enumeration: </span>
-           </div>
-          <div class="col" flex>
-              <span class="hd4 bold"></span>
-           </div>
-           
-       </div>
-    </md-list>
+          </div>
+
+          <!-- After CrossCut -->
+          <div layout="row">
+            
+          </div>
+
+        </div>
+        <!-- ========== End of Cross Cut ========== -->
+
+      </div>
+
+      
+
+      <div layout="column">
+        <div layout="row" layout-padding>
+            <p class="hd4 grey">Supplier</p>
+        </div>
+        
+
+        <div layout="row" layout-padding>
+          <p class="hd1 grey thin"> Total Volume: <span class="bold">0.00234 </span> m <sup>3</sup> </p>
+        </div>
+        <!-- Stats -->
+        <div layout="row"  flex>
+          <div layout="column" class="nh-card bg-llgrey mar-10 rounded-2" ng-repeat="product in productsList" flex ng-style="{'border-top': '5px solid {{colors[$index]}}'}">
+            <div layout="row" class="pad-10 bg-dgrey" >
+              <p class="hd2 grey white">{{product}}</p>
+            </div>
+            <div layout="column" class="pad-10" flex>
+            <div layout="row" layout-align="center center" class="bor-b" flex>
+            <span class="hd1">{{(getProductVolume(monthlyTallies, product)/getTotalVolume(monthlyTallies))*100 | number:0}}%</span>
+              
+            </div>
+            <div layout="column" flex layout-padding>
+              <span class="hd2 thin grey"> <span class="normal">Total: </span> {{getProductTotal(monthlyTallies, product)}} </span>
+              <span class="hd2 thin grey"> Vol: <span class="normal"> {{getProductVolume(monthlyTallies, product) | number: 3}}  </span> m<sup>3</sup> </span>
+            </div>
+              
+            </div>
+            
+            <div layout="row" flex>
+                <md-button class="mar-0 md-accent">
+                <div layout="row">
+                  <div>
+                    <span class="hd4"> Detail &nbsp</span>
+                  </div>
+                  <div class="nh-icon">
+                    <ng-md-icon icon="keyboard_arrow_right" style="fill: ..." size="20" class="mar-0 pad-0"></ng-md-icon> 
+                  </div>
+                  
+                </div>
+                  
+                </md-button>
+              </div>
+          </div>
+
+        </div>
+
+        <!-- this is a repeat area for monthly stats -->
+        <div layout="row" flex>
+          <md-list flex>
+          <md-list-item ng-click="" ng-class-odd="'odd'" ng-style="{'padding-left': '0'}" ng-class-even="'even'" flex layout-margin>
+              <!-- here we date div -->
+              <div layout="column" class=" pad-10 center mar-2" layout-align="center center">
+                <span class="hd3 bold">Day</span>
+                <!-- <span class="hd5 white bold">{{day.date | date:'MMM'}}</span> -->
+              </div>
+              <div layout="row" flex layout-align="center center">
+                <p class="hd3">Tallies</p>
+              </div>
+              <div layout="row" flex layout-align="center center">
+                <p class="hd3 ">Volume</p>
+              </div>
+              
+              <!-- <md-icon md-svg-icon="communication:messenger" ng-click="doSecondaryAction($event)" aria-label="Open Chat" class="md-secondary md-hue-3" ng-class="{'md-primary': person.newMessage}"></md-icon> -->
+              <div layout="row" flex layout-align="end center">
+                <p class="hd3 ">Action</p>
+              </div>
+            </md-list-item>
+            <md-list-item ng-repeat="day in daysInMonth" class="pad-0"  ng-class-odd="'odd'" ng-class-even="'even'" flex  ng-style="{'padding-left': '0'}">
+              <!-- here we date div -->
+
+              <div class="accordion__tab" flex >
+                <div  ng-click="openTab($index); generateDayTallies(tallies, selectedYear, selMonth.m_value, day)" flex>
+                  <div layout="row" flex>
+                   <div layout="column" class="center bg-dgrey" ng-style="{'padding': '5px 10px 5px 10px'}" layout-align="center center">
+                      <span class=" white light mar-0">{{day}}</span>
+                      <span class=" white bold mar-0">{{selMonth.name}}</span>
+                    </div>
+                    <div layout="row" flex layout-align="center center">
+                      <p class="hd3 light">{{ getTotalTallies(monthlyTallies, "day", day) }}</p>
+                    </div>
+                    <div layout="row" flex layout-align="center center">
+                      <p class="hd3 light">{{ getTotalVol(monthlyTallies, "day", day) | number:3}}<span class="hd5 bold"> m<sup>3</sup></span></p>
+                    </div>
+                    
+                    <!-- <md-icon md-svg-icon="communication:messenger" ng-click="doSecondaryAction($event)" aria-label="Open Chat" class="md-secondary md-hue-3" ng-class="{'md-primary': person.newMessage}"></md-icon> -->
+                    <div layout="row" flex layout-align="end center">
+                      <md-button class="md-button md-warn">
+                        <div layout="row" class="pad-t-5" layout-align="center center" ng-click="generateDayTallies(tallies, selectedYear, selMonth.m_value, day)">
+                          <ng-md-icon icon="keyboard_arrow_down" style="fill: ..." size="20"></ng-md-icon> 
+                        </div>
+                        
+                      </md-button>
+                      
+                    </div>
+                </div>
+                  
+                </div>
+                <div class="accordion__tab-content slidingVert" ng-show="isOpenTab($index)">
+                <div layout="column" ng-style="{'background-color': '#E0E0E0'}">
+                  
+                  <div layout="row" class="bor-t">
+                    <div layout="column" flex layout-padding layout-align="center center" class="bor-r mar-t-5" ng-repeat="product in productsList">
+                      <span class="hd3 bold">{{product}}</span>
+                      <span class="hd3 light"> <span class="bold">Total: </span>{{getProductTotal(dailyTallies, product)}}</span>
+                      <span class="hd3 light"><span class="bold">Vol: </span>{{getProductVolume(dailyTallies, product) | number: 3}}</span>
+                    </div>
+                    
+
+                  </div>
+
+                  <div layout="row" flex class="mar-5" >
+                    <p class="hd3">All Tallies</p>
+                    
+                  </div>
+                  <div layout="row">
+                   <div layout="row" layout-wrap flex>
+                     <md-button class="bg-red" ng-style="{'border': '1px solid #BDBDBD'}" ng-repeat="tally in dailyTallies" ng-click="findTally(tally._id); TallyReportCtrl.openTallyReport('lg', tally);"> 
+                      <span class="hd4 "> #{{$index + 1}}</span>
+                      <span class="hd4 light"> {{tally._id}}</span>
+                      </md-button>
+                      
+                   </div>
+                   
+                   
+                  </div>
+                </div>
+                 
+
+                </div>
+                
+            </div>
+
+            </md-list-item>
+          </md-list>
+        </div>
+
+
+
+        <!-- some extra view actions -->
+
+        <!-- This was the Tallies Area -->
+
+        <!-- <div layout="row" class="abs-100 bg-alpha-80" ng-show="tally">
+          <div layout="column" flex="15" hide-sm hide-md></div>
+          
+          <div layout="colum" flex="15" hide-sm hide-md></div>
+        </div> -->
+        <!-- the annual cross cut report -->
+        <div layout="column">
+          <!-- Before CrossCut -->
+          <div layout="row">
+            
+          </div>
+
+          <!-- After CrossCut -->
+          <div layout="row">
+            
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ================================ Daily Report  =========================== -->
+
+      <div layout="column" ng-hide="true">
+        <md-subheader class="md-no-sticky">Daily Report</md-subheader>
+        
+        <div layout="row">
+          
+        </div>
+
+        <!-- this is a repeat area for monthly stats -->
+        <div layout="row">
+          
+        </div>
+
+        <!-- some extra view actions -->
+        <div layout="row">
+          
+        </div>
+        <!-- the annual cross cut report -->
+        <div layout="column">
+          <!-- Before CrossCut -->
+          <div layout="row">
+            
+          </div>
+
+          <!-- After CrossCut -->
+          <div layout="row">
+            
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ================================ Tally Report =========================== -->
+
+      <div layout="column" ng-hide="true">
+        <md-subheader class="md-no-sticky">Tally Report</md-subheader>
+        
+        <div layout="row">
+          
+        </div>
+
+        <!-- this is a repeat area for monthly stats -->
+        <div layout="row">
+          
+        </div>
+
+        <!-- some extra view actions -->
+        <div layout="row">
+          
+        </div>
+        <!-- the annual cross cut report -->
+        <div layout="column">
+          <!-- Before CrossCut -->
+          <div layout="row">
+            
+          </div>
+
+          <!-- After CrossCut -->
+          <div layout="row">
+            
+          </div>
+
+        </div>
+      </div>
+
+
+
+
+      <md-list>  
+        
+        <md-list-item ng-repeat="person in people" ng-click="goToPerson(person.name, $event)">
+          <!-- here we date div -->
+          
+
+          <p>{{ person.name }}</p>
+          <md-icon md-svg-icon="communication:messenger" ng-click="doSecondaryAction($event)" aria-label="Open Chat" class="md-secondary md-hue-3" ng-class="{'md-primary': person.newMessage}"></md-icon>
+        </md-list-item>
+      </md-list>
+ 
        
-    <div class="alert alert-warning text-center" data-ng-hide="!enumerations.$resolved || enumerations.length">
-        No Enumerations yet, why don't you <a href="/#!/enumerations/create">create one</a>?
-    </div>
+   
 
 
         

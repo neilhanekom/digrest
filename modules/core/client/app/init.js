@@ -4,8 +4,8 @@
 angular.module(ApplicationConfiguration.applicationModuleName, ApplicationConfiguration.applicationModuleVendorDependencies);
 
 // Setting HTML5 Location Mode
-angular.module(ApplicationConfiguration.applicationModuleName).config(['$locationProvider', '$mdThemingProvider', '$mdIconProvider',
-	function($locationProvider, $mdThemingProvider, $mdIconProvider) {
+angular.module(ApplicationConfiguration.applicationModuleName).config(['$locationProvider', '$mdThemingProvider', '$mdIconProvider', 'progressArcDefaultsProvider', 
+	function($locationProvider, $mdThemingProvider, $mdIconProvider, progressArcDefaultsProvider) {
 		$locationProvider.html5Mode(true).hashPrefix('!');
 
         // $mdThemingProvider.definePalette('afruPrimary', {
@@ -41,6 +41,10 @@ angular.module(ApplicationConfiguration.applicationModuleName).config(['$locatio
        .iconSet('social', 'public/lib/material-design-icons/social/svg', 24)
        .iconSet('social', 'public/lib/material-design-icons/social/svg', 24)
        
+
+       progressArcDefaultsProvider
+        .setDefault('background', '#aaa')
+        .setDefault('size', 300);
 
         //Alternative Theme
         // $mdThemingProvider.theme('altTheme')

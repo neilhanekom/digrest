@@ -1,0 +1,95 @@
+<md-dialog aria-label="Tally_Report" >  
+  
+          
+          <div layout="column" flex>
+
+            <div class="card-full bg-white over-scroll">
+              <md-content layout-padding>
+              <div layout="column" flex>
+                <div layout="row" class="bor-b">
+                  <p class="hd3 light"><span class="normal">ID: </span>{{tally._id}}</p>
+                </div>
+                <div layout="row" flex class="mar-t-15">
+                  <div layout="column" flex>
+                    <span class="hd4 lgrey"><span class="bold">Date Created </span>{{tally.created | date:'medium'}}</span>
+                    <span class="hd4 lgrey"><span class="bold">Date received</span>{{tally.recieved | date:'medium'}}</span>
+                    <span class="hd4 lgrey"><span class="bold">Supplier </span>{{tally.supplier}}</span>
+                    <span class="hd4 lgrey"><span class="bold">Plantation </span>{{tally.plantation}}</span>
+                    <span class="hd4 lgrey"><span class="bold">Compartment </span>{{tally.compartment}}</span>
+                    <span class="hd4 lgrey"><span class="bold">Placard </span>{{tally.placard}}</span>
+                    <span class="hd4 lgrey"><span class="bold">CrossCut No: </span>{{tally.crosscut_no}}</span>
+
+                  </div>
+                  <div layout="column" flex>
+                    <span ng-repeat="note in tally.delivery_notes" ng-if="note.no"><span class="bold" >{{note.type + '_' + 'deliverynote'}}: </span> #{{note.no}} </span>
+                    <span class="hd4 lgrey"><span class="bold">Vehicle Reg: </span>{{tally.vehicle.driver}}</span>
+                    <span class="hd4 lgrey"><span class="bold">Driver: </span>{{tally.vehicle.reg_no}}</span>
+                    <span class="hd4 lgrey"><span class="bold">Load Type: </span>{{tally.load.type}}</span>
+                    <span class="hd4 lgrey"><span class="bold">Load Vehicle Type: </span>{{tally.load.vehicleType}}</span>
+                  </div>
+                </div>
+                <div layout="row" class="bor-b mar-t-15">
+                  <p class="hd3 light"><span class="normal"></span>Products</p>
+                </div>
+                <div layout="row" flex>
+                  <div layout="column" flex ng-repeat="product in tallyProducts" ng-style="{'border-top': '5px solid {{colors[$index]}}'}">
+                    <div layout="row" class="bg-llgrey" layout-padding>
+                      <p class="hd4 ">{{product}}</p>
+                      
+                    </div>
+                    <div layout="column" layout-padding class="bor-r mar-t-10" >
+                    <div class="progress-wrapper" ng-style="{'font-size': '1.2em' }">
+                      <div class="progress"><p class="hd3 grey">75%</p></div>
+                        <div
+                            round-progress
+                            max="30"
+                            current="25"
+                            color="{{colors[$index]}}"
+                            bgcolor="#EEEEEE"
+                            radius="50"
+                            semi="false"
+                            rounded="false"
+                            stroke="7"
+                            clockwise="true"
+                            iterations="60"
+                            animation="easeOutCubic">
+                        </div>
+                    </div >
+                     <div layout="column">
+                       <span class="hd4 bold">Volume: <span class="light">9.67</span> m<sup>3</sup></span>
+                       <span class="hd4 bold">Total: <span class="light">67</span> units</span>
+                       <div layout="row" class="mar-t-15">
+                        <p class="hd3 light"><span class="normal"></span>Sizes</p>
+                      </div>
+                       <div layout="column" class="mar-t-5" >
+                        <div layout="row" class="bg-white bor-b pad-t-5 " layout-align="center center" flex>
+                            <div layout flex><p class="hd5 grey bold mar-l-5">Size</p></div>
+                            <div layout flex><p class="hd5 grey bold">Vol</div>
+                            <div layout flex><p class="hd5 grey bold">Total </p></div>
+                            <div layout flex><p class="hd5 grey bold"> </p></div>
+                          </div>
+                          <div layout="row" class="bg-lgrey bor-b pad-t-5 " ng-repeat="size in getSizes(product)" ng-class-odd="'odd'" ng-class-even="'even'" layout-align="center center" flex>
+                            <div layout flex><p class="hd5 grey  mar-l-5">{{size}}</p></div>
+                            <div layout flex><p class="hd5 grey">9.6m<sup>3</sup></p></div>
+                            <div layout flex><p class="hd5 grey">65 </p></div>
+                            <div layout="row" flex layout-align="end center" class="mar-r-5"><p class="hd5 grey">
+                              <md-button class="md-icon-button md-accent" aria-label="Favorite">
+                                
+                              </md-button>
+                            </p></div>
+                          </div>
+                      </div>
+                     </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              </md-content>
+              
+            </div>
+          </div>
+          
+        
+
+</md-dialog>  

@@ -79,7 +79,7 @@ var TallySchema = new Schema({
 		sabs: {
 			type: String 
 		},
-		product: {
+		product_name: {
 			type: String
 		},
 		min: {

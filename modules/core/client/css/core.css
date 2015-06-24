@@ -329,7 +329,7 @@ a:hover .header-profile-image {
 
 .rounded-2 {
 	border-radius: 2px;
-	padding: 5px;
+	
 	margin: 3px;
 }
 
@@ -455,7 +455,10 @@ a:hover .header-profile-image {
 	z-index: 50;
 }
 
+.nh-icon {
+	padding-top: 5px;
 
+}
 
 
 
@@ -821,6 +824,19 @@ background-color:#EEEEEE;
     
 }
 
+.round-list-icon {
+	border-radius: 50%;
+	width: 60px;
+	height: 60px;
+	text-align: center;
+	padding-top: 5px;
+	margin: 4px;
+}
+
+.round-icon-border {
+	border: 5px solid white;
+}
+
 
 
 .center-hor {
@@ -848,14 +864,27 @@ background-color:#EEEEEE;
 }
 
 .abs-100 {
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 100%;
+	overflow-y:scroll;
+    overflow-x:hidden;
+	min-height: 200%;
 	z-index: 2900;
 }
 
+
+
+.fixed-100 {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	min-height: 100%;
+	height: auto;
+	z-index: 2900;
+}
 
 .accordion__tab {
 	z-index: 30;
@@ -928,6 +957,18 @@ background-color:#EEEEEE;
 border: 1px #E0E0E0 solid;
 }
 
+.bor-w {
+border: 1px #E0E0E0 solid;	
+}
+
+.bor-r {
+	border-right: 1px #E0E0E0 solid;
+}
+
+.bor-l {
+	border-left: 1px #E0E0E0 solid;
+}
+
 .bor-b {
 	border-bottom: 1px #E0E0E0 solid;
 }
@@ -980,6 +1021,8 @@ border: 1px #E0E0E0 solid;
 	
 }
 
+
+
 /*Lists Odd and Even*/
 .odd {
  	background-color: #f6f6f7
@@ -1005,7 +1048,7 @@ border: 1px #E0E0E0 solid;
 	margin: -53px 25px 0px 25px;
 }
 
-
+.
 
 
 /*Mobile Small Screens*/
@@ -1326,3 +1369,28 @@ border: 1px #E0E0E0 solid;
 .device-ipod.device-ipod::after {content:" device-ipod ";}
 .device-blackberry.device-blackberry::after {content:" device-blackberry ";}
 .device-firefoxos.device-firefoxos::after {content:" device-firefoxos ";}
+
+
+.fabToolbardemoBasicUsage md-fab-toolbar.md-left md-fab-trigger.align-with-text {
+  left: 7px; }
+
+  	.progress-wrapper{
+            position: relative;
+            margin:20px auto;
+            font-size: 40px;
+        }
+
+        .progress{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            line-height: 6em;
+            font-size: 1em;
+            text-align: center;
+            color: black;
+            font-weight: 100;
+           	background: none;
+           	border: none;
+           	box-shadow:         none;
+
+        }
