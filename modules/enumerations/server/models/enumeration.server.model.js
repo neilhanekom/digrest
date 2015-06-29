@@ -33,7 +33,7 @@ var EnumerationSchema = new Schema({
 		
 	},
 	compartment: {
-		{
+		
 		_id: {
 			type: Schema.ObjectId,
 			ref: 'User'
