@@ -1,0 +1,110 @@
+<section  >
+	<div layout="column">
+		<div class="card-full bg-white" layout-align="center center">
+		<md-toolbar class="md-tall">
+      <div class="md-toolbar-tools">
+        
+        <h2>
+          <span>Daily Tally Production Report</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-icon-button" aria-label="Favorite">
+          <ng-md-icon icon="email" style="fill: ..." size="20"></ng-md-icon> 
+        </md-button>
+        <md-button class="md-icon-button" aria-label="More">
+          <ng-md-icon icon="print" style="fill: ..." size="20"></ng-md-icon> 
+        </md-button>
+      </div>
+       <div class="md-toolbar-tools md-toolbar-tools-bottom">
+        <p class="hd6 white">Filter by Supplier</p>
+         <div
+         	ng-repeat="supplier in getSuppliers(tallies)"
+         	class="md-button bg-alpha-10 mar-2 bor-w"
+	       ng-class="{ 'bg-alpha-10': true }"
+	       ng-init="isActive = false"
+	       ng-click=" filterDay_Supplier(reportDailyTallies, supplier)">
+	       {{supplier}}
+	    </div>
+        <span flex></span>
+       
+      </div>
+    </md-toolbar>
+		 <div layout="row" >
+		 	
+		 	
+                 
+          </div>
+           
+
+          <div layout="column" flex layout-padding>
+                   <div layout="column" flex>
+                     <span class="hd2 bold">Total Vol: <span class="light">{{getTotalDayVol(reportDailyTallies) | number:3}}</span> m <sup>3</sup></span>
+                   </div>
+                   <div layout="column" flex>
+                     <span class="hd2 bold">Total Units: <span class="light">{{getDayTotal(reportDailyTallies) }}</span> </span>
+                   </div> 
+                  </div>
+           
+            <div layout="row" flex>
+                  <div layout="column" flex ng-repeat="product in dayProducts" ng-style="{'border-top': '5px solid {{colorsRep[$index]}}'}" ng-if="checkProductExist(reportDailyTallies, product)">
+                    <div layout="row" class="bg-llgrey" layout-padding>
+                      <p class="hd4 ">{{product}}</p>
+                      
+                    </div>
+                    <div layout="column" layout-padding class="bor-r mar-t-10" >
+                    <div class="progress-wrapper" ng-style="{'font-size': '1.2em' }">
+                      <div class="progress"><p class="hd3 grey">{{(getProductVolDay(reportDailyTallies, product)/getTotalDayVol(reportDailyTallies))*100 | number:1}}%</p></div>
+                        <div
+                            round-progress
+                            max="getTotalDayVol(reportDailyTallies)"
+                            current="getProductVolDay(reportDailyTallies, product)"
+                            color="{{colorsRep[$index]}}"
+                            bgcolor="#EEEEEE"
+                            radius="50"
+                            semi="false"
+                            rounded="false"
+                            stroke="7"
+                            clockwise="true"
+                            iterations="60"
+                            animation="easeOutCubic">
+                        </div>
+                    </div >
+                     <div layout="column">
+                       <span class="hd4 bold">Volume: <span class="light">{{getProductVolDay(reportDailyTallies, product) | number:3}}</span> m<sup>3</sup></span>
+                       <span class="hd4 bold">Total: <span class="light">{{getProductTotalDay(reportDailyTallies, product)}}</span> units</span>
+                       <div layout="row" class="mar-t-15">
+                        
+                      </div>
+                       <div layout="column" class="mar-t-5" >
+                        <div layout="row" class="bg-white bor-b pad-t-5 " layout-align="center center" flex>
+                            <div layout flex layout-align="center center"><p class="hd5 grey bold mar-l-5">Size</p></div>
+                            <div layout flex layout-align="center center"><p class="hd5 grey bold">Vol</div>
+                            <div layout flex layout-align="center center"><p class="hd5 grey bold">Total </p></div>
+                            <div layout flex layout-align="center center"><p class="hd5 grey bold">%</p></div>
+                          </div>
+
+                          <div layout="row" class="bg-lgrey pad-t-5" ng-repeat="size in getDaySizes(reportDailyTallies, product)" ng-class-odd="'odd'" ng-class-even="'even'" layout-align="center center" flex>
+                          	<md-button class="md-fab md-mini" aria-label="Eat cake">
+					           <div layout flex layout-align="center center"><p class="hd5 grey">{{size}}</p></div>
+					        </md-button>
+                            
+                            <div layout flex layout-align="center center"><p class="hd5 grey">{{getSizeDayVolume(reportDailyTallies, product, size) | number:3 }} m<sup>3</sup></p></div>
+                            <div layout flex layout-align="center center"><p class="hd5 grey bold">{{getSizeDayTotal(reportDailyTallies, product, size)}} </p></div>
+                            <div layout="row" flex layout-align="center center" >
+                            <p class="hd5 grey ">
+                        		{{(getSizeDayVolume(reportDailyTallies, product, size)/getTotalDayVol(reportDailyTallies))*100 | number:1}}%
+                            </p>
+                            </div>
+                            <div layout="column">
+                            	
+                            </div>
+                          </div>
+                      </div>
+                     </div>
+                    </div>
+                  </div>
+                </div>
+
+		</div>
+	</div>
+</section>

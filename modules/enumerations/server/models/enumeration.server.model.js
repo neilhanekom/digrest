@@ -11,19 +11,49 @@ var mongoose = require('mongoose'),
  */
 var EnumerationSchema = new Schema({
 	supplier: {
-		type: String,
-		trim: true
+		_id: {
+			type: Schema.ObjectId,
+			ref: 'User'
+		},
+		name: {
+			type: String,
+			trim: true
+		}
+		
 	},
 	plantation: {
-		type: String,
-		trim: true
+		_id: {
+			type: Schema.ObjectId,
+			ref: 'User'
+		},
+		name: {
+			type: String,
+			trim: true
+		}
+		
 	},
 	compartment: {
-		type: String,
-		trim: true
+		{
+		_id: {
+			type: Schema.ObjectId,
+			ref: 'User'
+		},
+		name: {
+			type: String,
+			trim: true
+		}
+		
 	},
-	placard_number: {
-		type: Number
+	placard: {
+		{
+		_id: {
+			type: Schema.ObjectId,
+			ref: 'User'
+		},
+		no: {
+			type: Number
+		}
+		
 	},
 	felling_date: {
 		type: Date
@@ -31,6 +61,9 @@ var EnumerationSchema = new Schema({
 	trees: [
 		{ dbh: { type: Number }, length: { type: Number }, dtw: { type: Number, default: 50 }, vol: {type: Number}, sections: [ { product: { type: String }, min: { type: Number }, max: { type: Number }, length: { type: Number }, vol: { type: Number } }] }
 	],
+	avg_vol: {
+		type: Number
+	},
 	started: {
 		type: Date
 	},

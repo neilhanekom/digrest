@@ -3,31 +3,499 @@
 angular.module('tallies').controller('TalliesreportsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Tallies', 'moment', '$timeout', '$filter', 'filterFilter', 'Volume', '$mdToast', '$animate', '$mdDialog', '$modal', '$log',
 	function($scope, $stateParams, $location, Authentication, Tallies, moment, $timeout, $filter, filterFilter, Volume, $mdToast, $animate, $mdDialog, $modal, $log) {
 
-		// $scope.showAdvanced = function(ev) {
-		//     $mdDialog.show({
-		//       controller: function DialogController($scope, $mdDialog, tally) {
-		// 		  $scope.hide = function() {
-		// 		    $mdDialog.hide();
-		// 		  };
-		// 		  $scope.cancel = function() {
-		// 		    $mdDialog.cancel();
-		// 		  };
-		// 		  $scope.answer = function(answer) {
-		// 		    $mdDialog.hide(answer);
-		// 		  };
+		this.openDailyProductionReport = function(size, tallies, year, month, day ) {
+				
 
-				  
-		// 		},
-		//       templateUrl: 'modules/tallies/views/tallyreport.client.view.html',
-		//       parent: angular.element(document.body),
-		//       targetEvent: ev,
-		//     })
-		//     .then(function(answer) {
-		//       $scope.alert = 'You said the information was "' + answer + '".';
-		//     }, function() {
-		//       $scope.alert = 'You cancelled the dialog.';
-		//     });
-		//   };
+
+				var modalInstance = $modal.open({
+		      animation: true,
+		      templateUrl: 'modules/tallies/views/monthly-report-production.client.view.html',
+		      controller: function ($scope, $modalInstance, tallies, Volume) {
+
+		      	$scope.volumeCube = Volume.cubicMeter;
+
+		      	$scope.colorsRep = ['#149588', '#ff6666', '#f1b44b', '#26C6DA', '#D4E157'];
+
+		      	$scope.tallies = tallies;
+
+		      	function getDayProducts (array) {
+					var productsInTime = [];
+
+					function checkIfExist(a, p) {
+						var result = false;
+						var alength = a.length;
+						for (var j = 0; j < alength; j++ ) {
+							var testProduct = a[j];
+							if (p === testProduct) {
+								result = true;
+							}
+						}
+
+						return result; 	
+					};
+
+					angular.forEach(array, function(tally) {
+						angular.forEach(tally.stock, function(stockItem){
+							var productsLength = productsInTime.length;
+							if (stockItem.product_name === 'B&F') {
+								var newproduct = stockItem.product_name +  '_' + stockItem.sabs;
+								if ( productsLength === 0 ) {
+									productsInTime.push(newproduct);
+								} else if (productsLength > 0) {
+									var result = checkIfExist(productsInTime, newproduct);
+									if (result === false) {
+										productsInTime.push(newproduct);
+									} 
+								}
+							} else {
+								var newproduct = stockItem.product_name;
+								if ( productsLength === 0 ) {
+									productsInTime.push(newproduct);
+								} else if (productsLength > 0) {
+									var result = checkIfExist(productsInTime, newproduct);
+									if (result === false) {
+										productsInTime.push(newproduct);
+									} 
+								}
+							}
+							
+
+
+							
+						});
+					});
+
+					return productsInTime;
+				};
+
+		      	function generateDayTallies (array, year, month, day) {
+		      		console.log(year + month + day);
+					var dailyTallies = $filter('filter')(array, { created: year + '-' + month + '-' + day});
+					return dailyTallies;
+				};
+
+				$scope.reportDailyTallies = generateDayTallies(tallies, year, month, day);
+				$scope.dayProducts = getDayProducts($scope.reportDailyTallies);
+
+
+				$scope.getSuppliers = function (tallies) {
+
+					
+					var suppliers = [];
+
+					function checkIfExist(a, p) {
+						var result = false;
+						var alength = a.length;
+						for (var j = 0; j < alength; j++ ) {
+							var testProduct = a[j];
+							if (p === testProduct) {
+								result = true;
+							}
+						}
+
+						return result; 	
+					};
+
+					angular.forEach(tallies, function(tally){
+						var suppliersLength = suppliers.length;
+
+						if (suppliersLength === 0) {
+							suppliers.push(tally.supplier);
+						} else if (suppliersLength > 0 ) {
+							var result = checkIfExist(suppliers, tally.supplier);
+							if (result === false ) {
+								suppliers.push(tally.supplier);
+							}
+						}
+					});
+
+					return suppliers;
+
+				};
+
+				$scope.filterDay_Supplier = function(array, supplier) {
+					array = generateDayTallies(tallies, year, month, day);
+					
+					$timeout(function(){
+						var filteredArray = $filter('filter')(array, { supplier: supplier});
+						$scope.reportDailyTallies = filteredArray;
+					}, 50);
+					
+				};
+
+				$scope.checkProductExist = function(array, product) {
+					var exist = false;
+					angular.forEach(array, function(tally) {				
+						if (tally.stock) {
+							if (product === 'B&F_457') {
+								var spec = /[0-9]+/g.exec(product);
+								var specProduct = /[\w]&[\w]/g.exec(product);
+		
+								var filteredProducts = $filter('filter')(tally.stock, { product_name: specProduct[0]});
+								var filteredSpecs = $filter('filter')(filteredProducts, { sabs: spec[0]});
+								var length = filteredSpecs.length;
+								if (length > 0) {
+									exist = true;
+								}
+								
+							} else if (product === 'B&F_1288') {
+								var spec = /[0-9]+/g.exec(product);
+								var specProduct = /[\w]&[\w]/g.exec(product);
+								
+								var filteredProducts = $filter('filter')(tally.stock, { product_name: specProduct[0]});
+								var filteredSpecs = $filter('filter')(filteredProducts, { sabs: spec[0]});
+								var length = filteredSpecs.length;
+								if (length > 0) {
+									exist = true;
+								}
+								
+							} else if (product === 'SAW') {
+								var filteredProducts = $filter('filter')(tally.stock, { product_name: product});
+								var length = filteredProducts.length;
+								if (length > 0) {
+									exist = true;
+								}
+							} else {
+								var filteredProducts = $filter('filter')(tally.stock, { product_name: product});
+								var length = filteredProducts.length;
+								if (length > 0) {
+									exist = true;
+								}
+							}
+
+								
+						} else {
+							return;
+						}
+					});
+					
+					return exist;
+				};
+
+				
+				$scope.getProductVolDay = function(array, product) {
+				var vol = 0;
+
+				angular.forEach(array, function(tally) {				
+						if (tally.stock) {
+							if (product === 'B&F_457') {
+								var spec = /[0-9]+/g.exec(product);
+								var specProduct = /[\w]&[\w]/g.exec(product);
+		
+								var filteredProducts = $filter('filter')(tally.stock, { product_name: specProduct[0]});
+								var filteredSpecs = $filter('filter')(filteredProducts, { sabs: spec[0]});
+								angular.forEach(filteredSpecs, function(spec) {
+									var newVol = $scope.volumeCube(0.7, spec.min, spec.max, spec.length, 'mm');
+									vol += newVol;
+								});
+								
+							} else if (product === 'B&F_1288') {
+								var spec = /[0-9]+/g.exec(product);
+								var specProduct = /[\w]&[\w]/g.exec(product);
+								
+								var filteredProducts = $filter('filter')(tally.stock, { product_name: specProduct[0]});
+								var filteredSpecs = $filter('filter')(filteredProducts, { sabs: spec[0]});
+								angular.forEach(filteredSpecs, function(spec) {
+									var newVol = $scope.volumeCube(0.7, spec.min, spec.max, spec.length, 'mm');
+									vol += newVol;
+								});
+								
+							} else if (product === 'SAW') {
+								var filteredProducts = $filter('filter')(tally.stock, { product_name: product});
+								angular.forEach(filteredProducts, function(spec) {
+									var newVol = $scope.volumeCube(0.8, spec.min, spec.max, spec.length, 'cm');
+									vol += newVol;
+								});
+							} else {
+								var filteredProducts = $filter('filter')(tally.stock, { product_name: product});
+								angular.forEach(filteredProducts, function(spec) {
+									var newVol = $scope.volumeCube(0.7, spec.min, spec.max, spec.length, 'mm');
+									vol += newVol;
+								});
+							}
+
+								
+						} else {
+							return;
+						}
+					});
+
+
+					return vol;
+				};
+
+				$scope.getProductTotalDay= function(array, product) {
+				var total = 0;
+
+				angular.forEach(array, function(tally){				
+					if (tally.stock) {
+						if (product === 'B&F_457') {
+							var spec = /[0-9]+/g.exec(product);
+							var specProduct = /[\w]&[\w]/g.exec(product);
+							
+							var filteredProducts = $filter('filter')(tally.stock, { product_name: specProduct[0]});
+							var filteredSpecs = $filter('filter')(filteredProducts, { sabs: spec[0]});
+							angular.forEach(filteredSpecs, function(spec) {
+								total += spec.total;
+							});
+							
+						} else if (product === 'B&F_1288') {
+							var spec = /[0-9]+/g.exec(product);
+							var specProduct = /[\w]&[\w]/g.exec(product);
+							
+							var filteredProducts = $filter('filter')(tally.stock, { product_name: specProduct[0]});
+							var filteredSpecs = $filter('filter')(filteredProducts, { sabs: spec[0]});
+							angular.forEach(filteredSpecs, function(spec) {
+								total += spec.total;
+							});
+							
+						} else {
+							var filteredProducts = $filter('filter')(tally.stock, { product_name: product});
+							angular.forEach(filteredProducts, function(spec) {
+								total += spec.total;
+							});
+						}
+
+							
+					} else {
+						return;
+					}
+				});
+
+
+				return total;
+				// var filteredProducts = $filter('filter')(array, { product_name})
+			};
+
+
+				$scope.getTotalDayVol = function(array) {
+					var totalVol = 0;
+					angular.forEach(array, function(tally){
+						angular.forEach(tally.stock, function(stockItem){
+							if (tally.stock) {
+							if (stockItem.product_name === 'SAW') {
+								var ItemVol = $scope.volumeCube(0.8, stockItem.min, stockItem.max, stockItem.length, 'cm');
+								totalVol += ItemVol;
+							} else if (stockItem.product_name === 'B&F') {
+								var ItemVol = $scope.volumeCube(0.7, stockItem.min, stockItem.max, stockItem.length, 'mm');
+								totalVol += ItemVol;
+							} else if (stockItem.product_name === 'Tomato_Pole') {
+								var ItemVol = $scope.volumeCube(0.7, stockItem.min, stockItem.max, stockItem.length, 'mm');
+								totalVol += ItemVol;
+							} else if (stockItem.product_name === 'Dropper') {
+								var ItemVol = $scope.volumeCube(0.7, stockItem.min, stockItem.max, stockItem.length, 'mm');
+								totalVol += ItemVol;
+							} else if (stockItem.product_name === 'Lath') {
+								var ItemVol = $scope.volumeCube(0.7, stockItem.min, stockItem.max, stockItem.length, 'mm');
+								totalVol += ItemVol;
+							}
+
+								
+						} else {
+							return;
+						}
+						});
+					});
+
+					return totalVol;
+				};
+
+				$scope.getDayTotal = function(array) {
+				      	var total = 0;
+
+				      	angular.forEach(array, function(tally){
+				      		angular.forEach(tally.stock, function(stockItem) {
+					      		total += stockItem.total;
+					      	});
+				      	});
+				      	
+				      	return total;
+				 };
+
+				 $scope.getDaySizes = function(array, product) {
+				 	var allsizes = [];
+				 	function checkIfExist(a, p) {
+							var result = false;
+							var alength = a.length;
+							for (var j = 0; j < alength; j++ ) {
+								var testProduct = a[j];
+								if (p === testProduct) {
+									result = true;
+								}
+							}
+
+							return result; 	
+						};
+
+						
+							angular.forEach(array, function(tally){
+
+								if (product === 'B&F_457') {
+									var spec = /[0-9]+/g.exec(product);
+									var specProduct = /[\w]&[\w]/g.exec(product);
+
+									var filteredProducts = $filter('filter')(tally.stock, { product_name: specProduct[0]});
+									var filteredSpecs = $filter('filter')(filteredProducts, { sabs: spec[0]});
+									
+									angular.forEach(filteredSpecs, function(filteredItem) {
+										var result = checkIfExist(allsizes, filteredItem.min);
+										if (result === false) {
+											allsizes.push(filteredItem.min);
+										}
+									});
+									
+
+								} else if (product === 'B&F_1288') {
+									var spec = /[0-9]+/g.exec(product);
+									var specProduct = /[\w]&[\w]/g.exec(product);
+
+									var filteredProducts = $filter('filter')(tally.stock, { product_name: specProduct[0]});
+									var filteredSpecs = $filter('filter')(filteredProducts, { sabs: spec[0]});
+									angular.forEach(filteredSpecs, function(filteredItem) {
+										var result = checkIfExist(allsizes, filteredItem.min);
+										if (result === false) {
+											allsizes.push(filteredItem.min);
+										}
+									});
+									
+
+								} else {
+									var filteredProducts = $filter('filter')(tally.stock, { product_name: product});
+									
+									angular.forEach(filteredProducts, function(filteredItem) {
+										var result = checkIfExist(allsizes, filteredItem.min);
+										if (result === false) {
+											allsizes.push(filteredItem.min);
+										}
+									});
+								}
+
+
+							});
+							
+							return allsizes;
+		
+				 };
+
+				 $scope.getSizeDayVolume = function(array, product, size) {
+				 	var vol = 0;
+
+				 	angular.forEach(array, function(tally){
+
+								if (product === 'B&F_457') {
+									var spec = /[0-9]+/g.exec(product);
+									var specProduct = /[\w]&[\w]/g.exec(product);
+
+									var filteredProducts = $filter('filter')(tally.stock, { product_name: specProduct[0]});
+									var filteredSpecs = $filter('filter')(filteredProducts, { sabs: spec[0]});
+									var filteredSizes = $filter('filter')(filteredSpecs, { min: size});
+									angular.forEach(filteredSizes, function(filteredItem) {
+										var newVol = $scope.volumeCube(0.7, filteredItem.min, filteredItem.max, filteredItem.length, 'mm');
+										vol += newVol;
+									});
+									
+
+								} else if (product === 'B&F_1288') {
+									var spec = /[0-9]+/g.exec(product);
+									var specProduct = /[\w]&[\w]/g.exec(product);
+
+									var filteredProducts = $filter('filter')(tally.stock, { product_name: specProduct[0]});
+									var filteredSpecs = $filter('filter')(filteredProducts, { sabs: spec[0]});
+									var filteredSizes = $filter('filter')(filteredSpecs, { min: size});
+									angular.forEach(filteredSizes, function(filteredItem) {
+										var newVol = $scope.volumeCube(0.7, filteredItem.min, filteredItem.max, filteredItem.length, 'mm');
+										vol += newVol;
+									});
+									
+
+								} else if (product === 'SAW') {
+									var filteredProducts = $filter('filter')(tally.stock, { product_name: product});
+									var filteredSizes = $filter('filter')(filteredProducts, { min: size});
+									angular.forEach(filteredSizes, function(filteredItem) {
+										var newVol = $scope.volumeCube(0.8, filteredItem.min, filteredItem.max, filteredItem.length, 'cm');
+										vol += newVol;
+									});
+								} else {
+									var filteredProducts = $filter('filter')(tally.stock, { product_name: product});
+									var filteredSizes = $filter('filter')(filteredProducts, { min: size});
+									angular.forEach(filteredSizes, function(filteredItem) {
+										var newVol = $scope.volumeCube(0.7, filteredItem.min, filteredItem.max, filteredItem.length, 'mm');
+										vol += newVol;
+									});
+								}
+
+
+					});
+
+					return vol;
+
+				 };
+
+				 $scope.getSizeDayTotal = function(array, product, size) {
+				 	var total = 0;
+
+				 	angular.forEach(array, function(tally){
+
+								if (product === 'B&F_457') {
+									var spec = /[0-9]+/g.exec(product);
+									var specProduct = /[\w]&[\w]/g.exec(product);
+
+									var filteredProducts = $filter('filter')(tally.stock, { product_name: specProduct[0]});
+									var filteredSpecs = $filter('filter')(filteredProducts, { sabs: spec[0]});
+									var filteredSizes = $filter('filter')(filteredSpecs, { min: size});
+									angular.forEach(filteredSizes, function(filteredItem) {
+										total += filteredItem.total;
+									});
+									
+
+								} else if (product === 'B&F_1288') {
+									var spec = /[0-9]+/g.exec(product);
+									var specProduct = /[\w]&[\w]/g.exec(product);
+
+									var filteredProducts = $filter('filter')(tally.stock, { product_name: specProduct[0]});
+									var filteredSpecs = $filter('filter')(filteredProducts, { sabs: spec[0]});
+									var filteredSizes = $filter('filter')(filteredSpecs, { min: size});
+									angular.forEach(filteredSizes, function(filteredItem) {
+										total += filteredItem.total;
+									});
+									
+
+								} else if (product === 'SAW') {
+									var filteredProducts = $filter('filter')(tally.stock, { product_name: product});
+									var filteredSizes = $filter('filter')(filteredProducts, { min: size});
+									angular.forEach(filteredSizes, function(filteredItem) {
+										total += filteredItem.total;
+									});
+								} else {
+									var filteredProducts = $filter('filter')(tally.stock, { product_name: product});
+									var filteredSizes = $filter('filter')(filteredProducts, { min: size});
+									angular.forEach(filteredSizes, function(filteredItem) {
+										total += filteredItem.total;
+									});
+								}
+
+
+					});
+
+					return total;
+
+				 };
+
+
+		      },
+		      size: size,
+		      resolve: {
+		        tallies: function () {
+		          return $scope.tallies;
+		        },
+		        productsList : function () {
+		        	return $scope.productsList;
+		        }
+		      }
+		    });
+			
+			
+		};
 
 		this.openTallyReport = function (size, tally) {
 			
@@ -35,9 +503,9 @@ angular.module('tallies').controller('TalliesreportsController', ['$scope', '$st
 				var modalInstance = $modal.open({
 		      animation: $scope.animationsEnabled,
 		      templateUrl: 'modules/tallies/views/tallyreport.client.view.html',
-		      controller: function ($scope, $modalInstance, tally) {
+		      controller: function ($scope, $modalInstance, tally, Volume) {
 		      		$scope.tally = tally;
-
+		      		$scope.volumeCube = Volume.cubicMeter; 
 		      	
 		      	    $scope.generateProductsTally = function(tally) {
 				      	var productsInTime = [];
@@ -92,7 +560,211 @@ angular.module('tallies').controller('TalliesreportsController', ['$scope', '$st
 						
 				      };
 
+				      $scope.getTotalVolT = function(tally) {
+				      	
+				      	var vol = 0 ; 
+				      	angular.forEach(tally.stock, function(stockItem){
+				      		if (stockItem.product_name === 'SAW') {
+				      			var newVol = $scope.volumeCube(0.8, stockItem.min, stockItem.max, stockItem.length, 'cm');
+				      			vol += newVol;
+				      		} else {
+				      			var newVol = $scope.volumeCube(0.7, stockItem.min, stockItem.max, stockItem.length, 'mm');
+				      			vol += newVol;
+				      		}
+				      	});
+
+				      	return vol;
+				      };
+
+				      $scope.getTotalAll = function(tally) {
+				      	var total = 0;
+
+				      	angular.forEach(tally.stock, function(stockItem) {
+				      		total += stockItem.total;
+				      	});
+				      	return total;
+				      };
+
 				      $scope.generateProductsTally($scope.tally);
+
+				      $scope.getProductVolT = function(tallyProducts, product) {
+
+				      	
+								var vol = 0;
+
+							
+								if (product === 'B&F_457') {
+									var spec = /[0-9]+/g.exec(product);
+									var specProduct = /[\w]&[\w]/g.exec(product);
+			
+									var filteredProducts = $filter('filter')(tallyProducts, { product_name: specProduct[0]});
+									var filteredSpecs = $filter('filter')(filteredProducts, { sabs: spec[0]});
+									angular.forEach(filteredSpecs, function(spec) {
+										var newVol = $scope.volumeCube(0.7, spec.min, spec.max, spec.length, 'mm');
+										vol += newVol;
+									});
+									
+								} else if (product === 'B&F_1288') {
+									var spec = /[0-9]+/g.exec(product);
+									var specProduct = /[\w]&[\w]/g.exec(product);
+									
+									var filteredProducts = $filter('filter')(tallyProducts, { product_name: specProduct[0]});
+									var filteredSpecs = $filter('filter')(filteredProducts, { sabs: spec[0]});
+									angular.forEach(filteredSpecs, function(spec) {
+										var newVol = $scope.volumeCube(0.7, spec.min, spec.max, spec.length, 'mm');
+										vol += newVol;
+									});
+									
+								} else if (product === 'SAW') {
+									var filteredProducts = $filter('filter')(tallyProducts, { product_name: product});
+									angular.forEach(filteredProducts, function(spec) {
+										var newVol = $scope.volumeCube(0.8, spec.min, spec.max, spec.length, 'cm');
+										vol += newVol;
+									});
+								} else {
+									var filteredProducts = $filter('filter')(tallyProducts, { product_name: product});
+									angular.forEach(filteredProducts, function(spec) {
+										var newVol = $scope.volumeCube(0.7, spec.min, spec.max, spec.length, 'mm');
+										vol += newVol;
+									});
+								}
+
+									
+
+						return vol;
+					};
+
+					$scope.getProductTotalT = function(tallyProducts, product) {
+								var total = 0;
+							
+								if (product === 'B&F_457') {
+									var spec = /[0-9]+/g.exec(product);
+									var specProduct = /[\w]&[\w]/g.exec(product);
+									
+									var filteredProducts = $filter('filter')(tallyProducts, { product_name: specProduct[0]});
+									var filteredSpecs = $filter('filter')(filteredProducts, { sabs: spec[0]});
+									
+									angular.forEach(filteredSpecs, function(spec) {
+										total += spec.total;
+									});
+									
+								} else if (product === 'B&F_1288') {
+									var spec = /[0-9]+/g.exec(product);
+									var specProduct = /[\w]&[\w]/g.exec(product);
+									
+									var filteredProducts = $filter('filter')(tallyProducts, { product_name: specProduct[0]});
+									var filteredSpecs = $filter('filter')(filteredProducts, { sabs: spec[0]});
+									angular.forEach(filteredSpecs, function(spec) {
+										total += spec.total;
+									});
+									
+								} else {
+									var filteredProducts = $filter('filter')(tallyProducts, { product_name: product});
+									angular.forEach(filteredProducts, function(spec) {
+										total += spec.total;
+									});
+								}
+
+									
+							
+						
+
+
+						return total;
+						// var filteredProducts = $filter('filter')(array, { product_name})
+					};
+
+					$scope.getSizeVolume = function(tally, product, size) {
+						var vol = 0;
+
+						var tallyProducts = tally.stock;
+
+						if (product === 'B&F_457') {
+							var spec = /[0-9]+/g.exec(product);
+							var specProduct = /[\w]&[\w]/g.exec(product);
+	
+							var filteredProducts = $filter('filter')(tallyProducts, { product_name: specProduct[0]});
+							var filteredSpecs = $filter('filter')(filteredProducts, { sabs: spec[0]});
+							var filteredSizes = $filter('filter')(filteredSpecs, { min: size});
+							angular.forEach(filteredSizes, function(spec) {
+								var newVol = $scope.volumeCube(0.7, spec.min, spec.max, spec.length, 'mm');
+								vol += newVol;
+							});
+							
+						} else if (product === 'B&F_1288') {
+							var spec = /[0-9]+/g.exec(product);
+							var specProduct = /[\w]&[\w]/g.exec(product);
+							
+							var filteredProducts = $filter('filter')(tallyProducts, { product_name: specProduct[0]});
+							var filteredSpecs = $filter('filter')(filteredProducts, { sabs: spec[0]});
+							var filteredSizes = $filter('filter')(filteredSpecs, { min: size});
+							angular.forEach(filteredSizes, function(spec) {
+								var newVol = $scope.volumeCube(0.7, spec.min, spec.max, spec.length, 'mm');
+								vol += newVol;
+							});
+							
+						} else if (product === 'SAW') {
+							var filteredProducts = $filter('filter')(tallyProducts, { product_name: product});
+							var filteredSizes = $filter('filter')(filteredProducts, { min: size});
+							angular.forEach(filteredSizes, function(spec) {
+								var newVol = $scope.volumeCube(0.8, spec.min, spec.max, spec.length, 'cm');
+								vol += newVol;
+							});
+						} else {
+							var filteredProducts = $filter('filter')(tallyProducts, { product_name: product});
+							var filteredSizes = $filter('filter')(filteredProducts, { min: size});
+							angular.forEach(filteredSizes, function(spec) {
+								var newVol = $scope.volumeCube(0.7, spec.min, spec.max, spec.length, 'mm');
+								vol += newVol;
+							});
+						}
+
+						return vol;
+
+					};
+
+
+					$scope.getSizeTotalTally = function(tally, product, size) {
+						var total = 0;
+
+						var tallyProducts = tally.stock;
+
+						if (product === 'B&F_457') {
+							var spec = /[0-9]+/g.exec(product);
+							var specProduct = /[\w]&[\w]/g.exec(product);
+							
+							var filteredProducts = $filter('filter')(tallyProducts, { product_name: specProduct[0]});
+							var filteredSpecs = $filter('filter')(filteredProducts, { sabs: spec[0]});
+							var filteredSizes = $filter('filter')(filteredSpecs, { min: size});
+							angular.forEach(filteredSizes, function(spec) {
+								total += spec.total;
+							});
+							
+						} else if (product === 'B&F_1288') {
+							var spec = /[0-9]+/g.exec(product);
+							var specProduct = /[\w]&[\w]/g.exec(product);
+							
+							var filteredProducts = $filter('filter')(tallyProducts, { product_name: specProduct[0]});
+							var filteredSpecs = $filter('filter')(filteredProducts, { sabs: spec[0]});
+							var filteredSizes = $filter('filter')(filteredSpecs, { min: size});
+							angular.forEach(filteredSizes, function(spec) {
+								total += spec.total;
+							});
+							
+						} else {
+							var filteredProducts = $filter('filter')(tallyProducts, { product_name: product});
+							var filteredSizes = $filter('filter')(filteredProducts, { min: size});
+							angular.forEach(filteredSizes, function(spec) {
+								total += spec.total;
+							});
+						}
+
+						return total;
+
+					};
+
+
+
 
 		      },
 		      size: size,
@@ -139,7 +811,7 @@ angular.module('tallies').controller('TalliesreportsController', ['$scope', '$st
 		        } else {
 		        	return false;
 		        }
-		    }
+		    };
 		 
 		    //function to 'open' a tab
 		    $scope.openTab = function (index) {
@@ -151,7 +823,7 @@ angular.module('tallies').controller('TalliesreportsController', ['$scope', '$st
 		            $scope.activeTab.splice(0, $scope.activeTab.length, index);
 		            
 		        }
-	    }
+	    	};
 
 		// $scope.colors = ['#FF7043' , '#01579B', '']
 
@@ -262,7 +934,7 @@ angular.module('tallies').controller('TalliesreportsController', ['$scope', '$st
 		$scope.generateDayTallies = function(array, year, month, day) {
 			$scope.dailyTallies = [];
 			$scope.dailyTallies = $filter('filter')(array, { created: year + '-' + month + '-' + day});
-			console.log($scope.dailyTallies);
+			
 
 
 		};
@@ -621,9 +1293,7 @@ angular.module('tallies').controller('TalliesreportsController', ['$scope', '$st
 
 
 
-			$scope.getSizeVolume = function(array, product, min) {
-
-			};
+			
 
 			$scope.getLengthVolume = function (array, product, min, length) {
 
@@ -829,7 +1499,7 @@ angular.module('tallies').controller('TalliesreportsController', ['$scope', '$st
 				var filteredProducts = $filter('filter')($scope.tally.stock, { product_name: specProduct[0]});
 				var filteredSpecs = $filter('filter')(filteredProducts, { sabs: spec[0]});
 				var productSizes = returnSizes(filteredSpecs);
-				console.log(productSizes);
+				
 
 			} else if (product === 'B&F_1288') {
 				var spec = /[0-9]+/g.exec(product);

@@ -26,6 +26,17 @@
                     <span class="hd4 lgrey"><span class="bold">Load Vehicle Type: </span>{{tally.load.vehicleType}}</span>
                   </div>
                 </div>
+                <div layout="row">
+                	<div layout="column" flex>
+                   <div layout="column" flex>
+                     <span class="hd2 bold">Total Vol: <span class="light">{{getTotalVolT(tally) | number:3}}</span> m <sup>3</sup></span>
+                   </div>
+                   <div layout="column" flex>
+                     <span class="hd2 bold">Total Units: <span class="light">{{getTotalAll(tally) }}</span> </span>
+                   </div> 
+                  </div>
+                	<div layout="row"></div>
+                </div>
                 <div layout="row" class="bor-b mar-t-15">
                   <p class="hd3 light"><span class="normal"></span>Products</p>
                 </div>
@@ -37,11 +48,11 @@
                     </div>
                     <div layout="column" layout-padding class="bor-r mar-t-10" >
                     <div class="progress-wrapper" ng-style="{'font-size': '1.2em' }">
-                      <div class="progress"><p class="hd3 grey">75%</p></div>
+                      <div class="progress"><p class="hd3 grey">{{(getProductVolT(tally.stock, product)/getTotalVolT(tally))*100 | number:1}}%</p></div>
                         <div
                             round-progress
-                            max="30"
-                            current="25"
+                            max="getTotalVolT(tally)"
+                            current="getProductVolT(tally.stock, product)"
                             color="{{colors[$index]}}"
                             bgcolor="#EEEEEE"
                             radius="50"
@@ -54,28 +65,34 @@
                         </div>
                     </div >
                      <div layout="column">
-                       <span class="hd4 bold">Volume: <span class="light">9.67</span> m<sup>3</sup></span>
-                       <span class="hd4 bold">Total: <span class="light">67</span> units</span>
+                       <span class="hd4 bold">Volume: <span class="light">{{getProductVolT(tally.stock, product) | number:3}}</span> m<sup>3</sup></span>
+                       <span class="hd4 bold">Total: <span class="light">{{getProductTotalT(tally.stock, product)}}</span> units</span>
                        <div layout="row" class="mar-t-15">
-                        <p class="hd3 light"><span class="normal"></span>Sizes</p>
+                        
                       </div>
                        <div layout="column" class="mar-t-5" >
                         <div layout="row" class="bg-white bor-b pad-t-5 " layout-align="center center" flex>
-                            <div layout flex><p class="hd5 grey bold mar-l-5">Size</p></div>
-                            <div layout flex><p class="hd5 grey bold">Vol</div>
-                            <div layout flex><p class="hd5 grey bold">Total </p></div>
-                            <div layout flex><p class="hd5 grey bold"> </p></div>
+                            <div layout flex layout-align="center center"><p class="hd5 grey bold mar-l-5">Size</p></div>
+                            <div layout flex layout-align="center center"><p class="hd5 grey bold">Vol</div>
+                            <div layout flex layout-align="center center"><p class="hd5 grey bold">Total </p></div>
+                            <div layout flex layout-align="center center"><p class="hd5 grey bold">%</p></div>
                           </div>
+
                           <div layout="row" class="bg-lgrey pad-t-5" ng-repeat="size in getSizes(product)" ng-class-odd="'odd'" ng-class-even="'even'" layout-align="center center" flex>
-                            <div layout flex><p class="hd5 grey  mar-l-5">{{size}}</p></div>
-                            <div layout flex><p class="hd5 grey">9.6m<sup>3</sup></p></div>
-                            <div layout flex><p class="hd5 grey">65 </p></div>
-                            <div layout="row" flex layout-align="end center" class="mar-r-5"><p class="hd5 grey pad-t-5">
-                            <ng-md-icon icon="keyboard_arrow_down" style="fill: black" size="20"></ng-md-icon> 
-                              <!-- <md-button class="md-icon-button md-accent mar-0" aria-label="Favorite">
-                                
-                              </md-button> -->
-                            </p></div>
+                          	<md-button class="md-fab md-mini" aria-label="Eat cake">
+					           <div layout flex layout-align="center center"><p class="hd5 grey">{{size}}</p></div>
+					        </md-button>
+                            
+                            <div layout flex layout-align="center center"><p class="hd5 grey">{{getSizeVolume(tally, product, size) | number:3 }} m<sup>3</sup></p></div>
+                            <div layout flex layout-align="center center"><p class="hd5 grey bold">{{getSizeTotalTally(tally, product, size)}} </p></div>
+                            <div layout="row" flex layout-align="center center" >
+                            <p class="hd5 grey ">
+                        		{{(getSizeVolume(tally, product, size)/getTotalVolT(tally))*100 | number:1}}%
+                            </p>
+                            </div>
+                            <div layout="column">
+                            	
+                            </div>
                           </div>
                       </div>
                      </div>

@@ -5,6 +5,10 @@ angular.module('tallies').config(['$stateProvider',
 	function($stateProvider) {
 		// Tallies state routing
 		$stateProvider.
+		state('monthly-report-production', {
+			url: '/monthly-report-production',
+			templateUrl: 'modules/tallies/views/monthly_report_production.client.view.html'
+		}).
 		state('tallyreport', {
 			url: '/tallyreport',
 			templateUrl: 'modules/tallies/views/tallyreport.client.view.html'

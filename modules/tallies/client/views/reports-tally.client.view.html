@@ -237,7 +237,7 @@
               
               <!-- <md-icon md-svg-icon="communication:messenger" ng-click="doSecondaryAction($event)" aria-label="Open Chat" class="md-secondary md-hue-3" ng-class="{'md-primary': person.newMessage}"></md-icon> -->
               <div layout="row" flex layout-align="end center">
-                <p class="hd3 ">Action</p>
+                
               </div>
             </md-list-item>
             <md-list-item ng-repeat="day in daysInMonth" class="pad-0"  ng-class-odd="'odd'" ng-class-even="'even'" flex  ng-style="{'padding-left': '0'}">
@@ -259,14 +259,13 @@
                     
                     <!-- <md-icon md-svg-icon="communication:messenger" ng-click="doSecondaryAction($event)" aria-label="Open Chat" class="md-secondary md-hue-3" ng-class="{'md-primary': person.newMessage}"></md-icon> -->
                     <div layout="row" flex layout-align="end center">
-                      <md-button class="md-button md-warn">
-                        <div layout="row" class="pad-t-5" layout-align="center center" ng-click="generateDayTallies(tallies, selectedYear, selMonth.m_value, day)">
-                          <ng-md-icon icon="keyboard_arrow_down" style="fill: ..." size="20"></ng-md-icon> 
-                        </div>
-                        
-                      </md-button>
-                      
-                    </div>
+                <div layout="row" flex>
+                  <md-button class="md-raised md-primary md-hue-1" ng-click="TallyReportCtrl.openDailyProductionReport('lg', tallies, selectedYear, selMonth.m_value, day);">Production Report</md-button>
+                </div>
+                <div layout="row" flex>
+                  <md-button class="md-raised md-accent md-hue-1">Cross-Cut Report</md-button>
+                </div>
+              </div>
                 </div>
                   
                 </div>
