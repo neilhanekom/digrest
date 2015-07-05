@@ -18,7 +18,7 @@
     </div>
 </section> -->
 
-<section data-ng-controller="EnumerationsController" layout="row" flex data-ng-init="find()">
+<section data-ng-controller="EnumerationsController as EnumCtrl" layout="row" flex data-ng-init="find()">
     
     <div layout="column" class="left-spacer"  hide-md hide-sm>
         
@@ -27,13 +27,56 @@
   <div layout="row" layout-wrap>
     <div class="bg-white card-full">
       <div layout="row" class="bg-list-grey border-b pad-15" flex>
-          <div layout="col">
+          <div layout="column">
               <span class="hd4 g-800">Enumerations</span>
           </div>
       </div>
       <div layout="row" class="bor-b pad-15 bor-t" flex>
-          <div layout="col">
-              <span class="hd4 g-800">Show</span>
+          <div layout="column" flex layout-align="start start" flex class="bor-r">  
+              <div layout flex >
+                 <p class="hd3 grey light">Suppliers : <b>{{supplier.name}}</b></p>
+              </div>
+             
+              <div layout="row" flex>
+                <md-radio-group ng-model="supplier" flex>
+                  <md-radio-button ng-repeat="supplier in suppliers"
+                                   ng-value="supplier"
+                                   aria-label="{{supplier.name}}"
+                                   ng-click="getSupplier(supplier)">
+                      {{supplier.name}}
+                  </md-radio-button>
+                </md-radio-group>
+              </div>
+              
+          </div>
+          <div layout="column" flex layout-align="start start" flex class="bor-r">  
+              <div layout>
+                 <p class="hd3 grey light">Plantations : <b>{{plantation.name}}</b></p>
+              </div>
+             
+              <div layout="row" layout-wrap layout-align="start start">
+              
+                <!-- <md-button ng-repeat="plantation in supplier.plantations" class="md-raised bg-red" btn-radio="plantation" >{{plantation.name}}</md-button> -->
+                <div class="bg-llgrey pad-10 mar-2 round-c-2 btn " ng-click="getPlantation(plantation._id)" ng-repeat="plantation in plantations" ng-model="plantation.name" btn-radio="plantation.name">
+                {{plantation.name}}
+                </div>
+
+              </div>
+              
+          </div>
+          <div layout="column" flex layout-align="start start">
+           <div layout>
+                 <p class="hd3 grey light">Compartment : <b>{{compartment.name}}</b></p>
+              </div>
+             
+              <div layout="row" layout-wrap layout-align="start start">
+              
+                <!-- <md-button ng-repeat="plantation in supplier.plantations" class="md-raised bg-red" btn-radio="plantation" >{{plantation.name}}</md-button> -->
+                <div class="bg-llgrey pad-10 mar-2 round-c-2 btn " ng-click="getCompartment(compartment._id)" ng-repeat="compartment in plantation.compartments" ng-model="compartment.name" btn-radio="compartment.name">
+                {{compartment.name}}
+                </div>
+
+              </div>
           </div>
       </div>
       <md-content class="pad-0">
@@ -68,22 +111,22 @@
       <md-list-item data-ng-repeat="enumeration in enumerations">
         <div layout="row" class="bor-b pad-10" flex ng-class-odd="'odd'" ng-class-even="'even'" >
            <div layout="row" layout-align="start center" flex>
-              <span class="hd4 ">{{enumeration.created}}</span>
+              <span class="hd4 ">{{enumeration.created | date:'dd MMM yyyy'}}</span>
            </div>
           <div layout="row"  layout-align="start center" flex>
-              <span class="hd4 ">{{enumeration.supplier}}</span>
+              <span class="hd4 ">{{enumeration.supplier.name}}</span>
            </div>
            <div layout="row" layout-align="start center" flex>
-              <span class="hd4 ">{{enumeration.plantation}}</span>
+              <span class="hd4 ">{{enumeration.plantation.name}}</span>
            </div>
            <div layout="row" layout-align="start center" flex>
-              <span class="hd4 ">{{enumeration.compartment}}</span>
+              <span class="hd4 ">{{enumeration.compartment.name}}</span>
            </div>
            <div layout="row" layout-align="start center" flex>
-              <span class="hd4 ">{{enumeration.placard_number}}</span>
+              <span class="hd4 ">{{enumeration.placard.no}}</span>
            </div>
            <div layout="row" layout-align="end center" flex>
-           <md-button data-ng-href="/#!/enumerations/{{enumeration._id}}">
+           <md-button ng-click="findEnum(enumeration); EnumCtrl.openEnumerationReport(enumeration, enumerations);">
             <ng-md-icon icon="more_vert" style="fill: {{grey}}" size="20"></ng-md-icon> 
            </md-button>
              <span class="hd4"></span>

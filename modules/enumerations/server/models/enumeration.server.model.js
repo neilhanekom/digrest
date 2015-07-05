@@ -45,7 +45,7 @@ var EnumerationSchema = new Schema({
 		
 	},
 	placard: {
-		{
+		
 		_id: {
 			type: Schema.ObjectId,
 			ref: 'User'

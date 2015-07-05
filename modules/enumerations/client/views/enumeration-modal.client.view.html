@@ -1,0 +1,126 @@
+<section  >
+	<div layout="column">
+		<div class="card-full bg-white" layout-align="center center">
+		<md-toolbar class="md-tall">
+      <div class="md-toolbar-tools">
+        
+        <h2>
+          <span>Enumeration Report</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-icon-button" aria-label="Favorite">
+          <ng-md-icon icon="email" style="fill: ..." size="20"></ng-md-icon> 
+        </md-button>
+        <md-button class="md-icon-button" aria-label="More">
+          <ng-md-icon icon="print" style="fill: ..." size="20"></ng-md-icon> 
+        </md-button>
+      </div>
+       <div class="md-toolbar-tools md-toolbar-tools-bottom">
+        <p class="hd6 white">{{enumeration.created | date:'dd MMM yyyy'}}</p>
+         
+        <span flex></span>
+       
+      </div>
+    </md-toolbar>
+		 <div layout="row" >
+		 	
+		 	
+                 
+          </div>
+           
+
+          <div layout="column" flex layout-padding>
+          <div layout="row" flex layout-padding>
+                      <div layout="column" flex layout-align="center center" class="bg-llgrey mar-2">
+                        <p class="hd5 bold">Supplier</p>
+                        <span class="hd2 light">{{enumeration.supplier.name}} </span> 
+                      </div>
+                      <div layout="column" flex layout-align="center center" class="bg-llgrey mar-2">
+                        <p class="hd5 bold">Plantation</p>
+                        <span class="hd2 light">{{enumeration.plantation.name}} </span> 
+                      </div>
+                      <div layout="column" flex layout-align="center center" class="bg-llgrey mar-2">
+                        <p class="hd5 bold">Compartment</p>
+                        <span class="hd2 light">{{enumeration.compartment.name}} </span> 
+                      </div>
+                      <div layout="column" flex layout-align="center center" class="bg-llgrey mar-2">
+                        <p class="hd5 bold">Placard</p>
+                        <span class="hd2 light">{{enumeration.placard.no}} </span> 
+                      </div>
+                     
+                     
+                     
+                    
+                   </div> 
+                   <div layout="column" flex layout-padding>
+                     <span class="hd2 bold">Average Vol: <span class="light">{{getTotalVol(enumeration.trees)/getTotal(enumeration.trees) | number:3}}</span> m <sup>3</sup></span>
+                     <span class="hd2 bold">Total Vol: <span class="light">{{getTotalVol(enumeration.trees) | number:3}}</span> m <sup>3</sup></span>
+                     <span class="hd2 bold">Total Sections: <span class="light">{{getTotal(enumeration.trees)}}</span> </span>
+                   </div>
+                   
+                  </div>
+                  
+                 
+           
+            <div layout="row" flex class="mar-l-5 mar-r-5">
+                  <div layout="column" flex ng-repeat="product in enumproducts"  >
+                    <div layout="row" class="bg-llgrey mar-2" layout-padding>
+                      <p class="hd3 mar-t-5">{{product}}</p>
+                      
+                    </div>
+                    <div layout="column" layout-padding class="bor-r mar-t-10" >
+                    <div class="progress-wrapper" ng-style="{'font-size': '1.2em' }">
+                      <div class="progress"><p class="hd3 grey">{{(getProductVol(enumeration.trees, product)/getTotalVol(enumeration.trees))*100 | number:1}}%</p></div>
+                        <div
+                            round-progress
+                            max="getTotalVol(enumeration.trees)"
+                            current="getProductVol(enumeration.trees, product)"
+                            color="{{colorsRep[$index]}}"
+                            bgcolor="#EEEEEE"
+                            radius="50"
+                            semi="false"
+                            rounded="false"
+                            stroke="7"
+                            clockwise="true"
+                            iterations="60"
+                            animation="easeOutCubic">
+                        </div>
+                    </div >
+                     <div layout="column">
+                       <span class="hd4 bold">Volume: <span class="light">{{getProductVol(enumeration.trees, product) | number:3}}</span> m<sup>3</sup></span>
+                       <span class="hd4 bold">Total: <span class="light">{{getProductTotal(enumeration.trees, product)}}</span> units</span>
+                       <div layout="row" class="mar-t-15">
+                        
+                      </div>
+                       <div layout="column" class="mar-t-5" >
+                        <div layout="row" class="bg-white bor-b pad-t-5 " layout-align="center center" flex>
+                            <div layout flex layout-align="center center"><p class="hd5 grey bold mar-l-5">Size</p></div>
+                            <div layout flex layout-align="center center"><p class="hd5 grey bold">Vol</div>
+                            <div layout flex layout-align="center center"><p class="hd5 grey bold">Total </p></div>
+                            <div layout flex layout-align="center center"><p class="hd5 grey bold">%</p></div>
+                          </div>
+
+                          <div layout="row" class="bg-lgrey pad-t-5" ng-repeat="size in getEnumSizes(enumeration.trees, product) | orderBy:''" ng-class-odd="'odd'" ng-class-even="'even'" layout-align="center center" flex>
+
+                            
+                            <div layout flex layout-align="center center"><p class="hd5 grey bold">{{size}}/{{size + 25}}</p></div>
+                            <div layout flex layout-align="center center"><p class="hd5 grey">{{getSizeVolume(enumeration.trees, product, size) | number:3 }} m<sup>3</sup></p></div>
+                            <div layout flex layout-align="center center"><p class="hd5 grey bold">{{getSizeDayTotal(reportDailyTallies, product, size)}} </p></div>
+                            <div layout="row" flex layout-align="center center" >
+                            <p class="hd5 grey ">
+                        		{{(getSizeDayVolume(reportDailyTallies, product, size)/getTotalDayVol(reportDailyTallies))*100 | number:1}}%
+                            </p>
+                            </div>
+                            <div layout="column">
+                            	
+                            </div>
+                          </div>
+                      </div>
+                     </div>
+                    </div>
+                  </div>
+                </div>
+
+		</div>
+	</div>
+</section>

@@ -646,60 +646,60 @@ angular.module('core').service('Menus', [
 
         // // ================================
 
-        // this.addMenuItem('sidenav', {
-        //     icon: 'equalizer',
-        //     title: 'Tallies',
-        //     state: 'tallies',
-        //     class: 'tallies',
-        //     isPublic: false,
-        //     roles: ['user' , 'admin'],
-        //     position: 6,
-        // });
+        this.addMenuItem('sidenav', {
+            icon: 'equalizer',
+            title: 'Tallies',
+            state: 'tallies',
+            class: 'tallies',
+            isPublic: false,
+            roles: ['user' , 'admin'],
+            position: 6,
+        });
 
-        // this.addSubMenuItem('sidenav', 'tallies', {
-        //     title: 'Tallies',
-        //     state: 'tallies.list',
-        //     isPublic: false,
-        //     roles: ['user' , 'admin'],
-        //     position: 0
-        // });
+        this.addSubMenuItem('sidenav', 'tallies', {
+            title: 'Tallies',
+            state: 'tallies.list',
+            isPublic: false,
+            roles: ['user' , 'admin'],
+            position: 0
+        });
 
-        // this.addSubMenuItem('sidenav', 'tallies', {
-        //     title: 'Reports',
-        //     state: 'tallies.reports',
-        //     isPublic: false,
-        //     roles: ['user' , 'admin'],
-        //     position: 1
-        // });
+        this.addSubMenuItem('sidenav', 'tallies', {
+            title: 'Reports',
+            state: 'tallies.reports',
+            isPublic: false,
+            roles: ['user' , 'admin'],
+            position: 1
+        });
 
 
         // // ================================
 
-        // this.addMenuItem('sidenav', {
-        //     icon: 'blur_circular',
-        //     title: 'Enumeration',
-        //     state: 'enumerations',
-        //     class: 'enumeration',
-        //     isPublic: false,
-        //     roles: ['user' , 'admin'],
-        //     position: 7,
-        // });
+        this.addMenuItem('sidenav', {
+            icon: 'blur_circular',
+            title: 'Enumeration',
+            state: 'enumerations',
+            class: 'enumeration',
+            isPublic: false,
+            roles: ['user' , 'admin'],
+            position: 7,
+        });
 
-        // this.addSubMenuItem('sidenav', 'enumerations', {
-        //     title: 'enumerations',
-        //     state: 'enumerations.list',
-        //     isPublic: false,
-        //     roles: ['user' , 'admin'],
-        //     position: 0
-        // });
+        this.addSubMenuItem('sidenav', 'enumerations', {
+            title: 'enumerations',
+            state: 'enumerations.list',
+            isPublic: false,
+            roles: ['user' , 'admin'],
+            position: 0
+        });
 
-        // this.addSubMenuItem('sidenav', 'enumerations', {
-        //     title: 'create new',
-        //     state: 'enumerations.create',
-        //     isPublic: false,
-        //     roles: ['user' , 'admin'],
-        //     position: 2
-        // });
+        this.addSubMenuItem('sidenav', 'enumerations', {
+            title: 'create new',
+            state: 'enumerations.create',
+            isPublic: false,
+            roles: ['user' , 'admin'],
+            position: 2
+        });
 
 
         // // ===================================

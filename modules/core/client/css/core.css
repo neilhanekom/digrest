@@ -1048,7 +1048,11 @@ border: 1px #E0E0E0 solid;
 	margin: -53px 25px 0px 25px;
 }
 
-.
+.round-c-2 {
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+}
 
 
 /*Mobile Small Screens*/
@@ -1177,6 +1181,8 @@ border: 1px #E0E0E0 solid;
 .monthly-tabs {
 	color: white;
 }
+
+
 
 /*Wide X-tra Large*/
 @media (min-width: 1200px) and (max-width: 3000px) {

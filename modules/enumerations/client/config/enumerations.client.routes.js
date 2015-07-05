@@ -5,6 +5,10 @@ angular.module('enumerations').config(['$stateProvider',
 	function($stateProvider) {
 		// Enumerations state routing
 		$stateProvider.
+		state('enumeration-modal', {
+			url: '/enumeration-modal',
+			templateUrl: 'modules/enumerations/views/enumeration-modal.client.view.html'
+		}).
 		state('enumerations', {
 			abstract: true,
 			url: '/enumerations',
