@@ -682,7 +682,7 @@ angular.module('core').service('Menus', [
             class: 'enumeration',
             isPublic: false,
             roles: ['user' , 'admin'],
-            position: 7,
+            position: 2,
         });
 
         this.addSubMenuItem('sidenav', 'enumerations', {

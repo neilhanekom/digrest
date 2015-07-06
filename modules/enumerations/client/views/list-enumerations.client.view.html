@@ -49,7 +49,7 @@
               </div>
               
           </div>
-          <div layout="column" flex layout-align="start start" flex class="bor-r">  
+          <div layout="column" flex layout-align="start start" flex class="mar-l-10 bor-r" ng-if="plantations">  
               <div layout>
                  <p class="hd3 grey light">Plantations : <b>{{plantation.name}}</b></p>
               </div>
@@ -64,7 +64,7 @@
               </div>
               
           </div>
-          <div layout="column" flex layout-align="start start">
+          <div layout="column" flex layout-align="start start" class="mar-l-10" ng-if="plantation.compartments">
            <div layout>
                  <p class="hd3 grey light">Compartment : <b>{{compartment.name}}</b></p>
               </div>

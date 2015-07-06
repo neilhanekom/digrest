@@ -270,12 +270,7 @@ angular.module('enumerations').controller('EnumerationsController', ['$scope', '
 							return result; 	
 						};
 
-						// var crit = {
-						// 	sections: {product: product}
-						// };
-
-						// var newArray = $filter('filter')(array, crit);
-						// console.log(newArray);
+						
 
 				  		angular.forEach(array, function(tree) {
 
@@ -295,27 +290,84 @@ angular.module('enumerations').controller('EnumerationsController', ['$scope', '
 						  			});
 				  			
 
-				  			// angular.forEach(tree.sections, function(section){
-
-				  			// 	var l = productSizes.length;
-				  			// 	if ( l === 0) {
-				  			// 		productSizes.push(section.product);
-				  			// 	} else if ( l > 0 ) {
-				  			// 		var result = checkIfExist(productSizes, section.product);
-				  			// 		if (result === false) {
-				  			// 			productSizes.push(section.product);
-				  			// 		}
-				  			// 	}
-				  			// });
+				  			
 				  		});
 
 				  		return productSizes;
 				  	};
 
-				  	$scope.getSizeVolume = function(enumeration.trees, product, size) {
-				  		
+				  	$scope.getSizeVolume = function(array, product, size) {
+				  		var vol = 0;
+
+				  		function checkIfExist(a, p) {
+							var result = false;
+							var alength = a.length;
+							for (var j = 0; j < alength; j++ ) {
+								var testProduct = a[j];
+								if (p === testProduct) {
+									result = true;
+								}
+							}
+
+							return result; 	
+						};
+
+						
+
+				  		angular.forEach(array, function(tree) {
+
+				  			var newArray = $filter('filter')(tree.sections, {product: product});
+				  			
+				  			angular.forEach(newArray, function(item){
+				  				if (item.min === size) {
+				  					var newVol = $scope.volumeCalc(product, item.min, item.max, item.length);
+				  					vol += newVol;
+				  				}		
+						  	});
+				  			
+
+				  			
+				  		});
+
+				  		return vol;
 				  	};
 
+				  	$scope.getSizeTotal = function(array, product, size) {
+				  		var total = 0;
+
+				  		function checkIfExist(a, p) {
+							var result = false;
+							var alength = a.length;
+							for (var j = 0; j < alength; j++ ) {
+								var testProduct = a[j];
+								if (p === testProduct) {
+									result = true;
+								}
+							}
+
+							return result; 	
+						};
+
+						
+
+				  		angular.forEach(array, function(tree) {
+
+				  			var newArray = $filter('filter')(tree.sections, {product: product});
+				  			
+				  			angular.forEach(newArray, function(item){
+				  				if (item.min === size) {
+				  					total += 1;
+				  				}		
+						  	});
+				  			
+
+				  			
+				  		});
+
+				  		return total;
+				  	};
+
+				  
 
 				  $scope.ok = function () {
 				    $modalInstance.close($scope.selected.item);

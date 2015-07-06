@@ -76,23 +76,104 @@
             <span class="hd4  bold" ng-style="{'color': 'white'}">{{authentication.user.displayName}} </span>
           </div>
           
-          <div layout="row" layout-align="start center" flex>
+          <div layout="row" layout-align="start center" flex ng-click="showProfile = !showProfile">
             <div layout="row" layout-align="start center" flex>
               <span class="hd4"  ng-style="{'color': 'white'}">{{authentication.user.email}} </span>
             </div>
-            <div layout="row" layout-align="end center" flex class="pad-t-5">
-              <ng-md-icon icon="arrow_drop_down" style="fill: {{}}" size="23"></ng-md-icon> 
+            <div layout="row" layout-align="end center" flex class="pad-t-5 mar-r-5">
+              <ng-md-icon icon="arrow_drop_down" style="fill: {{white}}" size="25"></ng-md-icon> 
             </div>
           </div>
           
         </div>
         
       </div>
+        <div class="profile-side" ng-show="showProfile">
+             <md-button area-label="Button" flex class="sidebar-btn mar-0 pad-0">
+                  <div layout="row">
+                    <div layout="row" flex="20" layout-align="center center">
+                      <span class="pad-t-10">
+                      <i>
+                        <ng-md-icon icon="assignment_ind" style="fill: {{dgrey}}" size="18"></ng-md-icon> 
+                      </i>
+                      
+                    </span>
+                    </div>
+                    <div layout="row" flex>
+                      <span class="pad-t-8 mar-l-10 sidenav-primary-text ">My Profile</span>
+                    </div>
+                    <div layout="row" flex="30"  >
+                      <div layout="row" flex >
+                        
+                      </div>
+                      <div layout="row" layout-align="start center" flex>
+                       
+                      </div>
+                     
+                      
+                    </div>
+                  </div>
+                    
+              </md-button>
+                   <md-button area-label="Button" flex class="sidebar-btn mar-0 pad-0">
+                  <div layout="row">
+                    <div layout="row" flex="20" layout-align="center center">
+                      <span class="pad-t-10">
+                      <i>
+                        <ng-md-icon icon="settings" style="fill: {{dgrey}}" size="18"></ng-md-icon> 
+                      </i>
+                      
+                    </span>
+                    </div>
+                    <div layout="row" flex>
+                      <span class="pad-t-8 mar-l-10 sidenav-primary-text ">Settings</span>
+                    </div>
+                    <div layout="row" flex="30"  >
+                      <div layout="row" flex >
+                        
+                      </div>
+                      <div layout="row" layout-align="start center" flex>
+                       
+                      </div>
+                     
+                      
+                    </div>
+                  </div>
+                    
+              </md-button>
+              <md-button area-label="Button" flex class="sidebar-btn mar-0 pad-0">
+                  <div layout="row">
+                    <div layout="row" flex="20" layout-align="center center">
+                      <span class="pad-t-10">
+                      <i>
+                        <ng-md-icon icon="input" style="fill: {{dgrey}}" size="18"></ng-md-icon> 
+                      </i>
+                      
+                    </span>
+                    </div>
+                    <div layout="row" flex>
+                      <span class="pad-t-8 mar-l-10 sidenav-primary-text "><span class="txt-dgrey txt-normal"><a href="/api/auth/signout" target="_self" >Signout</a></span></span>
+                    </div>
+                    <div layout="row" flex="30"  >
+                      <div layout="row" flex >
+                        
+                      </div>
+                      <div layout="row" layout-align="start center" flex>
+                       
+                      </div>
+                     
+                      
+                    </div>
+                  </div>
+                    
+              </md-button>
 
-        <div class="accordion__container">
+        </div>
+
+        <div class="accordion__container" ng-hide="showProfile">
             <div class="accordion__tab">
                 <div class="accordion__tab title" ng-click="openTab('tab one')">
-                   <md-button area-label="Button" flex class="sidebar-btn mar-0">
+                   <md-button area-label="Button" flex class="sidebar-btn mar-0 pad-0" data-ui-sref="dashboard">
                   <div layout="row">
                     <div layout="row" flex="20" layout-align="center center">
                       <span class="pad-t-10">
@@ -131,7 +212,7 @@
             <div class="accordion__tab" data-ng-repeat="item in sidenav.items | orderBy: 'position'">
                 <div class="accordion__tab title" ng-click="openTab($index)">
                  
-                  <md-button area-label="Button" flex class="sidebar-btn mar-0">
+                  <md-button area-label="Button" flex class="sidebar-btn mar-0 pad-0">
                   <div layout="row">
                     <div layout="row" flex="20" layout-align="center center">
                       <span class="pad-t-10">

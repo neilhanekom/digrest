@@ -94,21 +94,21 @@
                       </div>
                        <div layout="column" class="mar-t-5" >
                         <div layout="row" class="bg-white bor-b pad-t-5 " layout-align="center center" flex>
-                            <div layout flex layout-align="center center"><p class="hd5 grey bold mar-l-5">Size</p></div>
-                            <div layout flex layout-align="center center"><p class="hd5 grey bold">Vol</div>
-                            <div layout flex layout-align="center center"><p class="hd5 grey bold">Total </p></div>
-                            <div layout flex layout-align="center center"><p class="hd5 grey bold">%</p></div>
+                            <div layout flex layout-align="start center" class="pad-l-5"><p class="hd4 grey bold mar-l-5">Size</p></div>
+                            <div layout flex layout-align="start center"><p class="hd4 grey bold">Vol</div>
+                            <div layout flex layout-align="start center"><p class="hd4 grey bold">Total </p></div>
+                            <div layout flex layout-align="start center"><p class="hd4 grey bold">%</p></div>
                           </div>
 
                           <div layout="row" class="bg-lgrey pad-t-5" ng-repeat="size in getEnumSizes(enumeration.trees, product) | orderBy:''" ng-class-odd="'odd'" ng-class-even="'even'" layout-align="center center" flex>
 
                             
-                            <div layout flex layout-align="center center"><p class="hd5 grey bold">{{size}}/{{size + 25}}</p></div>
-                            <div layout flex layout-align="center center"><p class="hd5 grey">{{getSizeVolume(enumeration.trees, product, size) | number:3 }} m<sup>3</sup></p></div>
-                            <div layout flex layout-align="center center"><p class="hd5 grey bold">{{getSizeDayTotal(reportDailyTallies, product, size)}} </p></div>
-                            <div layout="row" flex layout-align="center center" >
-                            <p class="hd5 grey ">
-                        		{{(getSizeDayVolume(reportDailyTallies, product, size)/getTotalDayVol(reportDailyTallies))*100 | number:1}}%
+                            <div layout flex layout-align="start center" class="mar-l-5"><p class="hd4 grey bold">{{size}} <span ng-if="product == 'B&F'">/{{size + 25}}</span></p></div>
+                            <div layout flex layout-align="start center"><p class="hd4 grey">{{getSizeVolume(enumeration.trees, product, size) | number:3 }} m<sup>3</sup></p></div>
+                            <div layout flex layout-align="start center"><p class="hd4 grey bold">{{getSizeTotal(enumeration.trees, product, size)}} </p></div>
+                            <div layout="row" flex layout-align="start center" >
+                            <p class="hd4 grey ">
+                        		{{(getSizeVolume(enumeration.trees, product, size)/getTotalVol(enumeration.trees))*100 | number:1}}%
                             </p>
                             </div>
                             <div layout="column">

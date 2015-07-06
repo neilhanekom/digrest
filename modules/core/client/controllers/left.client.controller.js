@@ -5,7 +5,7 @@ angular.module('core').controller('LeftController', ['$scope', 'Menus', 'Authent
 
 		$scope.sidenav = Menus.getMenu('sidenav');
 
-
+		$scope.showProfile = false;
 
 		
 		// All Colors Specs for Icons
