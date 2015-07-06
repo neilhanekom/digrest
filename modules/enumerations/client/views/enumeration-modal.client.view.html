@@ -30,22 +30,46 @@
            
 
           <div layout="column" flex layout-padding>
+          <div layout="column" layout-padding>
+            <div layout="row">
+              <span class="hd4 lighter">SUPPLIER: &nbsp </span>
+              <span class="hd4 bold">{{enumeration.supplier.name}}</span>
+            </div>
+            <div layout="row">
+              <span class="hd4 lighter">COMPARTMENT: &nbsp </span>
+              <span class="hd4 bold">{{enumeration.compartment.name}}</span>
+            </div>
+            <div layout="row">
+              <span class="hd4 lighter">PLACARD: &nbsp </span>
+              <span class="hd4 bold">{{enumeration.placard_number}}</span>
+            </div>
+            <div layout="row">
+              <span class="hd4 lighter">ENUMERATION ID: &nbsp </span>
+              <span class="hd4 bold">{{enumeration._id}}</span>
+            </div>
+            <div layout="row">
+              <span class="hd4 lighter">DATE: &nbsp </span>
+              <span class="hd4 bold">{{enumeration.created | date:'dd MMM yyyy'}}</span>
+            </div>
+
+          </div>  
+          
           <div layout="row" flex layout-padding>
                       <div layout="column" flex layout-align="center center" class="bg-llgrey mar-2">
-                        <p class="hd5 bold">Supplier</p>
-                        <span class="hd2 light">{{enumeration.supplier.name}} </span> 
+                        <p class="hd4 bold dgrey ">Felling date</p>
+                        <span class="hd3 ">{{enumeration.felling_date | date: 'dd MMM yyyy'}}</span>
                       </div>
                       <div layout="column" flex layout-align="center center" class="bg-llgrey mar-2">
-                        <p class="hd5 bold">Plantation</p>
-                        <span class="hd2 light">{{enumeration.plantation.name}} </span> 
+                        <p class="hd5 bold dgrey ">4Weeks</p>
+                        <span class="hd3 ">{{fourWeeksExtraction | Moment }}</span>
                       </div>
                       <div layout="column" flex layout-align="center center" class="bg-llgrey mar-2">
-                        <p class="hd5 bold">Compartment</p>
-                        <span class="hd2 light">{{enumeration.compartment.name}} </span> 
+                        <p class="hd5 bold dgrey ">4Weeks</p>
+                        <span class="hd3 ">{{fiveWeeksExtraction | Moment}}</span>
                       </div>
                       <div layout="column" flex layout-align="center center" class="bg-llgrey mar-2">
-                        <p class="hd5 bold">Placard</p>
-                        <span class="hd2 light">{{enumeration.placard.no}} </span> 
+                        <p class="hd5 bold dgrey ">4Weeks</p>
+                        <span class="hd3 ">{{sixWeeksExtraction | Moment}}</span>
                       </div>
                      
                      
@@ -87,8 +111,8 @@
                         </div>
                     </div >
                      <div layout="column">
-                       <span class="hd4 bold">Volume: <span class="light">{{getProductVol(enumeration.trees, product) | number:3}}</span> m<sup>3</sup></span>
-                       <span class="hd4 bold">Total: <span class="light">{{getProductTotal(enumeration.trees, product)}}</span> units</span>
+                       <span class="hd3 ">Volume: <span class="light">{{getProductVol(enumeration.trees, product) | number:3}}</span> m<sup>3</sup></span>
+                       <span class="hd3 ">Total: <span class="light">{{getProductTotal(enumeration.trees, product)}}</span> units</span>
                        <div layout="row" class="mar-t-15">
                         
                       </div>

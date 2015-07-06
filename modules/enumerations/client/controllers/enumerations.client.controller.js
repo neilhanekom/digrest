@@ -5,6 +5,8 @@ angular.module('enumerations').controller('EnumerationsController', ['$scope', '
 	function($scope, $stateParams, $location, $filter, $timeout, Authentication, Enumerations, Suppliers, Plantations, Compartments, Placards, $modal, $log, Volume ) {
 		$scope.authentication = Authentication;
 
+
+
 		$scope.filterEnums = function(filtercriteria){
 			var Enums = Enumerations.query();
 			$timeout(function(){
@@ -135,7 +137,7 @@ angular.module('enumerations').controller('EnumerationsController', ['$scope', '
 		};
 
 
-		  this.openEnumerationReport = function (enumeration, enumerations) {
+		  this.openEnumerationReport = function (enumeration, enumerations, Placards) {
 
 		    var modalInstance = $modal.open({
 		      animation: $scope.animationsEnabled,
@@ -148,6 +150,23 @@ angular.module('enumerations').controller('EnumerationsController', ['$scope', '
 		      		$scope.enumerations = enumerations;
 		      		generateProducts();
 		      		$scope.volumeCalc = Volume.getVolume;
+
+		      		$scope.fourWeeksExtraction = moment($scope.enumeration.felling_date).add(4, 'Weeks');
+			        $scope.fiveWeeksExtraction = moment($scope.enumeration.felling_date).add(5, 'Weeks');
+			        $scope.sixWeeksExtraction = moment($scope.enumeration.felling_date).add(6, 'Weeks');
+
+
+			        $scope.getPlacNo = function(enumeration) {
+			        	var no = 0;
+			        	var placards = Placards.query();
+			        	$timeout(function(){
+			        		angular.forEach(placards, function(placard){
+			        			if (enumeration._id === placard.enumeration) {
+			        				return placard.no;
+			        			}
+			        		});
+			        	}, 1000);
+			        				        };
 				  	
 				  	function generateProducts() {
 				  		var enumproducts = [];
